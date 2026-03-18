@@ -1,0 +1,1036 @@
+/* 
+   ETAPA 2 — GENERAL.CSS
+   Lena's Ballet Boutique — Elegant Ballet Theme
+*/
+
+/* 
+   CERINTA: 5 culori definite ca variabile pe body, folosite doar prin var()
+   Schema analogica bazata pe rose-gold — eleganta baletului
+   Culoare de baza: #C9929D (rose muted)
+   Motivatie: nuantele de rose si auriu evoca gratie, feminitate,
+   eleganta si rafinamentul scenei de balet clasic.
+*/
+body {
+    /* --- 5 culori din schema cromatica + derivate --- */
+    --roz-principal: #D4849A;
+    --roz-deschis: #E8C4CF;           /* mai inchis decat inainte */
+    --bordo: #6E2845;
+    --crem: #F5DDE3;                  /* roz-crem, nu alb */
+    --roz-prafuit: #D9A3B3;
+    --auriu: #C9A96E;
+    --auriu-deschis: #E8D5A8;
+
+    /* Fundal — mai inchis, mai roz */
+    --culoare-text: #2E1520;
+    --culoare-text-sec: #5C3048;
+    --culoare-border: #CDA0B0;
+    --culoare-shadow: rgba(110, 40, 69, 0.16);
+    --culoare-shadow-puternic: rgba(110, 40, 69, 0.32);
+    --culoare-alb: #FFF0F3;
+    --culoare-zona: #F8DDE4;
+    --culoare-link: #6E2845;
+    --culoare-link-hover: #D4849A;
+
+    /* Spatiere */
+    --margine-pagina: 7rem;
+    --gap: 1.3rem;
+    --padding-zona: 1.8rem;
+
+    /* Dimensiuni text — MAI MARI */
+    --font-size-body: 1.12rem;
+    --font-size-h1: 3.6rem;
+    --font-size-h2: 2.5rem;
+    --font-size-h3: 1.6rem;
+    --font-size-h4: 1.3rem;
+    --font-size-small: 0.92rem;
+}
+
+
+/* 
+   CERINTA ETAPA 2 — FONT EXTERN GOOGLE API
+   CERINTA FONT EXTERN: DM Serif Display = serif elegant pentru titluri (importat prin Google Fonts)
+   CERINTA FONT EXTERN: Nunito Sans = sans-serif rafinat pentru text (importat prin Google Fonts)
+   CERINTA LAYOUT: font-size pe html in UNITATI FIXE (px)
+   Restul dimensiunilor de text in unitati RELATIVE (em, rem)
+   Tranzitie la schimbarea font-size intre breakpoints
+   Tranzitie la schimbarea font-size intre breakpoints
+*/
+html {
+    font-size: 18px;
+    transition: font-size 0.3s ease;
+}
+
+body {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 1rem;    /* relativ la html font-size */
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--culoare-text);
+    background: linear-gradient(180deg, var(--roz-deschis) 0%, var(--roz-prafuit) 40%, var(--roz-deschis) 100%);
+    background-attachment: fixed;
+}
+
+/* Headinguri elegante */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Serif Display', serif;
+    color: var(--bordo);
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+h1 {
+    font-size: var(--font-size-h1);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+h2 {
+    font-size: var(--font-size-h2);
+    font-weight: 700;
+    margin-bottom: 0.8em;
+    padding-bottom: 0.4em;
+    /* Linie decorativa sub fiecare h2 */
+    border-bottom: 0.18rem solid var(--roz-prafuit);
+    position: relative;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0.05rem 0.1rem rgba(110, 40, 69, 0.1);
+}
+
+/* Accent auriu sub h2 — efect decorativ */
+h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.15rem;
+    left: 0;
+    width: 3.5rem;
+    height: 0.15rem;
+    background: linear-gradient(90deg, var(--auriu), var(--auriu-deschis));
+    border-radius: 1rem;
+}
+
+h3 {
+    font-size: var(--font-size-h3);
+    margin-bottom: 0.5em;
+    color: var(--bordo);
+    font-weight: 700;
+}
+
+h4 {
+    font-size: var(--font-size-h4);
+    margin-bottom: 0.4em;
+    color: var(--roz-principal);
+    font-style: italic;
+}
+
+/* Iconite din h2 — culoare aurie */
+h2 i.fa-solid, h2 i.fa-regular {
+    color: var(--auriu);
+    margin-right: 0.3em;
+    font-size: 0.85em;
+}
+
+/* Iconita din h1 — auriu stralucitor */
+h1 i {
+    color: var(--auriu);
+    margin-right: 0.3em;
+}
+
+p {
+    margin-bottom: 0.9em;
+    line-height: 1.8;
+    font-size: var(--font-size-body);
+    color: var(--culoare-text);
+}
+
+
+/* 
+   CERINTA ETAPA 2 — SPATIERE STANGA-DREAPTA
+   CERINTA: spatiere identica in ambele directii, mai mica pe ecran mediu si mic
+   CERINTA: folosim variabile CSS (--margine-pagina)
+*/
+header, main, footer {
+    margin-left: var(--margine-pagina);
+    margin-right: var(--margine-pagina);
+}
+
+
+header {
+    background: linear-gradient(135deg, var(--culoare-alb) 0%, var(--crem) 50%, var(--roz-deschis) 100%);
+    border-bottom: 0.2rem solid var(--roz-principal);
+    border-radius: 0 0 1.2rem 1.2rem;
+    box-shadow:
+        0 0.4rem 1.5rem var(--culoare-shadow),
+        0 0.1rem 0.3rem var(--culoare-shadow-puternic);
+    padding: var(--padding-zona) var(--padding-zona) 1rem;
+    margin-top: 0;
+    margin-bottom: var(--gap);
+    text-align: center;
+}
+
+header h1 {
+    color: var(--bordo);
+    text-shadow: 0 0.1rem 0.3rem rgba(110, 40, 69, 0.2);
+    margin-bottom: 0.4em;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
+
+header img {
+    margin: 0 auto 1rem auto;
+    max-width: 16rem;
+    height: auto;
+    border-radius: 0.8rem;
+    box-shadow: 0 0.3rem 1.2rem var(--culoare-shadow);
+}
+
+
+
+footer {
+    background: linear-gradient(135deg, var(--roz-prafuit) 0%, var(--roz-deschis) 100%);
+    border-top: 0.2rem solid var(--roz-principal);
+    border-radius: 1.2rem 1.2rem 0 0;
+    box-shadow:
+        0 -0.3rem 1rem var(--culoare-shadow),
+        inset 0 0.1rem 0.3rem rgba(255,255,255,0.4);
+    padding: var(--padding-zona);
+    margin-top: var(--gap);
+    margin-bottom: 0;
+    text-align: center;
+    color: var(--culoare-text-sec);
+    font-size: var(--font-size-small);
+}
+
+
+
+nav ul {
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0;
+    list-style: none;
+}
+
+nav li {
+    list-style: none;
+}
+
+nav > ul > li {
+    position: relative;
+}
+
+nav a {
+    display: block;
+    padding: 0.5rem 1.1rem;
+    color: var(--bordo);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.92rem;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    border-radius: 0.4rem;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    background-color: var(--roz-principal);
+    color: var(--culoare-alb);
+    box-shadow: 0 0.2rem 0.5rem var(--culoare-shadow);
+}
+
+/* Submeniu */
+nav ul ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    background-color: var(--culoare-alb);
+    border: 0.1rem solid var(--culoare-border);
+    border-radius: 0 0 0.6rem 0.6rem;
+    box-shadow: 0 0.4rem 1.2rem var(--culoare-shadow-puternic);
+    min-width: 15rem;
+    z-index: 100;
+    flex-direction: column;
+    padding: 0.4rem 0;
+}
+
+nav > ul > li:hover > ul {
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+}
+
+nav ul ul a {
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: none;
+    padding: 0.45rem 1.2rem;
+}
+
+
+/* 
+   LAYOUT RESPONSIVE — GRID CU 8 ZONE
+   Conform imaginii: 4 coloane, layout asimetric
+*/
+#grid-pagina {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+        "zona1  zona1  zona1  zona1"
+        "zona2  zona2  zona8  zona8"
+        "zona3  zona6  zona8  zona8"
+        "zona5  zona6  zona8  zona8"
+        "zona5  zona4  zona4  zona7";
+    gap: var(--gap);  /* CERINTA : gap intre celulele gridului, descrescator pe ecran mediu si mic */
+}
+
+#welcome          { grid-area: zona1; }  /* Prezentare — full width */
+#program          { grid-area: zona2; }  /* Tabel — stanga sus */
+#recomandari      { grid-area: zona3; }  /* Recomandari — zona MICA */
+#utilizatori      { grid-area: zona4; }  /* Placeholder — centru jos */
+#evenimente       { grid-area: zona5; }  /* Evenimente — zona INALTA (2 randuri) */
+#oferte           { grid-area: zona6; }  /* Oferte — zona MEDIE (2 randuri) */
+#statistici       { grid-area: zona7; }  /* Placeholder — dreapta jos */
+#produse          { grid-area: zona8; }  /* Produse — zona MARE dreapta */
+
+/* --- Stilul zonelor din grid --- */
+#grid-pagina > * {
+    background: linear-gradient(145deg, var(--culoare-alb) 0%, var(--culoare-zona) 100%);
+    border: 0.1rem solid var(--culoare-border);
+    border-radius: 0.8rem;
+    box-shadow:
+        0 0.2rem 0.8rem var(--culoare-shadow),
+        0 0.05rem 0.15rem rgba(0,0,0,0.04);
+    padding: var(--padding-zona);
+    /* FARA overflow:hidden aici — cerinta spune ca layoutul nu trebuie sa apara taiat */
+    overflow: visible;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+/*/* CERINTE: hover subtil pe zone — ridica usor cardul */
+#grid-pagina > *:hover {
+    box-shadow:
+        0 0.5rem 1.8rem var(--culoare-shadow-puternic),
+        0 0.1rem 0.3rem rgba(0,0,0,0.06);
+    transform: translateY(-0.1rem);
+}
+
+/* Zona 1 — erou, gradient elegant roz */
+#welcome {
+    background: linear-gradient(160deg, var(--culoare-alb) 0%, var(--roz-deschis) 50%, var(--roz-prafuit) 100%);
+    border: 0.18rem solid var(--roz-principal);
+    box-shadow:
+        0 0.4rem 2rem var(--culoare-shadow-puternic),
+        inset 0 0 3rem rgba(232, 196, 207, 0.25);
+}
+
+/* Zone placeholder */
+#utilizatori, #statistici {
+    background: linear-gradient(145deg, var(--crem) 0%, var(--roz-deschis) 100%);
+    border-style: dashed;
+    border-color: var(--roz-prafuit);
+    color: var(--culoare-text-sec);
+}
+
+
+/* 
+   SECTIUNI IN AFARA GRIDULUI — bine delimitate
+*/
+main > section:not(#grid-pagina *):not(#grid-pagina) {
+    background: linear-gradient(145deg, var(--culoare-alb) 0%, var(--culoare-zona) 100%);
+    border: 0.1rem solid var(--culoare-border);
+    border-radius: 0.8rem;
+    box-shadow:
+        0 0.2rem 0.8rem var(--culoare-shadow),
+        0 0.05rem 0.15rem rgba(0,0,0,0.04);
+    padding: var(--padding-zona);
+    margin-top: var(--gap);
+    transition: box-shadow 0.3s ease;
+}
+
+main > section:not(#grid-pagina *):not(#grid-pagina):hover {
+    box-shadow:
+        0 0.4rem 1.5rem var(--culoare-shadow-puternic);
+}
+
+/* Aside recomandari (in afara gridului cand e in flow) */
+main > aside {
+    background: linear-gradient(135deg, var(--crem) 0%, var(--roz-deschis) 100%);
+    border: 0.1rem solid var(--culoare-border);
+    border-radius: 0.8rem;
+    border-left: 0.35rem solid var(--auriu);
+    box-shadow: 0 0.2rem 0.8rem var(--culoare-shadow);
+    padding: var(--padding-zona);
+    margin-top: var(--gap);
+}
+
+
+/* 
+   CERINTA LAYOUT: ECRAN MEDIU — grid 2 coloane (diferit de ecran mare)
+*/
+@media screen and (max-width: 1200px) {
+    /* CERINTA LAYOUT: font-size pe html descrescator, cu tranzitie */
+    html {
+        font-size: 16px;
+    }
+
+    body {
+        --margine-pagina: 3rem;
+        --gap: 1rem;
+        --padding-zona: 1.3rem;
+        --font-size-body: 1.05rem;
+        --font-size-h1: 2.8rem;
+        --font-size-h2: 2rem;
+        --font-size-h3: 1.35rem;
+        --font-size-h4: 1.15rem;
+    }
+
+    #grid-pagina {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "zona1  zona1"
+            "zona2  zona8"
+            "zona3  zona8"
+            "zona6  zona8"
+            "zona5  zona4"
+            "zona5  zona7";
+    }
+}
+
+/* 
+   CERINTA LAYOUT: ECRAN MIC — fara coloane (display: block)
+*/
+@media screen and (max-width: 700px) {
+    /* CERINTA LAYOUT: font-size pe html descrescator */
+    html {
+        font-size: 14px;
+    }
+
+    body {
+        --margine-pagina: 0.8rem;
+        --gap: 0.7rem;
+        --padding-zona: 1rem;
+        --font-size-body: 0.95rem;
+        --font-size-h1: 2rem;
+        --font-size-h2: 1.55rem;
+        --font-size-h3: 1.15rem;
+        --font-size-h4: 1.02rem;
+    }
+
+    #grid-pagina {
+        display: block;
+    }
+
+    #grid-pagina > * {
+        margin-bottom: var(--gap);
+    }
+
+    /* CERINTA: Animatii dezactivate pe ecran mic (cu exceptia celor cerute explicit) */
+    *:not(html), *::before, *::after {
+        animation-duration: 0s !important;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul ul {
+        position: static;
+        box-shadow: none;
+        border: none;
+    }
+
+    header, footer {
+        border-radius: 0;
+    }
+
+    header img { max-width: 10rem; }
+
+    h2::after { width: 2rem; }
+}
+
+
+/* 
+   CERINTA ETAPA 2 — ELEMENTE MEDIA
+   CERINTA: latime in procente, cu max-width si min-width
+   CERINTA: valorile pot diferi in functie de dimensiunea ecranului
+   */
+img:not(.img-produs), iframe, embed, video {
+    width: 100%;
+    max-width: 37.5rem;
+    min-width: 0;
+    height: auto;
+}
+
+iframe[src*="youtube"] {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    min-width: 15rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.2rem 1rem var(--culoare-shadow);
+}
+
+embed[type="application/pdf"] {
+    max-width: 100%;
+    min-width: 15rem;
+    min-height: 25rem;
+}
+
+
+/* 
+   CERINTA ETAPA 2 — STILIZARE TABEL (cerinta individuala)
+*/
+.tabel-container {
+    border-radius: 0.8rem;
+    overflow: hidden;
+    border: 0.1rem solid var(--culoare-border);
+    box-shadow: 0 0.15rem 0.8rem var(--culoare-shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+caption {
+    caption-side: bottom;  /* CERINTA TABEL: caption pozitionat SUB tabel */
+    padding: 0.7rem;
+    font-style: italic;
+    color: var(--culoare-text-sec);
+    font-size: var(--font-size-small);
+    text-align: center;
+    font-family: 'DM Serif Display', serif;
+}
+
+thead {
+    background: linear-gradient(135deg, var(--bordo) 0%, var(--roz-principal) 100%);
+    color: var(--culoare-alb);
+}
+
+thead th {
+    padding: 0.9rem 0.8rem;
+    font-family: 'DM Serif Display', serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    text-align: left;
+    letter-spacing: 0.02em;
+}
+
+td {
+    padding: 0.75rem 0.8rem;
+    font-size: 1rem;
+    border-bottom: 0.05rem solid var(--culoare-border);
+}
+
+/* Coloane alternante */
+td:nth-child(odd) { background-color: var(--culoare-alb); }
+td:nth-child(even) { background-color: var(--roz-deschis); }
+
+/* Hover pe rand */
+tbody tr { transition: background-color 0.35s ease; }
+tbody tr:hover td { background-color: var(--roz-prafuit); }
+
+/* Celula sub cursor */
+tbody td:hover {
+    background-color: var(--roz-principal) !important;
+    color: var(--culoare-alb);
+}
+
+tfoot td {
+    background-color: var(--crem);
+    font-style: italic;
+    font-size: var(--font-size-small);
+    text-align: center;
+    color: var(--culoare-text-sec);
+}
+
+@media screen and (max-width: 700px) {
+    .tabel-container { overflow-x: auto;  /* CERINTA TABEL: scroll orizontal pe ecran mic */ -webkit-overflow-scrolling: touch; }
+    table { min-width: 37.5rem; }
+}
+
+@media screen and (max-width: 1200px) {
+    .tabel-container { overflow-x: auto;  /* CERINTA TABEL: scroll orizontal pe ecran mic */ }
+}
+
+
+/* 
+   CERINTA ETAPA 2 — STILIZARE TABURI IFRAME (cerinta individuala)
+   CERINTA: obligatoriu flexbox
+*/
+.container-iframe {
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.taburi-iframe {
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0;
+}
+
+.taburi-iframe a {
+    display: inline-block;
+    padding: 0.6rem 1.3rem;
+    background: linear-gradient(180deg, var(--crem) 0%, var(--roz-deschis) 100%);
+    border: 0.12rem solid var(--culoare-border);
+    border-bottom: none;
+    border-radius: 0.5rem 0.5rem 0 0;
+    color: var(--bordo);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    letter-spacing: 0.02em;
+}
+
+.taburi-iframe a:hover {
+    background: linear-gradient(180deg, var(--roz-principal) 0%, var(--bordo) 100%);
+    color: var(--culoare-alb);
+    transform: translateY(-0.15rem);
+    box-shadow: 0 -0.2rem 0.6rem var(--culoare-shadow);
+}
+
+.container-iframe > iframe {
+    border: 0.12rem solid var(--culoare-border);
+    border-radius: 0 0 0.6rem 0.6rem;
+}
+
+
+/* 
+   CERINTA ETAPA 2 — LINK TOP (cerinta individuala)
+   CERINTA: fara imagini!
+   CERINTA: pozitie fixa, jos-dreapta
+   CERINTA: rotit (transform: rotate)
+   CERINTA: triunghi creat cu border (fara border-top, transparent stanga/dreapta, colorat jos)
+   CERINTA: semi-transparent (opacity), opac la hover
+   CERINTA: tranzitie la hover (300-700ms)
+   CERINTA: tooltip cu text explicativ (atributul title in HTML)
+*/
+#link-top {
+    position: fixed;  /* CERINTA LINK TOP: pozitie fixa in josul paginii */
+    bottom: 1.8rem;
+    right: 1.8rem;
+    width: 3.2rem;
+    height: 3.2rem;
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--roz-principal) 0%, var(--bordo) 100%);
+    border: 0.15rem solid var(--auriu);
+    border-radius: 0.5rem;
+    transform: rotate(45deg);  /* CERINTA LINK TOP: rotit ca in videoclip */
+    opacity: 0.5;  /* CERINTA LINK TOP: semi-transparent, devine opac la hover */
+    transition: opacity 0.4s, background 0.4s, box-shadow 0.4s;
+    z-index: 1000;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#link-top:hover {
+    opacity: 1;
+    background: linear-gradient(135deg, var(--auriu) 0%, var(--auriu-deschis) 100%);
+    box-shadow:
+        0 0 1.2rem var(--culoare-shadow-puternic),
+        0 0 0.4rem var(--auriu);
+}
+
+#triunghi {
+    width: 0;
+    height: 0;
+    border-top: none;  /* CERINTA LINK TOP: triunghi FARA border sus */
+    border-left: 0.5rem solid transparent;  /* CERINTA LINK TOP: bordere TRANSPARENTE stanga/dreapta */
+    border-right: 0.5rem solid transparent;
+    border-bottom: 0.75rem solid var(--culoare-alb);  /* CERINTA LINK TOP: border COLORAT jos = triunghiul */
+    transform: rotate(-45deg);
+    transition: border-bottom-color 0.4s;
+}
+
+#link-top:hover #triunghi {
+    border-bottom-color: var(--bordo);
+}
+
+
+/* 
+   ELEMENTE DE TEXT
+*/
+hgroup p {
+    font-style: italic;
+    color: var(--bordo);
+    font-size: 1.25rem;
+    font-family: 'DM Serif Display', serif;
+    margin-top: 0.3em;
+    letter-spacing: 0.02em;
+}
+
+blockquote {
+    border-left: 0.3rem solid var(--auriu);
+    padding: 1rem 1.5rem;
+    margin: 1.2rem 0;
+    background: linear-gradient(135deg, var(--crem) 0%, var(--roz-deschis) 100%);
+    border-radius: 0 0.6rem 0.6rem 0;
+    font-style: italic;
+    color: var(--culoare-text-sec);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05em;
+    box-shadow: 0 0.1rem 0.4rem var(--culoare-shadow);
+}
+
+cite {
+    font-style: normal;
+    font-weight: 700;
+    color: var(--bordo);
+}
+
+/* Liste */
+ol, ul {
+    padding-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+ol { list-style: decimal; }
+ul { list-style: disc; }
+ol li, ul li { margin-bottom: 0.5rem; line-height: 1.7; }
+
+/* Definition list */
+dl { margin-bottom: 1rem; }
+dt {
+    font-weight: 700;
+    color: var(--bordo);
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05em;
+    margin-top: 0.7rem;
+}
+dd {
+    margin-left: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--culoare-text-sec);
+}
+
+/* Taguri inline */
+b { font-weight: 700; }
+strong { font-weight: 700; color: var(--bordo); }
+em { font-style: italic; }
+
+abbr[title] {
+    text-decoration: underline dotted var(--auriu);
+    cursor: help;
+}
+
+dfn {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--roz-principal);
+}
+
+s { color: var(--culoare-text-sec); text-decoration: line-through; }
+
+ins {
+    color: var(--bordo);
+    text-decoration: none;
+    font-weight: 700;
+    background-color: var(--roz-deschis);
+    padding: 0 0.2em;
+    border-radius: 0.2rem;
+}
+
+q { font-style: italic; font-family: 'DM Serif Display', serif; }
+q::before { content: "„"; color: var(--auriu); font-weight: 700; }
+q::after  { content: """; color: var(--auriu); font-weight: 700; }
+
+/* Meter */
+meter { width: 12rem; height: 1.2rem; vertical-align: middle; }
+
+/* Details / Summary */
+details {
+    margin-bottom: 0.7rem;
+    border: 0.1rem solid var(--culoare-border);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 0.1rem 0.3rem var(--culoare-shadow);
+}
+
+summary {
+    padding: 0.7rem 1.1rem;
+    background: linear-gradient(135deg, var(--crem) 0%, var(--roz-deschis) 100%);
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.05em;
+    color: var(--bordo);
+    transition: background 0.3s;
+}
+
+summary:hover {
+    background: linear-gradient(135deg, var(--roz-prafuit) 0%, var(--roz-principal) 100%);
+    color: var(--culoare-alb);
+}
+
+details p { padding: 0.7rem 1.1rem; }
+
+/* Link-uri in text */
+main a {
+    color: var(--culoare-link);
+    text-decoration: underline;
+    text-decoration-color: var(--roz-prafuit);
+    text-underline-offset: 0.15em;
+    transition: color 0.25s, text-decoration-color 0.25s;
+}
+main a:hover {
+    color: var(--culoare-link-hover);
+    text-decoration-color: var(--roz-principal);
+}
+
+/* Figure / Figcaption */
+figure { margin: 1rem 0; text-align: center; }
+figcaption {
+    font-style: italic;
+    font-size: var(--font-size-small);
+    color: var(--culoare-text-sec);
+    margin-top: 0.5rem;
+    font-family: 'DM Serif Display', serif;
+}
+
+/* Time */
+time {
+    font-weight: 600;
+    color: var(--bordo);
+    font-family: 'DM Serif Display', serif;
+}
+
+/* Address footer */
+address { font-style: normal; margin-bottom: 0.8rem; }
+address a { color: var(--culoare-link); text-decoration: underline; }
+address a:hover { color: var(--culoare-link-hover); }
+
+/* Footer icons */
+footer i {
+    color: var(--bordo);
+    margin-right: 0.3rem;
+}
+
+
+/* 
+   CERINTA ETAPA 2 — GALERIE IMAGINI PRODUSE — mici, aranjate frumos
+*/
+.galerie-produse {
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.galerie-produse a {
+    display: inline-block;
+    width: 8.75rem;
+    height: 10.6rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: 0.5rem;
+}
+
+.galerie-produse img {
+    width: 8.75rem !important;
+    height: 10.6rem !important;
+    max-width: 8.75rem !important;
+    min-width: 0 !important;
+    object-fit: cover !important;
+    display: inline-block !important;
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--culoare-border);
+    transition: transform 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0.15rem 0.5rem var(--culoare-shadow);
+}
+
+.galerie-produse img:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0.4rem 1.2rem var(--culoare-shadow-puternic);
+}
+
+/* Articole in oferte */
+article {
+    border-bottom: 0.05rem solid var(--culoare-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+article:last-child { border-bottom: none; margin-bottom: 0; }
+
+
+/* 
+   BONUS ETAPA 2 — STILIZARE MATHML (cerinta bonus)
+   CERINTA BONUS: parti diferite din formula cu stil DIFERIT
+   CERINTA BONUS: schimbarea culorii, dimensiunii, italic/bold
+   Parti diferite din formula cu stil VIZIBIL DIFERIT
+   !important necesar fiindca browserele au stiluri interne pe MathML
+*/
+math {
+    font-size: 1.3em !important;
+    font-family: 'DM Serif Display', serif !important;
+}
+
+math[display="block"] {
+    display: block !important;
+    text-align: center !important;
+    margin: 1.5rem 0 !important;
+    padding: 1.5rem !important;
+    background: linear-gradient(135deg, var(--crem) 0%, var(--roz-deschis) 100%) !important;
+    border-radius: 0.8rem !important;
+    border: 0.15rem solid var(--roz-principal) !important;
+    box-shadow: 0 0.2rem 0.8rem var(--culoare-shadow-puternic) !important;
+    overflow-x: auto;  /* CERINTA TABEL: scroll orizontal pe ecran mic */
+}
+
+/* Variabile (P, p, q, n, m, i, j) — italic, bordo INCHIS, bold */
+math mi {
+    color: var(--bordo) !important;
+    font-style: italic !important;
+    font-size: 1.15em !important;
+    font-weight: bold !important;
+}
+
+/* Operatori (+, -, =, ×) — AURIU, dimensiune mare */
+math mo {
+    color: var(--auriu) !important;
+    font-size: 1.4em !important;
+    padding: 0 0.2em !important;
+    font-style: normal !important;
+    font-weight: bold !important;
+}
+
+/* Numere (1, 100, 3, 4, 0.97) — BOLD, ROZ PRINCIPAL */
+math mn {
+    font-weight: bold !important;
+    color: var(--roz-principal) !important;
+    font-size: 1.2em !important;
+    font-style: normal !important;
+    background-color: rgba(212, 132, 154, 0.15) !important;
+    padding: 0 0.15em !important;
+    border-radius: 0.2rem !important;
+}
+
+/* Text in formule (mtext) — mic, gri */
+math mtext {
+    font-style: normal !important;
+    font-size: 0.75em !important;
+    color: var(--culoare-text-sec) !important;
+    font-weight: normal !important;
+}
+
+/* Fractii — bordo */
+math mfrac {
+    font-size: 0.85em !important;
+    color: var(--bordo) !important;
+}
+
+/* Simbolul Sigma — AURIU MARE BOLD */
+math munderover > mo {
+    color: var(--auriu) !important;
+    font-size: 1.6em !important;
+    font-weight: bold !important;
+}
+
+/* Limitele sumatoriei (i=1, n) — mici, roz */
+math munderover > mrow {
+    font-size: 0.7em !important;
+    color: var(--roz-prafuit) !important;
+}
+
+/* Exponenti (p^i, q^j) — ROZ, bold */
+math msup > *:last-child {
+    color: var(--roz-principal) !important;
+    font-size: 0.8em !important;
+    font-weight: bold !important;
+}
+
+/* Indici (P_final) — AURIU */
+math msub > *:last-child {
+    color: var(--auriu) !important;
+    font-size: 0.75em !important;
+    font-style: italic !important;
+}
+
+/* Radical — bordo */
+math msqrt {
+    color: var(--bordo) !important;
+    font-size: 1.05em !important;
+}
+
+
+/* 
+   RESPONSIVE: adaptari suplimentare
+*/
+@media screen and (max-width: 1200px) {
+    .galerie-produse img { width: 7rem !important; height: 8.5rem !important; max-width: 7rem !important; }
+    .galerie-produse a { width: 7rem; height: 8.5rem; }
+    img, iframe, embed, video { max-width: 100%; }
+}
+
+@media screen and (max-width: 700px) {
+    .galerie-produse img { width: 5rem !important; height: 6rem !important; max-width: 5rem !important; }
+    .galerie-produse a { width: 5rem; height: 6rem; }
+
+    .taburi-iframe {
+        flex-direction: column;
+        align-items: center;
+    }
+    .taburi-iframe a {
+        border-radius: 0.4rem;
+        border-bottom: 0.12rem solid var(--culoare-border);
+        margin-bottom: 0.3rem;
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* 
+   imaginile de produs sa fie mici
+   */
+img.img-produs {
+    width: 8.75rem !important;
+    height: 10.6rem !important;
+    max-width: 8.75rem !important;
+    min-width: 0 !important;
+    object-fit: cover !important;
+    display: inline-block !important;
+    border-radius: 0.5rem;
+    border: 0.1rem solid var(--culoare-border);
+    box-shadow: 0 0.15rem 0.5rem var(--culoare-shadow);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+img.img-produs:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0.4rem 1.2rem var(--culoare-shadow-puternic);
+}
+
+@media screen and (max-width: 1200px) {
+    img.img-produs {
+        width: 4.5rem !important;
+        height: 5.5rem !important;
+        max-width: 4.5rem !important;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    img.img-produs {
+        width: 3.5rem !important;
+        height: 4.5rem !important;
+        max-width: 3.5rem !important;
+    }
+}
+q::before {
+    content: "„" !important; /* Forțează prima ghilimea */
+    display: inline !important;
+}
+
+q::after {
+    content: "”" !important; /* Forțează a doua ghilimea */
+    display: inline !important;
+}
+

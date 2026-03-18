@@ -1,0 +1,169 @@
+
+<hgroup> - tine impreuna cu titlul un continut secundar, adica lucruri care nu sunt titluri de sine statatoare ci apartin titlului principal 
+
+    <hgroup>
+    <h1>Magazin de Balet</h1>
+    <p>Subtitlu</p>        <!-- subheading -->
+    <p>Alt titlu</p>       <!-- alternative title -->
+    <p>Slogan/tagline</p>  <!-- tagline -->
+    </hgroup>
+
+Document outline = structura ierarhica a paginii -  cum o vede browserul sau un screen redear 
+
+<hgroup>  nu apare in aceasta structura - doar headingul din interior conteaza
+
+    <hgroup>
+    <h1>Magazin de Balet</h1>   ← ACESTA apare în document outline
+    <p>Slogan</p>                ← ignorat de outline, tratat ca metadata
+    </hgroup>
+
+    daca as fi pus <p> intr un <h2., ar fi aparut in outline ca un titlu separat ceea ce ar gresit semantic
+
+DE RETINUT!
+
+--- hgroup nu este vazut de outline
+--- hgroup este folosit atunci cand titlul mai are ceva secundar care face parte din el
+--- daca pun un <p> </p> intr-un <h1/2..> il va trata ca pe un titlu si nu ne dorim asta
+--- doar <h1> ... <h6> din interior contribuie la structura paginii
+
+!!! VOID ELEMENT - nu are tag de inchidere 
+            ex tagul <meta> este un void element pentru ca nu exista tagul </meta>
+
+<meta charset="utf-8"> --- sistem de codificare al caracterelor, practic ii spunem browserului cum sa citeasca datele, fara el caracterele speciale pot aparea ca simboluri ciudate
+
+<meta name = "description" content="...">
+textul care apare sub titlu in rezultatele Google. NU AFECTEAZA VIZUALUL PAGINII, DOAR AJUTA SEO (SEACHING ENGINE OPTIMIZATION) - (cum te gaseste Google)
+
+<meta name = "viewport" content = "width=device-width", initial-scale="1.0">
+fara el pe telefon pagina ar aparea zoom-out, adica o vei vedea ca un desktop micsorat
+
+width = device-width = latimea paginii = latimea ecranului dispozitivului
+
+initial-scale = 1.0 fara zoom initial-scale
+
+DE RETINUT STRUCTURA!!! 
+
+<!DOCTYPE html> <!--- ESTE O DECALRATIE CARE II SPUNE BROWSERULUI CA DOCUMENTUL ESTE UNUL HTML-->
+<html lang="en"> <!-- II SPUNE BROWSERULUI CA PAGINA ESTE IN ROMANA IMPORTANT PENTRU SCREEN READER SI SEO (SEARCHING ENGINE OPTIMIZATION)-->
+<head> <!-- NU APARE IN PAGINA -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- ESTE TOT CE VEDE UTILIZATORUL-->
+     <!-- ESTE ALCATUIT DIN :
+        <header> - logo si meniu de navigare, poate fi si in interiul unui <section> si al unui <article>
+        <main> - continutul principal, exista unul singur per pagina
+        <footer> - copyright, info contact - poate fi si in interiorul unei sectiuni sau al unui articol
+     -->
+</body>
+</html>
+
+<article> --- continut independent care ar putea fi publicat separat - un produs, un post de blog, un comentariu
+
+<section> - sectiune tematica a unui site (pentru a grupa un continut inrudit)- ar trebui sa fie intr un heading
+
+<aside> --- continut lateral/secundar - sidebar, reclame, informatii extra, legate indorect de continutul principal
+
+
+<address> informatii de contact pentru autor si organizatie
+
+<h1> - <h6> titluri ierarhice - h1 e cel mai important  si h6 este cel mai putin important, sunt folosite pentru structura documentului
+
+<- pana aici au fost pentru structura documentului
+
+-> acum vor fi pentru blocuri de text 
+
+<p> paragraf
+<div> container generic block-level - nu are sens semantic este folosit pentru stilizarea cu CSS este echivalentul lui <span> dar pentru blocuri
+
+<ul> lista neordonata cu buline
+    <ul>
+        <li>xxx</li> element din interiorul unei liste
+        <li>yyy</li>
+    </ul>
+
+<ol> lista ordonata cu numere 
+
+<menu>
+    - alternativa semantica pentru <ul> - practic indentica vizual, dar semantic indica un meniu de actiuni
+
+<dl> , <dt> , <dd>
+    lista de definitii - folosita pentru glosare sau perechi de definitii cheie-valoare
+
+    <dl>
+    <dt>Poante</dt>
+    <dd>Pantofi speciali pentru dans clasic</dd>
+    </dl>
+
+<nav> nu face nimic vizual - exista pentru a comunica intentia ca acel bloc este o zona de navigare (o zona de navigare este harta/meniul care ii arata toate locurile pe unde poti merge)
+
+<figure> + <figcaption>
+    --- imagine cu legenda 
+    --- figure este containerul 
+    --- figcaption este textul explicativ
+    <figure>
+    <img src="poante.jpg" alt="Poante">
+    <figcaption>Poante profesionale</figcaption>
+    </figure>
+
+src --- ii spune brwserului unde sa gaseasca imaginea 
+    --- poate fisier in acelasi folder, intr un subfolder sau un URL extern 
+
+alt --- alternative text (text care descrie imaginea, atunci cand nu se vede, apare in 3 situatii - imaginea nu s a incarcat, screen reader(pentru nevazatori) - programul citeste cu voce tare textul, google images)
+
+<blockqoute> este folosit pentru a marca citate lungi preluate din alte site-uri pe care browserul il indeteaza automat fata de restul textului si apare ca un bloc
+    cite - este un atribut prin care poti specifica sursa citatului, care nu va aparea vizual, doar este vazut de motoarele de cautare si browsere
+    footer este folosit pentru a afisa si sursa pentru utilizator
+
+<q> este folosit pentru a marca citate scurte, inline in text ( adica intr o propozitie )
+
+<em> - marcheaza textul cu accent ca si cum ai sublinia un cuvant cand vorbesti, vizual acesta da textul italic, dar motivul principal pentru care il folosim este cand vrei sa accentuezi un cuvant cu intentia semantica, daca vrei doar italic vizual trebuie sa folosesti in CSS <i>
+
+HOVER - A POZITIONA CURSORUL DEASUPRA UNUI LINK, BUTON SAU ORICE ALTCEVA FARA A FACE CLICK
+
+<img> este elementul care afiseaza efectiv imaginea in pagina fara el nu s ar vedea nimic are ca parametrii src (unde gaseste imaginea o singura poza) si alt (descrierea text a imaginii)
+<source> nu afiseaza nimic singur - doar sugereaza browserului ce imagine sa incarce are ca atribute srcset (lista de imagini din care browserul alege) si media (conditia in care se foloseste acea sursa)
+
+=> cand cele doua sunt impreuna <img> este mereu ultimul - apare daca nicio sursa nu se potriveste 
+
+target="_blank" -> ii spune browserului sa deschida link ul intr un tab nou
+-----------------  daca nu punem target o sa deschida in acelasi tab 
+
+--- rel="noopener" - este o masura de securitate care trebuie pusa intotdeauna cand folosim target="_black", cand deschidem intr un tab nou pagina noua are acces la pagina originala prin window.opener, o pagina malitioasa ar putea sa iti modifice pagina original, iar cu aceasta comanda pagina noua nu mai are acces la pagina originala, conexiunea fiind taiata
+
+<article> => continut independent are sens scos din context
+<aside> => continut secundar legat indirect de ce este in jur
+
+<caption> numele tabelului
+<thead> titlul coloanelor
+<tbody> datele efective
+<tfoot> totaluri, suma
+<tr> un rand in tabel
+<th> celula titlu bold si centrat implicit
+<td> celula de date 
+<col> / <colgroup> sintetizeaza coloane intregi fara sa modifici fiecare celula 
+colspan - extinde pe coloane
+rowspan - extinde pe randuri
+<wbr> - word break oppotunity - marcheaza un punct unde browserul poate rupe textul (se foloseste pentru texte lungi fara spatii) pentru a indica browserului unde sa rupa elegant linia daca nu incape
+
+<strong> importanta semantica + bold vizual
+<ins> text nou adaugat redat subliniat si il taie pe cel vechi
+
+
+<iframe> incorporeaza o alta pagina html, in interiorul paginii 
+allowfullscreen permite deschiderea fullscreen
+loading ="lazy" incarca iframe ul doar cand ajungi la el, pentru performanta
+sandbox pentru securitate cand sursa e externa
+
+<math display="block" (formula apare pe un rand doar al ei) / "inline" (formula apare in interiorul textului)>
+<mrow> - grupeaza elementele care formeaza o unitate logica asemanator cu <div></div>
+<mi> math identifier - variabilele - literele care reprezinta valori necunoscute sunt redate in italic automat
+<mn> math number - numerele valori concrete
+<mo> math operator - operatori simboluri matematice au coduri specifice
+<mtext> text normal in interiorul unei formule - nu e variabila nu e numar
+<msub> indice - text mic jos
+<msup> text mic sus - putere 
+<mfrac> numarator peste numitor - fractie
+<munderover> element cu ceva sus si ceva jos 

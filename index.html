@@ -29,40 +29,84 @@
     <link rel="stylesheet" href="./resurse/css/reset.css" type="text/css">
     <!-- ETAPA 2: Stilizare generala — contine schema cromatica, layout, design rudimentar, tabel, taburi, link-top -->
     <link rel="stylesheet" href="./resurse/css/general.css" type="text/css">
+    <!-- ETAPA 3: Meniu + Print (compilat din SASS) -->
+    <link rel="stylesheet" href="./resurse/css/meniu.css" type="text/css">
+    <script>
+    MathJax = {
+        options: {
+            skipHtmlTags: ['script','noscript','style','textarea','pre']
+        }
+    };
+    </script>
+    <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/mml-chtml.js"></script>
  </head>
  <body id="top">
 
     <!-- CERINTA 5: BODY IMPARTIT IN HEADER, MAIN, FOOTER -->
     <header>
-        <!-- CERINTA 8: H1 IN HEADER PENTRU TITLUL SITE-ULUI -->
-        <img src="resurse/imagini/logo.png" alt="Logo Lena's Ballet Boutique">
-        <!-- ETAPA 2 CERINTA ICONURI: icon ANIMAT Font Awesome (fa-bounce) — tematic balet -->
-        <h1><i class="fa-solid fa-wand-magic-sparkles fa-bounce" style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-height: -0.3em;"></i> Lena's Ballet Boutique</h1>
+    <img src="resurse/imagini/logo.png" alt="Logo Lena's Ballet Boutique">
+    <h1><i class="fa-solid fa-wand-magic-sparkles fa-bounce" style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-height: -0.3em;"></i> Lena's Ballet Boutique</h1>
 
-        <!-- CERINTA 8: NAV CU LISTA NEORDONATA DE LINK-URI, SUBLISTA IMBRICATA PENTRU SUBMENIU -->
-        <nav>
-            <ul>
-                <!-- CERINTA 8: optiunea principala "Acasa" cu suboptiuni catre sectiunile paginii -->
-                <li>
-                    <a href="#">Acasă</a>
-                    <!-- CERINTA 8: sublista imbricata cu link-uri catre sectiunile paginii (id-uri) -->
-                    <ul>
-                        <li><a href="#welcome">Bine ați venit!</a></li>
-                        <li><a href="#evenimente">Evenimente</a></li>
-                        <li><a href="#produse">Produse</a></li>
-                        <li><a href="#oferte">Oferte</a></li>
-                        <li><a href="#recomandari">Recomandările Lenei</a></li>
-                        <li><a href="#program">Program</a></li>
-                        <li><a href="#intrebari">Întrebări frecvente</a></li>
-                    </ul>
-                </li>
-                <!-- CERINTA 8: optiunile principale = paginile site-ului -->
-                <li><a href="produse.html">Produse</a></li>
-                <li><a href="despre.html">Despre Lena</a></li>
-                <li><a href="ghiduri.html">Ghiduri &amp; Sfaturi</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
+    <nav>
+        <input type="checkbox" id="toggle-meniu" hidden>
+        <label for="toggle-meniu" class="hamburger" aria-label="Deschide meniul">
+            <span class="bar bar-1"></span>
+            <span class="bar bar-2"></span>
+            <span class="bar bar-3"></span>
+        </label>
+
+        <ul class="meniu-principal">
+            <li>
+                <a href="index.html">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="text-meniu">Acasă</span>
+                </a>
+                <ul class="submeniu">
+                    <li><a href="#welcome">Bine ați venit!</a></li>
+                    <li><a href="#evenimente">Evenimente</a></li>
+                    <li><a href="#produse">Produse</a></li>
+                    <li><a href="#oferte">Oferte</a></li>
+                    <li><a href="#recomandari">Recomandările Lenei</a></li>
+                    <li><a href="#program">Program</a></li>
+                    <li><a href="#intrebari">Întrebări frecvente</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fa-solid fa-images"></i>
+                    <span class="text-meniu">Galerii</span>
+                </a>
+                <ul class="submeniu">
+                    <li><a href="galerie-statica.html">Galerie statică</a></li>
+                    <li><a href="galerie-dinamica.html">Galerie dinamică</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="produse.html">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="text-meniu">Produse</span>
+                </a>
+            </li>
+            <li>
+                <a href="despre.html">
+                    <i class="fa-solid fa-user"></i>
+                    <span class="text-meniu">Despre Lena</span>
+                </a>
+            </li>
+            <li>
+                <a href="ghiduri.html">
+                    <i class="fa-solid fa-book"></i>
+                    <span class="text-meniu">Ghiduri</span>
+                </a>
+            </li>
+            <li>
+                <a href="contact.html">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span class="text-meniu">Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
     </header>
 
     <!-- CERINTA 5: MAIN -->
@@ -646,6 +690,9 @@
     <!-- CERINTA 5: FOOTER -->
     <footer>
 
+        <!-- ETAPA 3: banner scolar pentru printare -->
+        <p class="banner">Acesta este un proiect școlar!</p>
+        
         <!-- CERINTA 18: informatii de contact in tagul address -->
         <address>
 
@@ -683,7 +730,7 @@
             <!-- CERINTA 18d: link WhatsApp pentru chat -->
             <p>
                 <i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/40712345678">Scrie-ne pe WhatsApp</a>
-            </p>
+            </p>   
         </address>
 
         <!-- CERINTA 19: copyright cu small, &copy;, time cu datetime (doar data), in limba romana -->

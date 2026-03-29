@@ -1,0 +1,566 @@
+// ETAPA 3 — MENIU.SCSS
+
+// CERINTE SASS ACOPERITE:
+// - Imbricare (nesting) — PESTE TOT in fisier
+// - @extend — %buton-baza, %submeniu-optiune
+// - @for — delay-uri succesive pe barele hamburger
+// - Variabile SASS — $breakpoint-mediu, $breakpoint-mic, etc.
+// - Variabile CSS pe body — culorile temei cromatice
+
+// ── VARIABILE SASS (pentru valori repetitive care NU depind de tema) ──
+$breakpoint-mediu: 1200px;
+$breakpoint-mic: 700px;
+$tranzitie-durata: 0.35s;
+$tranzitie-timing: ease;
+$meniu-font-size: 0.92rem;
+$meniu-padding-v: 0.55rem;
+$meniu-padding-h: 1.2rem;
+$submeniu-min-width: 11rem;
+$hamburger-width: 1.8rem;
+$hamburger-height: 1.4rem;
+$bar-height: 0.2rem;
+$delay-per-bar: 200ms;
+
+// ── VARIABILE CSS (pe body, dependente de tema cromatica) ──
+// Acestea sunt DEJA declarate in general.css pe body.
+// Le folosim prin var(--nume) in tot fisierul.
+// Exemplu: var(--bordo), var(--roz-principal), var(--culoare-alb), etc.
+
+
+// ── @EXTEND: placeholder-uri pentru blocuri de cod similare ──
+
+// CERINTA @EXTEND: stil comun pentru orice optiune de meniu (principal + submeniu)
+%optiune-meniu {
+    display: block;
+    padding: $meniu-padding-v $meniu-padding-h;
+    color: var(--bordo);
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 600;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    transition: color $tranzitie-durata $tranzitie-timing,
+                background-color $tranzitie-durata $tranzitie-timing;
+}
+
+// CERINTA @EXTEND: stil comun pentru optiunile din submeniu
+%submeniu-optiune {
+    @extend %optiune-meniu;
+    font-weight: 400;
+    font-size: 0.85rem;
+    text-transform: none;
+    padding: 0.45rem 1.2rem;
+}
+
+
+// ── BANNER SCOLAR (ascuns pe ecran, vizibil la print) ──
+.banner {
+    display: none; // ascuns pe ecran, vizibil doar la @media print
+}
+
+
+// ── HAMBURGER MENU (ascuns pe ecran mare si mediu) ──
+
+// Checkbox-ul e ascuns (hidden in HTML), dar controlam meniul prin el
+#toggle-meniu {
+    display: none;
+}
+
+.hamburger {
+    display: none; // ascuns pe ecran mare
+    position: relative;
+    width: $hamburger-width;
+    height: $hamburger-height;
+    cursor: pointer;
+    margin: 0 auto;
+    z-index: 200;
+
+    // BONUS: cele 3 bare pozitionate ABSOLUT in container
+    .bar {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: $bar-height;
+        background-color: var(--bordo);
+        border-radius: 0.1rem;
+        transition: all $tranzitie-durata $tranzitie-timing;
+    }
+
+    .bar-1 { top: 0; }
+    .bar-2 { top: 50%; transform: translateY(-50%); }
+    .bar-3 { bottom: 0; }
+}
+
+
+// ── NAVIGARE PRINCIPALA ──
+
+nav {
+    // CERINTA IMBRICARE: tot ce e in nav e imbricat
+
+    // Meniul principal — flexbox orizontal
+    .meniu-principal {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.2rem;
+        padding: 0;
+        list-style: none;
+
+        // Fiecare optiune principala
+        > li {
+            position: relative;
+            list-style: none;
+
+            // Link-ul principal
+            > a {
+                @extend %optiune-meniu;
+                font-size: $meniu-font-size;
+                border-radius: 0.4rem;
+                position: relative;
+                overflow: hidden; // ascunde ::after care e mai lat
+
+                // Iconul din meniu
+                i {
+                    margin-right: 0.4em;
+                    font-size: 0.9em;
+                    transition: color $tranzitie-durata;
+                }
+
+                // ── CERINTA ECRAN MARE: bara glisanta cu ::after ──
+                // Bara cu gradient, mai lata decat elementul
+                // Se confunda initial cu background-ul, la hover gradientul se plimba
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 300%; // MAI MARE decat elementul
+                    height: 0.18rem;
+                    background: linear-gradient(
+                        90deg,
+                        var(--roz-deschis) 0%,      // culoare similara cu butonul
+                        var(--auriu) 33%,            // culoarea vizibila la hover
+                        var(--roz-deschis) 66%,
+                        var(--roz-deschis) 100%
+                    );
+                    transform: translateX(-33%); // initial deplasata — auriu ascuns
+                    transition: transform 0.5s $tranzitie-timing;
+                }
+
+                // La hover, gradientul se plimba — apare auriu
+                &:hover {
+                    color: var(--culoare-alb);
+                    background-color: var(--roz-principal);
+
+                    &::after {
+                        transform: translateX(0); // gradientul se muta
+                    }
+
+                    i {
+                        color: var(--auriu);
+                    }
+                }
+            }
+
+            // ── CERINTA ECRAN MARE: deschidere submeniu cu scaleY ──
+            .submeniu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                min-width: $submeniu-min-width;
+                list-style: none;
+                padding: 0.3rem 0;
+                background-color: var(--culoare-alb);
+                border: 0.1rem solid var(--culoare-border);
+                border-radius: 0 0 0.6rem 0.6rem;
+                box-shadow: 0 0.4rem 1.2rem var(--culoare-shadow-puternic);
+                z-index: 150;
+
+                // CERINTA: scaleY de la 0 la 1, din centru
+                transform: scaleY(0);
+                transform-origin: top center;
+                transition: transform 0.3s $tranzitie-timing;
+
+                // Optiunile din submeniu
+                li {
+                    list-style: none;
+
+                    a {
+                        @extend %submeniu-optiune;
+
+                        // CERINTA: hover schimba background SI culoare text
+                        &:hover {
+                            background-color: var(--roz-principal);
+                            color: var(--culoare-alb);
+                        }
+                    }
+                }
+            }
+
+            // La hover pe li-ul parinte, submeniul se deschide
+            &:hover {
+                > .submeniu {
+                    transform: scaleY(1); // se deschide
+                }
+            }
+        }
+    }
+}
+
+
+
+// ECRAN MEDIU — doar iconuri, text ascuns
+@media screen and (max-width: $breakpoint-mediu) {
+    nav {
+        .meniu-principal {
+            > li > a {
+                // CERINTA: textul se face mai mic / se ascunde
+                .text-meniu {
+                    display: none; // ascunde textul
+                }
+
+                i {
+                    margin-right: 0; // fara spatiu dupa icon
+                    font-size: 1.2rem; // icon mai mare
+                }
+
+                padding: 0.5rem 0.8rem;
+
+                // Bara glisanta ramane dar mai mica
+                &::after {
+                    height: 0.12rem;
+                }
+            }
+        }
+    }
+}
+
+
+// ECRAN MIC — hamburger menu
+@media screen and (max-width: $breakpoint-mic) {
+
+    // Hamburger-ul devine vizibil
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        .meniu-principal {
+            // Meniul e ascuns implicit
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            padding-top: 0.5rem;
+
+            > li {
+                width: 100%;
+                text-align: center;
+
+                > a {
+                    border-radius: 0;
+                    padding: 0.7rem 1rem;
+
+                    // CERINTA: pe ecran mic, disparand bara glisanta
+                    &::after {
+                        display: none;
+                    }
+
+                    // CERINTA: unicul comportament = schimbarea culorii bg si text
+                    &:hover {
+                        background-color: var(--roz-principal);
+                        color: var(--culoare-alb);
+                    }
+
+                    // Pe ecran mic, textul revine vizibil
+                    .text-meniu {
+                        display: inline;
+                    }
+
+                    i {
+                        margin-right: 0.4em;
+                        font-size: 0.9em;
+                    }
+                }
+
+                // CERINTA: submeniul pe ecran mic — rotatie + opacitate
+                .submeniu {
+                    position: static;
+                    box-shadow: none;
+                    border: none;
+                    border-radius: 0;
+                    background-color: var(--crem);
+
+                    // Submeniul e ascuns cu scaleY + rotate + opacity
+                    transform: scaleY(0) rotate(-5deg);
+                    opacity: 0;
+                    transform-origin: top center;
+                    transition: transform 0.4s $tranzitie-timing,
+                                opacity 0.4s $tranzitie-timing;
+
+                    li a {
+                        text-align: center;
+                        padding: 0.5rem;
+
+                        // CERINTA: doar schimbarea culorii bg si text
+                        &:hover {
+                            background-color: var(--roz-principal);
+                            color: var(--culoare-alb);
+                        }
+                    }
+                }
+
+                // La hover, submeniul apare cu rotatie + opacitate
+                &:hover > .submeniu {
+                    transform: scaleY(1) rotate(0deg);
+                    opacity: 1;
+                }
+            }
+
+            // Prima optiune — inlocuita cu icon casuta
+            > li:first-child > a {
+                .text-meniu {
+                    display: none; // ascunde "Acasa"
+                }
+                // ramane doar iconul fa-house
+            }
+        }
+    }
+
+    // Cand checkbox-ul e bifat, meniul apare
+    #toggle-meniu:checked ~ .meniu-principal {
+        display: flex;
+    }
+
+    // BONUS: animatie pe barele hamburger cand meniul e deschis
+    #toggle-meniu:checked ~ .hamburger {
+        .bar-1 {
+            transform: rotate(45deg);
+            top: 50%;
+            background-color: var(--auriu);
+        }
+        .bar-2 {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .bar-3 {
+            transform: rotate(-45deg);
+            bottom: auto;
+            top: 50%;
+            background-color: var(--auriu);
+        }
+    }
+}
+
+
+
+// BONUS: Animatie aparitie hamburger cu @keyframes
+// CERINTA: minim 3 cadre cheie
+// CERINTA: schimbarea culorii, transformare geometrica, opacitate
+
+@keyframes apare-bara {
+    0% {
+        background-color: transparent;
+        transform: scaleX(0) translateY(0);
+        opacity: 0;
+    }
+    50% {
+        background-color: var(--auriu);
+        transform: scaleX(1.3) translateY(0);
+        opacity: 0.6;
+    }
+    100% {
+        background-color: var(--bordo);
+        transform: scaleX(1) translateY(0);
+        opacity: 1;
+    }
+}
+
+// BONUS @FOR: delay-uri succesive generate cu @for in SASS
+// Fiecare bara incepe animatia cu $delay-per-bar (200ms) intarziere
+@media screen and (max-width: $breakpoint-mic) {
+    @for $i from 1 through 3 {
+        .bar-#{$i} {
+            animation: apare-bara 0.6s $tranzitie-timing both;
+            animation-delay: #{($i - 1) * $delay-per-bar};
+        }
+    }
+}
+
+
+
+// ETAPA 3 — STIL PRINTARE (@media print)
+
+@media print {
+
+    // 1. Banner — josul primei pagini, centrat, 70%, border inset 4px
+    .banner {
+        display: block !important;
+        page-break-after: avoid;
+        position: absolute;
+        bottom: 5cm;
+        left: 15%;
+        text-align: center;
+        width: 70%;
+        margin: 2rem auto;
+        padding: 0.8rem;
+        border: 4px inset black;
+        font-weight: bold;
+        font-size: 1rem;
+    }
+
+    // 2. Ascunde media + link-top + figcaption
+    img, video, iframe, embed, object,
+    figure, figcaption, picture,
+    #link-top,
+    .hamburger {
+        display: none !important;
+    }
+
+    // 3. Grid-ul ca block
+    #grid-pagina {
+        display: block !important;
+    }
+
+    // 4. Linkuri ca text normal
+    a {
+        color: inherit !important;
+        text-decoration: none !important;
+    }
+
+    // 5. H1 centrat pe prima pagina
+    h1 {
+        text-align: center;
+        font-size: 2rem;
+
+        // Ascunde iconul din h1
+        i { display: none; }
+    }
+
+    // 5. Meniul ca lista verticala, fara submeniuri
+    nav {
+        .meniu-principal {
+            display: block !important;
+            list-style: none;
+            text-align: center;
+
+            > li {
+                display: block;
+                padding: 0.2rem 0;
+
+                > a {
+                    // afisam doar textul, fara efecte
+                    display: block;
+                    padding: 0.2rem;
+                    color: black !important;
+                    font-size: 1rem;
+
+                    &::after { display: none; } // ascunde bara glisanta
+
+                    i { display: none; } // ascunde iconuri
+                }
+
+                // Ascunde submeniurile
+                .submeniu {
+                    display: none !important;
+                }
+            }
+        }
+    }
+
+    // 5. Page break dupa meniu
+    nav {
+        page-break-after: always;
+    }
+
+    // 5. Page break inainte de footer
+    footer {
+        page-break-before: always;
+    }
+
+    // 6. Watermark pe fiecare pagina
+    // Numele scris pe un rand, prenumele sub el
+    // 4cm latime, 1cm inaltime, colt dreapta-jos
+    // border solid 3px, colturi rotunjite, bold, centrat, opacity 0.4
+    body::after {
+        content: "Spătaru\AGeorgiana";
+        white-space: pre-line;
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        width: 4cm;
+        height: 1cm;
+        border: 3px solid black;
+        border-radius: 0.3rem;
+        text-align: center;
+        font-weight: bold;
+        font-size: 0.55rem;
+        line-height: 1.2;
+        opacity: 0.4;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    // 7. Margini alternante stanga-dreapta
+    @page :left {
+        margin-left: 3cm;
+        margin-right: 1cm;
+    }
+    @page :right {
+        margin-left: 1cm;
+        margin-right: 3cm;
+    }
+
+    i.fa-solid, i.fa-regular, i.fa-brands {
+        display: none !important;
+    }
+
+    // Ascunde decoratiile vizuale
+    h2::after { display: none; }
+
+    // Fara umbre, fara gradiente
+    * {
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+    // Exceptie MathML de la resetul global
+    math, mrow, mi, mo, mn, msqrt, mfrac, msup, 
+    munderover, munder, mover {
+        display: revert !important;
+        all: revert !important;
+    }
+
+    // Fara animatii
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    // Spatierile mai mici
+    header, main, footer {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    // Zone din grid — fara stilizare vizuala
+    #grid-pagina > * {
+        border: none;
+        border-radius: 0;
+        padding: 0.5rem;
+        margin-bottom: 0.5rem;
+        background: white !important;
+    }
+
+    header {
+        border: none;
+        border-radius: 0;
+        background: white !important;
+    }
+
+    footer {
+        border: none;
+        border-radius: 0;
+        background: white !important;
+    }
+}

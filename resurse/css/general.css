@@ -1,6 +1,5 @@
 /* 
    ETAPA 2 — GENERAL.CSS
-   Lena's Ballet Boutique — Elegant Ballet Theme
 */
 
 /* 
@@ -36,7 +35,7 @@ body {
     --gap: 1.3rem;
     --padding-zona: 1.8rem;
 
-    /* Dimensiuni text — MAI MARI */
+    /* Dimensiuni text */
     --font-size-body: 1.12rem;
     --font-size-h1: 3.6rem;
     --font-size-h2: 2.5rem;
@@ -202,9 +201,9 @@ footer {
 }
 
 
-
+/*
 nav ul {
-    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox 
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.3rem;
@@ -239,7 +238,7 @@ nav a:hover {
     box-shadow: 0 0.2rem 0.5rem var(--culoare-shadow);
 }
 
-/* Submeniu */
+/* Submeniu 
 nav ul ul {
     display: none;
     position: absolute;
@@ -257,7 +256,7 @@ nav ul ul {
 }
 
 nav > ul > li:hover > ul {
-    display: flex;  /* CERINTA TABURI: obligatoriu flexbox */
+    display: flex;  /* CERINTA TABURI: obligatoriu flexbox 
 }
 
 nav ul ul a {
@@ -266,6 +265,7 @@ nav ul ul a {
     text-transform: none;
     padding: 0.45rem 1.2rem;
 }
+*/
 
 
 /* 
@@ -741,7 +741,7 @@ ins {
 
 q { font-style: italic; font-family: 'DM Serif Display', serif; }
 q::before { content: "„"; color: var(--auriu); font-weight: 700; }
-q::after  { content: """; color: var(--auriu); font-weight: 700; }
+q::after  { content: "''"; color: var(--auriu); font-weight: 700; }
 
 /* Meter */
 meter { width: 12rem; height: 1.2rem; vertical-align: middle; }
@@ -1034,3 +1034,17 @@ q::after {
     display: inline !important;
 }
 
+math[display="block"] {
+    display: block;
+}
+
+msqrt {
+    display: inline-flex !important;
+    align-items: center;
+    border-top: 2px solid #C9A96E;
+    padding-top: 0.2em;
+}
+
+msqrt > * {
+    display: inline !important;
+}

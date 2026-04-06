@@ -139,3 +139,12 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 node_modules/
 .DS_Store
+
+# Foldere create de aplicatie (vect_foldere)
+temp/
+logs/
+backup/
+fisiere_uploadate/
+
+# Fisiere personale
+Notite

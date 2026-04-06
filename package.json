@@ -1,5 +1,29 @@
 {
+  "name": "proiect-tehnici-web",
+  "description": "Lena's Boutique Balet este un magazin online dedicat pasionaților de balet, oferind echipamente, costume și accesorii de calitate superioară, selectate și recomandate personal de o balerină profesionistă. Site-ul se adresează unui public divers, de la copii care fac primii pași în balet, până la dansatoare avansate și profesioniste care au nevoie de produse tehnice de încredere, dar și de costume pentru spectacole și concursuri.",
+  "keywords": [
+    "Lena's Ballet Boutique",
+    "balet",
+    "balerini",
+    "panglici",
+    "dres",
+    "fusta",
+    "plasa de par",
+    "accesorii de par",
+    "tutu",
+    "body",
+    "poante",
+    "magazin balet online",
+    "echipament balet",
+    "accesorii dans clasic",
+    "costume balet",
+    "articole balet",
+    "kit balet incepatori",
+    "școli de balet"
+  ],
+  "author": "Spataru Georgiana Valentina",
   "dependencies": {
+    "ejs": "^5.0.1",
     "express": "^5.2.1"
   }
 }

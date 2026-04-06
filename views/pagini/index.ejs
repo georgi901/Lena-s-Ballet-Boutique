@@ -1,0 +1,748 @@
+<!DOCTYPE html> <!-- CERINTA 1: DOCTYPE HTML5-->
+<html lang="ro"> <!-- CERINTA 1: LIMBA DOCUMENTULUI SETATA PE ROMANA-->
+
+<head>
+    <%- include('../fragmente/head') %>
+    <title>Lena's Ballet Boutique</title> <!-- CERINTA 2: TITLE CORESPUNZATOR CONTINUTULUI -->
+</head>
+
+<body id="top">
+
+    <!-- CERINTA 5: BODY IMPARTIT IN HEADER, MAIN, FOOTER -->
+    <%- include('../fragmente/header') %>
+
+    <!-- CERINTA 5: MAIN -->
+    <main>
+
+        <!-- ETAPA 2 CERINTA LAYOUT: grid cu 8 zone, definit prin grid-template-areas -->
+        <!-- Ecran mare: 4 coloane | Ecran mediu: 2 coloane (diferit) | Ecran mic: display:block (fara coloane) -->
+        <div id="grid-pagina">
+
+            <!-- ===== ZONA 1: PREZENTARE (welcome) — full width ===== -->
+            <!-- CERINTA 6: tag section folosit -->
+            <section id="welcome">
+                <!-- CERINTA 7: heading acompaniat de subtitlu cu hgroup -->
+                <hgroup>
+                    <h2><i class="fa-solid fa-spa fa-beat-fade"></i> Bine ați venit!</h2>
+                    <p class="subtitlu">Magazinul tău de echipamente și costume de balet, recomandate de o balerină
+                        profesionistă</p>
+                </hgroup>
+
+                <!-- CERINTA 3: cuvintele cheie din meta keywords apar in text, in taguri relevante -->
+                <!-- CERINTA 12: em = accent la citire, b = cuvinte cheie marcate -->
+                <p>
+                    <em>Lena's Ballet Boutique</em> este un <b>magazin balet online</b> născut din pasiunea Lenei pentru
+                    dans clasic și din dorința ei de a împărtăși cu voi piesele care i-au oferit încredere pe cele mai
+                    mari scene.
+                    Ne adresăm tuturor pasionaților de mișcare, de la micile balerine care visează la primul lor
+                    <b>tutu</b>, până la dansatoare profesioniste și <b>școli de balet</b> care caută standarde înalte.
+                </p>
+
+                <!-- CERINTA 3: cuvinte cheie: incaltaminte, poante, cipici, body-uri, fuste, dresuri, costume, accesorii -->
+                <!-- CERINTA 12: b = cuvinte cheie marcate, i = text idiomatic in alta limba (en) -->
+                <p>
+                    Oferim o gamă completă de <b>încălțăminte de balet</b> (<b>poante</b>, <b>cipici</b> și
+                    demi-poante), <b>body-uri balet</b>, <b>fuste</b>, <b>dresuri</b>, <b>costume balet</b> pentru
+                    spectacole și concursuri, dar și <b>accesorii dans clasic</b> esențiale precum panglici, protecții
+                    pentru degete, plase de păr și genți de dans.
+                    Lucrăm cu branduri de elită precum <i lang="en">Bloch</i>, <i lang="en">Capezio</i> și <i
+                        lang="en">Grishko</i>, cunoscute la nivel mondial pentru calitatea materialelor și pentru
+                    confortul pe care îl oferă dansatorilor.
+                </p>
+
+                <!-- CERINTA 12: i = text idiomatic in alta limba (fr) -->
+                <p>
+                    Ceea ce ne face speciali sunt recomandările personale ale Lenei: fiecare produs vine cu un sfat
+                    despre cum să-l porți sau să-l întreții, bazat pe experiența reală din sala de repetiții.
+                    La <b>Lena's Ballet Boutique</b>, fiecare comandă este pregătită cu aceeași atenție pe care o acorzi
+                    unui <i lang="fr">grand jeté</i> perfect.
+                </p>
+
+                <!-- CERINTA 9: blockquote folosit ca tag de grupare -->
+                <!-- CERINTA 12: cite = autorul lucrarii citate -->
+                <div>
+                    <blockquote cite="https://www.goodreads.com/quotes/tag/dance">
+                        <p>Dansul este poezia piciorului.</p>
+                    </blockquote>
+                    <p>— <cite>John Dryden</cite></p>
+                </div>
+
+                <!-- CERINTA 11: imagine cu figure, figcaption, picture (3 variante responsive), title pe img -->
+                <!-- CERINTA 12: dfn = termen definit "arabesque" cu definitia -->
+                <figure>
+                    <picture>
+                        <!-- CERINTA 11: varianta mica pentru mobil -->
+                        <source srcset="/resurse/imagini/balet-hero-mica.jpeg" media="(max-width: 600px)">
+                        <!-- CERINTA 11: varianta medie pentru tableta -->
+                        <source srcset="/resurse/imagini/balet-hero-medie.jpeg" media="(max-width: 1200px)">
+                        <!-- CERINTA 11: varianta mare pentru desktop + title pentru hover -->
+                        <img src="/resurse/imagini/balet-hero-mare.jpeg"
+                            alt="Balerină executând un arabesque pe o scenă luminată"
+                            title="Arabesque — una dintre cele mai elegante poziții din baletul clasic">
+                    </picture>
+                    <figcaption>Balerină executând un <dfn>arabesque</dfn> — poziție fundamentală în baletul clasic în
+                        care dansatoarea stă pe un singur picior, cu celălalt ridicat și întins în spate.</figcaption>
+                </figure>
+
+                <!-- CERINTA 13a: link extern in tab nou (target="_blank"), NU in meniu -->
+                <p>
+                    Dacă sunteți la început de drum în dans și doriți să aflați mai multe despre tehnica de balet, vă
+                    recomandăm resursa educațională
+                    <a href="https://www.abt.org/explore/learn/" target="_blank" rel="noopener">American Ballet Theatre
+                        — Learn</a>.
+                </p>
+
+                <!-- CERINTA 13b: link catre element cu id din resursa externa, cu wbr -->
+                <p>
+                    Pentru un ghid detaliat despre tipurile de poante disponibile pe piață, consultați:
+                    <a
+                        href="https://en.wikipedia.org/wiki/Pointe_shoe#Construction_and_materials">https://en.wikipedia.org/<wbr>wiki/<wbr>Pointe_shoe<wbr>#Construction_<wbr>and_materials</a>
+                </p>
+
+                <!-- CERINTA 13e: link de download cu alt nume la descarcare (functioneaza pe Live Server) -->
+                <p>
+                    Descarcă catalogul nostru de produse:
+                    <a href="/resurse/documente/catalog.pdf" download="Catalog_Lenas_Ballet_Boutique_2026.pdf">Catalog
+                        PDF</a>
+                </p>
+            </section>
+
+            <!-- ===== ZONA 2: TABEL (program) ===== -->
+            <!-- CERINTA 15: tabel cu thead, tbody, tfoot, th, caption, minim 5 randuri, 4 coloane, rowspan/colspan -->
+            <!-- ETAPA 2 CERINTA STILIZARE TABEL: coloane alternante, caption sub tabel, hover tranzitie, scroll mobil -->
+            <section id="program">
+                <h2><i class="fa-regular fa-clock fa-beat-fade"></i> Program și disponibilitate</h2>
+                <!-- ETAPA 2 CERINTA TABEL: container cu border-radius si overflow hidden/scroll pe mobil -->
+                <div class="tabel-container">
+                    <table>
+                        <!-- CERINTA 15: caption = descrierea tabelului -->
+                        <!-- ETAPA 2: caption-side: bottom in CSS -->
+                        <caption>Programul magazinului Lena's Ballet Boutique — Sediul fizic</caption>
+
+                        <!-- CERINTA 15: thead cu th = antet cu numele coloanelor (6 coloane) -->
+                        <thead>
+                            <tr>
+                                <th>Perioadă</th>
+                                <th>Zi</th>
+                                <th>Deschidere</th>
+                                <th>Pauză</th>
+                                <th>După-amiază</th>
+                                <th>Consultanță Lena</th>
+                            </tr>
+                        </thead>
+
+                        <!-- CERINTA 15: tbody cu 7 randuri de date -->
+                        <tbody>
+                            <tr>
+                                <!-- CERINTA 15: rowspan="5" -->
+                                <td rowspan="5">Zile lucrătoare</td>
+                                <td>Luni</td>
+                                <td>10:00 – 13:00</td>
+                                <td>13:00 – 14:00</td>
+                                <td>14:00 – 19:00</td>
+                                <td>Da</td>
+                            </tr>
+                            <tr>
+                                <td>Marți</td>
+                                <td>10:00 – 13:00</td>
+                                <td>13:00 – 14:00</td>
+                                <td>14:00 – 19:00</td>
+                                <td>Da</td>
+                            </tr>
+                            <tr>
+                                <td>Miercuri</td>
+                                <td>10:00 – 13:00</td>
+                                <td>13:00 – 14:00</td>
+                                <td>14:00 – 19:00</td>
+                                <td>Nu</td>
+                            </tr>
+                            <tr>
+                                <td>Joi</td>
+                                <td>10:00 – 13:00</td>
+                                <td>13:00 – 14:00</td>
+                                <td>14:00 – 19:00</td>
+                                <td>Da</td>
+                            </tr>
+                            <tr>
+                                <td>Vineri</td>
+                                <td>10:00 – 13:00</td>
+                                <td>13:00 – 14:00</td>
+                                <td>14:00 – 18:00</td>
+                                <td>Nu</td>
+                            </tr>
+                            <tr>
+                                <!-- CERINTA 15: rowspan="2" -->
+                                <td rowspan="2">Weekend</td>
+                                <td>Sâmbătă</td>
+                                <td>10:00 – 14:00</td>
+                                <td>—</td>
+                                <td>14:00 – 16:00</td>
+                                <td>Da</td>
+                            </tr>
+                            <tr>
+                                <td>Duminică</td>
+                                <!-- CERINTA 15: colspan="3" -->
+                                <td colspan="3">Închis</td>
+                                <td>—</td>
+                            </tr>
+                        </tbody>
+
+                        <!-- CERINTA 15: tfoot cu date relevante -->
+                        <tfoot>
+                            <tr>
+                                <!-- CERINTA 15: colspan="6" -->
+                                <td colspan="6">Magazinul este închis în zilele de sărbătoare legală. Comenzile online
+                                    se procesează în termen de 24–48 de ore lucrătoare.</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div><!-- /.tabel-container -->
+            </section>
+
+            <!-- ===== ZONA 3: RECOMANDARI (zona mica) ===== -->
+            <!-- CERINTA 6: aside folosit — continut complementar -->
+            <aside id="recomandari">
+                <h2><i class="fa-solid fa-heart fa-beat-fade"></i> Recomandările Lenei</h2>
+                <!-- CERINTA 12: q = citat inline relevant -->
+                <p>
+                    <q> <b>Am dansat în poante Grishko timp de 12 ani și pot spune că sunt cele mai confortabile și
+                            durabile pe care le-am încercat.</b> </q> — Lena
+                </p>
+                <p>
+                    Lena recomandă în mod special <b>poantele Grishko 2007</b> pentru dansatoarele cu arc înalt și
+                    <b>cipicii Bloch Prolite II</b> pentru orele de repetiție. Pentru costume, colaborăm cu atelierul <i
+                        lang="en">DanceLux Atelier</i>, specializat în costume de scenă cusute manual.
+                </p>
+            </aside>
+
+            <!-- ===== ZONA 4: PLACEHOLDER — utilizatori ===== -->
+            <!-- ETAPA 2 CERINTA LAYOUT: zona placeholder cu text Lorem ipsum -->
+            <section id="utilizatori">
+                <h2><i class="fa-solid fa-users fa-beat-fade"></i> Comunitatea noastră</h2>
+                <p>IP-ul tău: <b><%= ip %></b></p>
+                <p>În acest moment, <b>47 de pasionați de balet</b> navighează pe site-ul nostru. Alătură-te comunității
+                    Lena's Ballet Boutique și descoperă echipamentul perfect pentru dansul tău!</p>
+                <p>Peste <b>2.300 de clienți</b> fericiți ne-au ales ca partener de încredere pentru echipamentul lor de
+                    balet.</p>
+            </section>
+
+            <!-- ===== ZONA 5: EVENIMENTE (zona inalta, 2 randuri) ===== -->
+            <!-- CERINTA 10: sectiune de evenimente cu time+datetime, ol, b + descriere -->
+            <section id="evenimente">
+                <h2><i class="fa-regular fa-calendar-days fa-beat-fade"></i> Evenimente</h2>
+                <p>Urmăriți evenimentele organizate de <b>Lena's Ballet Boutique</b> pentru comunitatea noastră de
+                    dansatori:</p>
+
+                <!-- CERINTA 10: lista ordonata de evenimente -->
+                <ol>
+                    <li>
+                        <!-- CERINTA 10: time cu datetime (data + ora) -->
+                        <time datetime="2026-03-15T10:00">15 martie 2026, ora 10:00</time> —
+                        <!-- CERINTA 10: nume eveniment in tag b, urmat de descriere -->
+                        <b>Workshop: Prima pereche de poante</b> — Lena vă ghidează personal în alegerea primei perechi
+                        de <b>poante balet</b>, cu sfaturi despre potrivire, rigiditate și pregătirea lor pentru dans.
+                    </li>
+                    <li>
+                        <time datetime="2026-04-05T14:00">5 aprilie 2026, ora 14:00</time> —
+                        <b>Lansare colecție de primăvară</b> — Prezentăm noile modele de <b>body-uri balet</b> și
+                        <b>fuste</b> din materiale reciclate, cu reduceri speciale pentru primii 30 de clienți.
+                    </li>
+                    <li>
+                        <time datetime="2026-05-20T18:00">20 mai 2026, ora 18:00</time> —
+                        <b>Seară de gală: Dans și eleganță</b> — Spectacol demonstrativ cu dansatoare profesioniste
+                        purtând <b>costume balet</b> din colecția noastră. Intrarea liberă!
+                    </li>
+                    <li>
+                        <time datetime="2026-06-01T09:00">1 iunie 2026, ora 09:00</time> —
+                        <b>Ziua Copilului la Boutique</b> — Reducere de 20% pentru toate produsele din categoria <b>kit
+                            balet începători</b> și un mic cadou pentru fiecare copil.
+                    </li>
+                    <li>
+                        <time datetime="2026-07-10T16:00">10 iulie 2026, ora 16:00</time> —
+                        <b>Masterclass: Îngrijirea echipamentului</b> — Învățați cum să vă prelungiți durata de viață a
+                        poantelor și cum să întrețineți corect <b>echipamentul balet</b>.
+                    </li>
+                </ol>
+
+                <!-- CERINTA 17: meter cu valoare MARE (42 > high=40) -->
+                <p>
+                    Locuri ocupate la Workshop-ul de poante:
+                    <meter value="42" min="0" max="50" low="10" high="40" optimum="25">42 din 50</meter>
+                    (42 din 50 — aproape plin!)
+                </p>
+
+                <!-- CERINTA 17: meter cu valoare MICA (7 < low=10) -->
+                <p>
+                    Locuri ocupate la Masterclass-ul de îngrijire:
+                    <meter value="7" min="0" max="50" low="10" high="40" optimum="25">7 din 50</meter>
+                    (7 din 50 — înscrie-te acum, sunt multe locuri disponibile!)
+                </p>
+            </section>
+
+            <!-- ===== ZONA 6: OFERTE (zona medie, 2 randuri) ===== -->
+            <section id="oferte">
+                <h2><i class="fa-solid fa-gift fa-beat-fade"></i> Oferte speciale</h2>
+
+                <!-- CERINTA 6: article folosit -->
+                <article>
+                    <h3>Ofertă de primăvară</h3>
+                    <!-- CERINTA 12: s + ins = text sters si inlocuit -->
+                    <!-- CERINTA 12: abbr = abreviere "LBB" cu title -->
+                    <p>
+                        <b>Lena's Ballet Boutique</b> oferă <b>reduceri de <s>10%</s> <ins>15%</ins></b> pentru toate
+                        produsele din categoria <b>încălțăminte balet</b> cumpărate în luna martie.
+                        Oferta este valabilă atât online, cât și la sediul <abbr
+                            title="Lena's Ballet Boutique">LBB</abbr>.
+                    </p>
+                    <!-- CERINTA 12: strong = text urgent/important -->
+                    <p>
+                        <strong>Atenție! Stocul de poante Grishko 2007 este limitat — comanda se face pe principiul
+                            „primul venit, primul servit"!</strong>
+                    </p>
+                </article>
+
+                <article>
+                    <h3>Kit pentru micii începători</h3>
+                    <p>Pachetul ideal pentru copiii care fac primii pași în balet conține:</p>
+                    <!-- CERINTA 9: dl = lista de definitii (al 2-lea tag de grupare, pe langa p si blockquote) -->
+                    <dl>
+                        <dt>Cipici de balet din pânză</dt>
+                        <dd>Ușori și flexibili, perfecți pentru primele lecții la bară.</dd>
+                        <dt>Body balet roz clasic</dt>
+                        <dd>Din bumbac elastic, confortabil și ușor de întreținut.</dd>
+                        <dt>Fustă tutu scurtă</dt>
+                        <dd>Disponibilă în roz, alb sau lila — alegerea preferată a micilor balerine.</dd>
+                        <dt>Plasă de păr cu agrafe</dt>
+                        <dd>Set complet pentru un coc perfect la fiecare lecție.</dd>
+                        <dt>Geantă de dans personalizată</dt>
+                        <dd>Cu broderie la alegere — numele copilului sau un motiv de balet.</dd>
+                    </dl>
+                </article>
+
+                <article>
+                    <h3>Ofertă pachet concurs</h3>
+                    <p>
+                        Pentru dansatoarele care se pregătesc de competiții, oferim un pachet special care include
+                        costum de concurs la alegere, tiară de scenă, set complet de machiaj de scenă și o ședință de <i
+                            lang="en">fitting</i> cu Lena personal.
+                    </p>
+                </article>
+            </section>
+
+            <!-- ===== ZONA 7: PLACEHOLDER — statistici ===== -->
+            <!-- ETAPA 2 CERINTA LAYOUT: zona placeholder -->
+            <section id="statistici">
+                <h2><i class="fa-solid fa-chart-line fa-beat-fade"></i> Statistici</h2>
+                <p>Site-ul nostru este actualizat zilnic cu produse noi și oferte speciale.</p>
+                <p>Ultima actualizare: <time datetime="2026-03-18">18 martie 2026</time></p>
+                <p>Produse în catalog: <b>347</b></p>
+                <p>Branduri partenere: <b>12</b></p>
+            </section>
+
+            <!-- ===== ZONA 8: PRODUSE (zona mare, dreapta) ===== -->
+            <!-- CERINTA 6: section imbricat in section — demonstrare niveluri de heading -->
+            <section id="produse">
+                <h2><i class="fa-solid fa-bag-shopping fa-beat-fade"></i> Produsele noastre</h2>
+
+                <!-- CERINTA 13d: link care contine o imagine — click pe imagine deschide versiunea mare -->
+                <p class="galerie-produse" style="display:flex; flex-wrap:wrap; gap:8px; justify-content:center;">
+                    <a href="/resurse/imagini/imag1.jpeg" target="_blank" style="display:inline-block; width:200px;">
+                        <img class="img-produs" src="/resurse/imagini/imag1.jpeg" alt="Statuie balerină în tutu roz"
+                            width="200" height="250"
+                            style="width:200px; height:250px; object-fit:cover; display:inline-block; border-radius:8px;">
+                    </a>
+                    <a href="/resurse/imagini/imag2.jpeg" target="_blank" style="display:inline-block; width:200px;">
+                        <img class="img-produs" src="/resurse/imagini/imag2.jpeg"
+                            alt="Balerină în costum de spectacol cu coroană" width="200" height="250"
+                            style="width:200px; height:250px; object-fit:cover; display:inline-block; border-radius:8px;">
+                    </a>
+                    <a href="/resurse/imagini/imag3.jpeg" target="_blank" style="display:inline-block; width:200px;">
+                        <img class="img-produs" src="/resurse/imagini/imag3.jpeg" alt="Balerină în costum auriu de gală"
+                            width="200" height="250"
+                            style="width:200px; height:250px; object-fit:cover; display:inline-block; border-radius:8px;">
+                    </a>
+                    <a href="/resurse/imagini/imag4.jpeg" target="_blank" style="display:inline-block; width:200px;">
+                        <img class="img-produs" src="/resurse/imagini/imag4.jpeg" alt="Poante de balet closeup"
+                            width="200" height="250"
+                            style="width:200px; height:250px; object-fit:cover; display:inline-block; border-radius:8px;">
+                    </a>
+                    <a href="/resurse/imagini/imag5.jpeg" target="_blank" style="display:inline-block; width:200px;">
+                        <img class="img-produs" src="/resurse/imagini/imag5.jpeg" alt="Collage inspirațional balet"
+                            width="200" height="250"
+                            style="width:200px; height:250px; object-fit:cover; display:inline-block; border-radius:8px;">
+                    </a>
+                </p>
+
+                <!-- CERINTA 12: s = text sters/corectat + ins = text inserat in loc -->
+                <p>
+                    Explorați gama completă de <b>echipament balet</b> disponibilă în boutique-ul nostru. Fiecare produs
+                    a fost testat și <s>aprobat</s> <ins>recomandat cu entuziasm</ins> de Lena.
+                </p>
+
+                <!-- CERINTA 6: section imbricat in section "produse" => h3 -->
+                <section id="incaltaminte">
+                    <h3>Încălțăminte de balet</h3>
+                    <!-- CERINTA 12: dfn = termen definit "demi-poante" cu definitia -->
+                    <p>
+                        Încălțămintea este piesa centrală a echipamentului oricărui dansator. Oferim <b>cipici de
+                            balet</b> din pânză și piele, ideali pentru cursuri și repetiții, precum și <b>poante</b>
+                        profesionale pentru dansatoarele avansate. Un <dfn>demi-poante</dfn> este o încălțăminte
+                        intermediară între cipicii moi și poantele rigide, folosită pentru a dezvolta forța necesară
+                        dansului pe vârfuri.
+                    </p>
+
+                    <!-- CERINTA 6: al 3-lea nivel: main > section(h2) > section(h3) > section(h4) -->
+                    <section>
+                        <h4>Poante profesionale</h4>
+                        <!-- CERINTA 12: i = termeni tehnici in alta limba: "soft shank", "hard shank" -->
+                        <p>Poantele noastre sunt disponibile în mai multe niveluri de rigiditate, de la <i
+                                lang="en">soft shank</i> pentru începătoare, până la <i lang="en">hard shank</i> pentru
+                            profesioniste. Brandul <i lang="en">Grishko</i> rămâne alegerea noastră preferată pentru
+                            raportul calitate-confort.</p>
+                    </section>
+                </section>
+
+                <section id="imbracaminte">
+                    <h3>Îmbrăcăminte de dans</h3>
+                    <!-- CERINTA 3: cuvinte cheie -->
+                    <p>
+                        Gama noastră de îmbrăcăminte include <b>body-uri balet</b> cu mânecă lungă și scurtă,
+                        <b>fuste</b> și <b>tutu-uri</b> pentru repetiții și spectacole, precum și <b>dresuri și ciorapi
+                            balet</b> în diverse culori. Toate articolele sunt confecționate din materiale care permit
+                        libertate de mișcare.
+                    </p>
+                </section>
+
+                <section id="costume">
+                    <h3>Costume de balet</h3>
+                    <p>
+                        Creăm și comercializăm <b>costume balet</b> pentru concursuri, spectacole și recitaluri.
+                        Colecția noastră de repertoriu include replici fidele din producții celebre:
+                        <i>Lacul Lebedelor</i>, <i>Spărgătorul de Nuci</i> și <i>Giselle</i>.
+                    </p>
+                </section>
+
+                <section id="accesorii">
+                    <h3>Accesorii</h3>
+                    <p>Completează-ți echipamentul cu <b>accesorii dans clasic</b>: panglici și elastice pentru poante,
+                        protecții pentru degete, plase și agrafe de păr, tiare de scenă și genți de dans.</p>
+                </section>
+            </section>
+
+        </div><!-- /#grid-pagina — SFARSIT GRID 8 ZONE -->
+
+        <!-- ===== SECTIUNI IN AFARA GRIDULUI ===== -->
+        <!-- ETAPA 2 CERINTA DESIGN RUDIMENTAR: sectiunile de sub grid sunt delimitate vizual cu bg, border, border-radius, box-shadow -->
+
+        <!-- CERINTA 14: iframe YouTube + div cu linkuri care se deschid in iframe -->
+        <section id="videoclipuri">
+            <h2><i class="fa-solid fa-play fa-beat-fade"></i> Videoclipuri recomandate</h2>
+            <p>Urmărește selecția noastră de videoclipuri despre tehnica de balet și review-uri de echipament:</p>
+
+            <!-- ETAPA 2 CERINTA STILIZARE TABURI: container-iframe + taburi-iframe cu flexbox -->
+            <div class="container-iframe">
+                <div class="taburi-iframe">
+                    <!-- CERINTA 14: minim 2 linkuri catre alte videoclipuri + 1 catre cel incarcat -->
+                    <a href="https://www.youtube.com/embed/Fu85TN5uBDE?si" target="ifr-balet">Tehnica de balet pentru
+                        începători</a>
+                    <a href="https://www.youtube.com/embed/wq-1-5dL3jU?si" target="ifr-balet">Cum să alegi poantele
+                        potrivite</a>
+                    <!-- CERINTA 14: al treilea link = catre videoclipul deja incarcat -->
+                    <a href="https://www.youtube.com/embed/JWLy4IKgd1M?si" target="ifr-balet">Terminologii de balet
+                        pentru începători</a>
+                </div>
+
+                <!-- CERINTA 14: iframe-ul cu name="ifr-balet" — linkurile de sus se deschid aici -->
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/JWLy4IKgd1M?si" name="ifr-balet"
+                    title="Videoclip YouTube despre balet"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen>
+                </iframe>
+            </div><!-- /.container-iframe -->
+        </section>
+
+        <!-- BONUS ETAPA 1: playlist YouTube cu loop -->
+        <section id="playlist-balet">
+            <h2><i class="fa-solid fa-music fa-beat-fade"></i> Playlist: Spectacole de balet</h2>
+            <p>Urmărește automat o selecție de spectacole celebre de balet. Playlist-ul se reia de la început după
+                ultimul videoclip:</p>
+            <!-- BONUS 5: videoseries?list=, loop=1, controls=1 -->
+            <iframe width="560" height="315"
+                src="https://www.youtube.com/embed/videoseries?list=PLdDhiuwXdZ1tB-_Hvohd2oRimfITvolTG&amp;autoplay=0&amp;loop=1&amp;controls=1"
+                title="Playlist YouTube — Spectacole de balet"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>
+        </section>
+
+        <!-- CERINTA VIDEO-VTT: video cu subtitrari, poster, track-uri, gradient pe text -->
+        <section id="video-vtt">
+            <h2><i class="fa-solid fa-film fa-beat-fade"></i> Descoperă lumea baletului</h2>
+            <p>Urmărește un scurt clip despre frumusețea dansului clasic:</p>
+
+            <div class="video-container">
+                <video controls preload="auto" poster="/resurse/imagini/image.png">
+                    <!-- Minim 2 surse: acelasi videoclip in formate diferite -->
+                    <source src="/resurse/video/balet.mp4" type="video/mp4">
+                    <source src="/resurse/video/balet.webm" type="video/webm">
+
+                    <!-- Track romana — default -->
+                    <track src="/resurse/vtt/subtitles-ro.vtt" kind="subtitles" srclang="ro" label="Română" default>
+                    <!-- Track engleza -->
+                    <track src="/resurse/vtt/subtitles-en.vtt" kind="subtitles" srclang="en" label="English">
+
+                    Browserul tău nu suportă redarea video.
+                </video>
+            </div>
+        </section>
+        <!-- BONUS ETAPA 2: stilizare MathML — culori diferite pe elemente diferite -->
+        <section id="formula">
+            <h2><i class="fa-solid fa-calculator fa-beat-fade"></i> Calculul reducerii la pachete</h2>
+            <p>La <b>Lena's Ballet Boutique</b>, prețul final al unui pachet de produse se calculează aplicând o
+                reducere procentuală proporțională cu numărul de articole comandate. Formula folosită este:</p>
+            <!-- BONUS ETAPA 1: formula MathML cu display="block" -->
+            <!-- BONUS ETAPA 2: stilizare inline — variabile bordo, operatori auriu, numere roz -->
+            <math display="block"
+                style="background: linear-gradient(135deg, #F5DDE3, #E8C4CF); padding: 1.5rem; border-radius: 0.8rem; border: 2px solid #D4849A; font-size: 1.3em;">
+                <mrow>
+                    <mi style="color:#6E2845; font-weight:bold;">P</mi>
+                    <mo style="color:#C9A96E; font-weight:bold; font-size:1.3em;">=</mo>
+                    <msqrt>
+                        <mrow>
+                            <munderover>
+                                <mo style="color:#C9A96E; font-size:1.4em; font-weight:bold;">&#x2211;</mo>
+                                <mrow>
+                                    <mi style="color:#6E2845;">i</mi>
+                                    <mo style="color:#C9A96E;">=</mo>
+                                    <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                </mrow>
+                                <mi style="color:#6E2845; font-weight:bold;">n</mi>
+                            </munderover>
+                            <msup>
+                                <mi style="color:#6E2845; font-weight:bold;">p</mi>
+                                <mi style="color:#D4849A; font-weight:bold;">i</mi>
+                            </msup>
+                            <mo style="color:#C9A96E; font-weight:bold; font-size:1.3em;">&#x00D7;</mo>
+                            <mrow>
+                                <mo style="color:#C9A96E; font-size:1.3em;">(</mo>
+                                <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                <mo style="color:#C9A96E; font-weight:bold;">&#x2212;</mo>
+                                <mfrac>
+                                    <mi style="color:#6E2845; font-weight:bold;">n</mi>
+                                    <mn style="color:#D4849A; font-weight:bold;">100</mn>
+                                </mfrac>
+                                <mo style="color:#C9A96E; font-size:1.3em;">)</mo>
+                            </mrow>
+                            <mo style="color:#C9A96E; font-weight:bold; font-size:1.3em;">+</mo>
+                            <munderover>
+                                <mo style="color:#C9A96E; font-size:1.4em; font-weight:bold;">&#x2211;</mo>
+                                <mrow>
+                                    <mi style="color:#6E2845;">j</mi>
+                                    <mo style="color:#C9A96E;">=</mo>
+                                    <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                </mrow>
+                                <mi style="color:#6E2845; font-weight:bold;">m</mi>
+                            </munderover>
+                            <msup>
+                                <mi style="color:#6E2845; font-weight:bold;">q</mi>
+                                <mi style="color:#D4849A; font-weight:bold;">j</mi>
+                            </msup>
+                            <mo style="color:#C9A96E; font-weight:bold; font-size:1.3em;">&#x00D7;</mo>
+                            <mrow>
+                                <mo style="color:#C9A96E; font-size:1.3em;">(</mo>
+                                <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                <mo style="color:#C9A96E; font-weight:bold;">&#x2212;</mo>
+                                <mfrac>
+                                    <mi style="color:#6E2845; font-weight:bold;">m</mi>
+                                    <mn style="color:#D4849A; font-weight:bold;">100</mn>
+                                </mfrac>
+                                <mo style="color:#C9A96E; font-size:1.3em;">)</mo>
+                            </mrow>
+                        </mrow>
+                    </msqrt>
+                </mrow>
+            </math>
+
+            <p>Unde:</p>
+            <dl>
+                <dt><math>
+                        <mi style="color:#6E2845; font-weight:bold;">P</mi>
+                    </math></dt>
+                <dd>prețul total final</dd>
+                <dt><math>
+                        <msup>
+                            <mi style="color:#6E2845; font-weight:bold;">p</mi>
+                            <mi style="color:#D4849A; font-weight:bold;">i</mi>
+                        </msup>
+                    </math></dt>
+                <dd>prețul individual al produsului <math>
+                        <mi style="color:#6E2845;">i</mi>
+                    </math> din prima categorie</dd>
+                <dt><math>
+                        <msup>
+                            <mi style="color:#6E2845; font-weight:bold;">q</mi>
+                            <mi style="color:#D4849A; font-weight:bold;">j</mi>
+                        </msup>
+                    </math></dt>
+                <dd>prețul individual al produsului <math>
+                        <mi style="color:#6E2845;">j</mi>
+                    </math> din a doua categorie</dd>
+                <dt><math>
+                        <mi style="color:#6E2845; font-weight:bold;">n</mi>
+                    </math></dt>
+                <dd>numărul total de produse din prima categorie</dd>
+                <dt><math>
+                        <mi style="color:#6E2845; font-weight:bold;">m</mi>
+                    </math></dt>
+                <dd>numărul total de produse din a doua categorie</dd>
+            </dl>
+            <p>
+                De exemplu, pentru
+                <math>
+                    <mi style="color:#6E2845; font-weight:bold;">n</mi>
+                    <mo style="color:#C9A96E; font-weight:bold;">=</mo>
+                    <mn style="color:#D4849A; font-weight:bold;">3</mn>
+                </math>
+                produse în prima categorie și
+                <math>
+                    <mi style="color:#6E2845; font-weight:bold;">m</mi>
+                    <mo style="color:#C9A96E; font-weight:bold;">=</mo>
+                    <mn style="color:#D4849A; font-weight:bold;">4</mn>
+                </math>
+                în a doua, reducerea aplicată este de
+                <math>
+                    <mfrac>
+                        <mn style="color:#D4849A; font-weight:bold;">3</mn>
+                        <mn style="color:#D4849A; font-weight:bold;">100</mn>
+                    </mfrac>
+                    <mo style="color:#C9A96E; font-weight:bold;">=</mo>
+                    <mn style="color:#D4849A; font-weight:bold;">3%</mn>
+                </math>
+                respectiv
+                <math>
+                    <mfrac>
+                        <mn style="color:#D4849A; font-weight:bold;">4</mn>
+                        <mn style="color:#D4849A; font-weight:bold;">100</mn>
+                    </mfrac>
+                    <mo style="color:#C9A96E; font-weight:bold;">=</mo>
+                    <mn style="color:#D4849A; font-weight:bold;">4%</mn>
+                </math>.
+                Prețul final se calculează ca:
+                <math>
+                    <msqrt>
+                        <mrow>
+                            <mo style="color:#C9A96E;">(</mo>
+                            <munderover>
+                                <mo style="color:#C9A96E; font-weight:bold;">&#x2211;</mo>
+                                <mrow>
+                                    <mi style="color:#6E2845;">i</mi>
+                                    <mo style="color:#C9A96E;">=</mo>
+                                    <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                </mrow>
+                                <mn style="color:#D4849A; font-weight:bold;">3</mn>
+                            </munderover>
+                            <msup>
+                                <mi style="color:#6E2845; font-weight:bold;">p</mi>
+                                <mi style="color:#D4849A; font-weight:bold;">i</mi>
+                            </msup>
+                            <mo style="color:#C9A96E; font-weight:bold;">&#x00D7;</mo>
+                            <mn style="color:#D4849A; font-weight:bold;">0.97</mn>
+                            <mo style="color:#C9A96E;">)</mo>
+                            <mo style="color:#C9A96E; font-weight:bold;">+</mo>
+                            <mo style="color:#C9A96E;">(</mo>
+                            <munderover>
+                                <mo style="color:#C9A96E; font-weight:bold;">&#x2211;</mo>
+                                <mrow>
+                                    <mi style="color:#6E2845;">j</mi>
+                                    <mo style="color:#C9A96E;">=</mo>
+                                    <mn style="color:#D4849A; font-weight:bold;">1</mn>
+                                </mrow>
+                                <mn style="color:#D4849A; font-weight:bold;">4</mn>
+                            </munderover>
+                            <msup>
+                                <mi style="color:#6E2845; font-weight:bold;">q</mi>
+                                <mi style="color:#D4849A; font-weight:bold;">j</mi>
+                            </msup>
+                            <mo style="color:#C9A96E; font-weight:bold;">&#x00D7;</mo>
+                            <mn style="color:#D4849A; font-weight:bold;">0.96</mn>
+                            <mo style="color:#C9A96E;">)</mo>
+                        </mrow>
+                    </msqrt>
+                </math>.
+                Cu cât comanzi mai multe articole de <b>echipament balet</b>, cu atât economisești mai mult!
+            </p>
+        </section>
+
+        <!-- BONUS ETAPA 1: PDF afisat in pagina cu embed -->
+        <section id="catalog-pdf">
+            <h2><i class="fa-solid fa-book-open fa-beat-fade"></i> Catalogul nostru</h2>
+            <p>Răsfoiește catalogul complet de produse <b>Lena's Ballet Boutique</b> direct în pagină:</p>
+            <embed src="/resurse/documente/catalog.pdf" type="application/pdf"
+                style="width:100%; height:700px; min-height:500px; border-radius:0.5rem; border:2px solid #CDA0B0; box-shadow: 0 0.2rem 0.8rem rgba(110,40,69,0.2);">
+        </section>
+
+        <!-- BONUS ETAPA 1: harta de imagini cu map si area -->
+        <section id="harta-produse">
+            <h2><i class="fa-solid fa-hand-pointer fa-beat-fade"></i> Explorează echipamentul de balet</h2>
+            <p>Dă click pe fiecare parte a echipamentului unei balerine pentru a descoperi produsele corespunzătoare:
+            </p>
+            <img src="/resurse/imagini/balerina-echipament.jpg"
+                alt="Balerină cu echipament complet — click pe fiecare zonă pentru detalii" usemap="#harta-balerina"
+                width="600" height="800">
+            <map name="harta-balerina">
+                <!-- BONUS 3: area shape="circle" -->
+                <area shape="circle" coords="300,155,55" href="#accesorii" alt="Accesorii de păr și tiare"
+                    title="Accesorii: plase de păr, agrafe, tiare de scenă">
+                <!-- BONUS 3: area shape="rect" -->
+                <area shape="rect" coords="200,220,400,400" href="#imbracaminte" alt="Body-uri și îmbrăcăminte de balet"
+                    title="Îmbrăcăminte: body-uri, corsete, topuri de dans">
+                <!-- BONUS 3: area shape="poly" (forma neregulata = complexitate) -->
+                <area shape="poly" coords="185,400,415,400,450,500,150,500" href="#costume"
+                    alt="Fuste și tutu-uri de balet" title="Costume: fuste, tutu-uri clasice și romantice">
+                <area shape="rect" coords="215,500,385,670" href="#imbracaminte" alt="Dresuri și ciorapi de balet"
+                    title="Dresuri și ciorapi de balet în diverse culori">
+                <area shape="rect" coords="225,670,375,740" href="#incaltaminte" alt="Poante și cipici de balet"
+                    title="Încălțăminte: poante, cipici, demi-poante">
+            </map>
+        </section>
+
+        <!-- CERINTA 16: mai multe zone de details si summary -->
+        <section id="intrebari">
+            <h2><i class="fa-regular fa-circle-question fa-beat-fade"></i> Întrebări frecvente</h2>
+
+            <details>
+                <summary>Cum aleg mărimea potrivită de poante?</summary>
+                <p>Mărimea poantelor diferă de la brand la brand. Vă recomandăm să consultați ghidul nostru de mărimi
+                    sau să programați o ședință de <i lang="en">fitting</i> cu Lena la sediul nostru. În general,
+                    poantele se aleg cu o jumătate de mărime mai mică decât încălțămintea de stradă.</p>
+            </details>
+
+            <details>
+                <summary>Oferiți livrare în toată România?</summary>
+                <p>Da! Livrăm prin curier rapid în toată țara. Comenzile peste 200 lei beneficiază de livrare gratuită.
+                    Produsele ajung în 2–4 zile lucrătoare.</p>
+            </details>
+
+            <details>
+                <summary>Pot returna un produs dacă nu mi se potrivește?</summary>
+                <p>Acceptăm returnări în termen de 14 zile de la primirea coletului, cu condiția ca produsul să nu fi
+                    fost purtat. Poantele și cipicii trebuie să fie în ambalajul original.</p>
+            </details>
+
+            <details>
+                <summary>Realizați costume personalizate pentru spectacole?</summary>
+                <p>Da, colaborăm cu atelierul nostru partener pentru costume personalizate. Timpul de execuție este de
+                    3–6 săptămâni, în funcție de complexitate. Contactați-ne pentru o ofertă.</p>
+            </details>
+        </section>
+
+    </main>
+
+    <!-- CERINTA 5: FOOTER -->
+    <%- include('../fragmente/footer') %>
+
+    <!-- CERINTA 20: pagina trebuie validata cu validator.w3.org inainte de prezentare! -->
+
+</body>
+
+</html>

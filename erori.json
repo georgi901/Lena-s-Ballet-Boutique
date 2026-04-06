@@ -1,0 +1,38 @@
+{
+    "cale_baza": "/resurse/imagini/erori/",
+    "eroare_default": {
+        "titlu": "Eroare necunoscută",
+        "text": "A apărut o eroare neașteptată. Te rugăm să încerci din nou mai târziu.",
+        "imagine": "eroare-default.svg"
+    },
+    "info_erori": [
+        {
+            "identificator": 400,
+            "status": true,
+            "titlu": "Cerere invalidă",
+            "text": "Nu poți accesa direct fișierele template (.ejs). Acestea sunt folosite intern de server.",
+            "imagine": "400.svg"
+        },
+        {
+            "identificator": 403,
+            "status": true,
+            "titlu": "Acces interzis",
+            "text": "Nu ai permisiunea de a accesa această pagină.",
+            "imagine": "403.svg"
+        },
+        {
+            "identificator": 404,
+            "status": true,
+            "titlu": "Pagină negăsită",
+            "text": "Ne pare rău, pagina pe care o cauți nu există sau a fost mutată.",
+            "imagine": "404.svg"
+        },
+        {
+            "identificator": 500,
+            "status": true,
+            "titlu": "Eroare de server",
+            "text": "A apărut o eroare internă a serverului. Te rugăm să încerci din nou mai târziu.",
+            "imagine": "500.svg"
+        }
+    ]
+}

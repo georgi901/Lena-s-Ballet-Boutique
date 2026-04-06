@@ -1,0 +1,63 @@
+    <footer>
+
+        <!-- ETAPA 3: banner scolar pentru printare -->
+        <p class="banner">Acesta este un proiect școlar!</p>
+
+        <!-- CERINTA 18: informatii de contact in tagul address -->
+        <address>
+
+            <!-- CERINTA 18a: telefon fictiv cu URI Scheme tel: -->
+            <!-- ETAPA 2 CERINTA ICONURI: icon STATIC Font Awesome (fa-phone) -->
+            <p>
+                <i class="fa-solid fa-phone"></i> Telefon: <a href="tel:+40712345678">+40 712 345 678</a>
+            </p>
+
+            <!-- CERINTA 18b: adresa fictiva cu link Google Maps, separata cu br -->
+            <p>
+                <i class="fa-solid fa-map-location-dot"></i>
+                <a href="https://maps.google.com/?q=Facultatea+de+Matematica+si+Informatica+Bucuresti">
+                    Strada Academiei nr. 14,<br>
+                    Sector 1, București,<br>
+                    Cod poștal 010014
+                </a>
+            </p>
+
+            <!-- BONUS ETAPA 1: iframe Google Maps cu locatia Facultatii -->
+            <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2849.0!2d26.1003!3d44.4358!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b1ff4770adb5b7%3A0x58147f39579fe6fa!2sFacultatea%20de%20Matematic%C4%83%20%C8%99i%20Informatic%C4%83%2C%20Universitatea%20din%20Bucure%C8%99ti!5e0!3m2!1sro!2sro!4v1709900000000!5m2!1sro!2sro"
+                width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade" title="Locația magazinului pe Google Maps">
+            </iframe>
+
+            <!-- CERINTA 18c: email fictiv cu URI Scheme mailto: -->
+            <p>
+                <i class="fa-solid fa-envelope"></i> E-mail: <a
+                    href="mailto:contact@lenasballet.ro">contact@lenasballet.ro</a>
+            </p>
+
+            <!-- CERINTA 18d: link WhatsApp pentru chat -->
+            <p>
+                <i class="fa-brands fa-whatsapp"></i> WhatsApp: <a href="https://wa.me/40712345678">Scrie-ne pe
+                    WhatsApp</a>
+            </p>
+        </address>
+
+        <!-- CERINTA 19: copyright cu small, &copy;, time cu datetime (doar data), in limba romana -->
+        <p>
+            <small>&copy; Lena's Ballet Boutique, creat la <time datetime="2026-03-09">9 martie 2026</time>. Toate
+                drepturile rezervate.</small>
+        </p>
+    </footer>
+
+    <!-- ETAPA 2 CERINTA LINK TOP:
+         - Fara imagini!
+         - Pozitie fixa, jos-dreapta
+         - Rotit (transform: rotate(45deg))
+         - Triunghi creat doar cu border
+         - Semi-transparent (opacity), opac la hover
+         - Tranzitie la hover (300-700ms)
+         - Tooltip (atributul title)
+    -->
+    <a href="#top" id="link-top" title="Apasă pentru a te întoarce la începutul paginii">
+        <div id="triunghi"></div>
+    </a>

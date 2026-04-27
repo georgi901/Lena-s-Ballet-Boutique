@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include('../fragmente/head') %>
+        <title>Galerie statică — Lena's Ballet Boutique</title>
+</head>
+
+<body id="top">
+
+    <%- include('../fragmente/header') %>
+
+        <main>
+        <section class="galerie-statica-wrapper">
+            <h2><i class="fa-solid fa-images fa-beat-fade"></i> Galerie statică</h2>
+            <p>
+                Selecția de imagini este filtrată automat în funcție de ziua curentă și păstrează modelul de afișare
+                în zig-zag cerut pentru ecran mare.
+            </p>
+            <% if (typeof galerieStatica !== "undefined") { %>
+                <%- include('../fragmente/galerie-statica', {
+                    caleGalerie: galerieStatica.caleGalerie,
+                    imaginiGalerie: galerieStatica.imagini,
+                    ziCurentaAfisare: galerieStatica.ziCurentaAfisare
+                }) %>
+            <% } else { %>
+                <p class="galerie-statica-goala">Galeria nu a putut fi încărcată în acest context.</p>
+            <% } %>
+        </section>
+        </main>
+
+        <%- include('../fragmente/footer') %>
+
+</body>
+
+</html>

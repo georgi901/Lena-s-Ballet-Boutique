@@ -1,0 +1,124 @@
+{
+    "cale_galerie": "/resurse/imagini/galerie",
+    "imagini": [
+        {
+            "fisier_imagine": "imag1.jpeg",
+            "nume_poza": "Gratie",
+            "continut_alternativ": "Balerină în tutu roz, în lumină caldă",
+            "descriere_poza": "Un cadru delicat care surprinde eleganța costumelor de repetiție.",
+            "intervale_zile": [["luni", "miercuri"], ["sambata", "sambata"]]
+        },
+        {
+            "fisier_imagine": "imag2.jpeg",
+            "nume_poza": "Coroana",
+            "continut_alternativ": "Balerină în costum de spectacol cu accesoriu regal",
+            "descriere_poza": "Inspirație pentru recitaluri și costume de gală din colecția boutique-ului.",
+            "intervale_zile": [["luni", "vineri"]]
+        },
+        {
+            "fisier_imagine": "imag3.jpeg",
+            "nume_poza": "Auriu",
+            "continut_alternativ": "Balerină în costum auriu pe scenă",
+            "descriere_poza": "Tonuri aurii și materiale fluide pentru apariții memorabile la concurs.",
+            "intervale_zile": [["marti", "sambata"]]
+        },
+        {
+            "fisier_imagine": "imag4.jpeg",
+            "nume_poza": "Poante",
+            "continut_alternativ": "Poante de balet fotografiate în prim-plan",
+            "descriere_poza": "Detaliu vizual dedicat poantelor și panglicilor pregătite pentru repetiții.",
+            "intervale_zile": [["miercuri", "duminica"]]
+        },
+        {
+            "fisier_imagine": "imag5.jpeg",
+            "nume_poza": "Colaj",
+            "continut_alternativ": "Colaj vizual cu elemente inspirate din balet",
+            "descriere_poza": "Texturi, culori și accente romantice care definesc identitatea vizuală a boutique-ului.",
+            "intervale_zile": [["joi", "duminica"]]
+        },
+        {
+            "fisier_imagine": "balerina-echipament.jpg",
+            "nume_poza": "Studio",
+            "continut_alternativ": "Balerină cu echipament complet pentru antrenament",
+            "descriere_poza": "O privire de ansamblu asupra produselor esențiale pentru o ținută completă de balet.",
+            "intervale_zile": [["luni", "sambata"]]
+        },
+        {
+            "fisier_imagine": "balet-hero-mare.jpeg",
+            "nume_poza": "Arabesca",
+            "continut_alternativ": "Balerină executând un arabesque pe scenă",
+            "descriere_poza": "Imagine manifest a site-ului, folosită aici ca piesă centrală a galeriei.",
+            "intervale_zile": [["luni", "duminica"]]
+        },
+        {
+            "fisier_imagine": "balet-hero-medie.jpeg",
+            "nume_poza": "Culise",
+            "continut_alternativ": "Balerină surprinsă într-o pauză între repetiții",
+            "descriere_poza": "Un moment calm din culise, potrivit pentru prezentarea gamei de accesorii și echipamente.",
+            "intervale_zile": [["sambata", "duminica"]]
+        },
+        {
+            "fisier_imagine": "ballet-dancer-cc-by.jpg",
+            "nume_poza": "Arhiva",
+            "continut_alternativ": "Balerină clasică fotografiată în costum de scenă",
+            "descriere_poza": "Imagine de arhivă cu licență deschisă, inclusă pentru a demonstra atribuirea CC-BY.",
+            "intervale_zile": [["vineri", "duminica"]],
+            "atribuire": {
+                "autor": "Stano Novak",
+                "sursa": "Wikimedia Commons",
+                "link_sursa": "https://commons.wikimedia.org/wiki/File:Ballet-dancer_01.jpg",
+                "licenta": "CC BY 2.5",
+                "link_licenta": "https://creativecommons.org/licenses/by/2.5/"
+            }
+        },
+        {
+            "fisier_imagine": "lumina.jpeg",
+            "nume_poza": "Lumina",
+            "continut_alternativ": "Balerină luminată din profil, într-un cadru strâns",
+            "descriere_poza": "Decupaj creat pentru un accent mai intim și mai concentrat asupra siluetei.",
+            "intervale_zile": [["luni", "joi"]]
+        },
+        {
+            "fisier_imagine": "regal.jpeg",
+            "nume_poza": "Regal",
+            "continut_alternativ": "Detaliu apropiat al unui costum regal de scenă",
+            "descriere_poza": "Variantă decupată care pune accentul pe accesoriile strălucitoare de scenă.",
+            "intervale_zile": [["marti", "vineri"]]
+        },
+        {
+            "fisier_imagine": "satin.jpeg",
+            "nume_poza": "Satin",
+            "continut_alternativ": "Textură aurie din costum de balet",
+            "descriere_poza": "Cadru strâns în care materialul și reflexiile devin elementul principal.",
+            "intervale_zile": [["miercuri", "sambata"]]
+        },
+        {
+            "fisier_imagine": "panglici.jpeg",
+            "nume_poza": "Panglici",
+            "continut_alternativ": "Panglici și poante aranjate atent pentru repetiție",
+            "descriere_poza": "O compoziție care evidențiază detaliile textile asociate echipamentului de balet.",
+            "intervale_zile": [["joi", "duminica"]]
+        },
+        {
+            "fisier_imagine": "atelier.jpg",
+            "nume_poza": "Atelier",
+            "continut_alternativ": "Balerină în studio, pregătită de antrenament",
+            "descriere_poza": "Cadru derivat pentru a sugera atmosfera din atelier și din studio.",
+            "intervale_zile": [["luni", "vineri"]]
+        },
+        {
+            "fisier_imagine": "reverie.jpeg",
+            "nume_poza": "Reverie",
+            "continut_alternativ": "Colaj artistic inspirat de balet",
+            "descriere_poza": "O variantă mai poetică a colajului, folosită pentru a diversifica ritmul galeriei.",
+            "intervale_zile": [["marti", "duminica"]]
+        },
+        {
+            "fisier_imagine": "pasclasic.jpeg",
+            "nume_poza": "Pasclasic",
+            "continut_alternativ": "Balerină în pas clasic, surprinsă aproape de scenă",
+            "descriere_poza": "O compoziție concentrată pe linia corpului și pe impresia de mișcare controlată.",
+            "intervale_zile": [["luni", "duminica"]]
+        }
+    ]
+}

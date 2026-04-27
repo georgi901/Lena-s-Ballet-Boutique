@@ -1,0 +1,41 @@
+<p class="galerie-statica-meta">
+    Astăzi, în galerie se afișează imaginile programate pentru <b>
+        <%= ziCurentaAfisare %>
+    </b>.
+</p>
+
+<% if (!imaginiGalerie || imaginiGalerie.length===0) { %>
+    <p class="galerie-statica-goala">Nu există imagini programate pentru această zi.</p>
+    <% } else { %>
+        <div class="galerie-statica-grid">
+            <% imaginiGalerie.forEach(function(imagine){ %>
+                <figure class="galerie-statica-item">
+                    <picture>
+                        <source media="(max-width: 700px)" srcset="<%= caleGalerie %>/mica/<%= imagine.fisier_imagine %>">
+                        <source media="(max-width: 1200px)" srcset="<%= caleGalerie %>/medie/<%= imagine.fisier_imagine %>">
+                        <img class="galerie-statica-imagine" src="<%= caleGalerie %>/mare/<%= imagine.fisier_imagine %>"
+                            alt="<%= imagine.altFinal %>" title="<%= imagine.descriere_poza %>">
+                    </picture>
+                    <figcaption>
+                        <span class="galerie-statica-titlu">
+                            <%= imagine.nume_poza %>
+                        </span>
+                        <span class="galerie-statica-descriere">
+                            <%= imagine.descriere_poza %>
+                        </span>
+                        <% if (imagine.atribuire) { %>
+                            <small class="galerie-statica-atribuire">
+                                Foto <%= imagine.atribuire.autor %>,
+                                    <a href="<%= imagine.atribuire.link_sursa %>" target="_blank" rel="noopener">
+                                        <%= imagine.atribuire.sursa %>
+                                    </a>,
+                                    <a href="<%= imagine.atribuire.link_licenta %>" target="_blank" rel="noopener">
+                                        <%= imagine.atribuire.licenta %>
+                                    </a>
+                            </small>
+                            <% } %>
+                    </figcaption>
+                </figure>
+                <% }) %>
+        </div>
+        <% } %>

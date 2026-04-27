@@ -1,0 +1,71 @@
+@import "bootstrap/scss/functions";
+
+$primary: #6e2845;
+$secondary: #d4849a;
+$success: #c9a96e;
+$warning: #e8d5a8;
+$light: #fff0f3;
+$dark: #2e1520;
+
+$primary-bg-subtle: #f5dde3;
+$secondary-bg-subtle: #e8c4cf;
+$success-bg-subtle: #f5ead0;
+
+$primary-border-subtle: #cda0b0;
+$secondary-border-subtle: #d9a3b3;
+$success-border-subtle: #d8c08d;
+
+$body-color: #2e1520;
+$headings-color: #6e2845;
+$link-color: #6e2845;
+$link-hover-color: #d4849a;
+
+$font-family-sans-serif: "Nunito Sans", sans-serif;
+$font-family-base: "Nunito Sans", sans-serif;
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 860px,
+    lg: 1180px,
+    xl: 1400px,
+    xxl: 1600px
+);
+
+$container-max-widths: (
+    sm: 540px,
+    md: 780px,
+    lg: 1080px,
+    xl: 1280px,
+    xxl: 1480px
+);
+
+$border-radius: 1rem;
+$border-radius-sm: 0.75rem;
+$border-radius-lg: 1.4rem;
+$border-radius-xl: 1.8rem;
+$border-radius-xxl: 2.2rem;
+
+$h1-font-size: 3.5rem;
+$h2-font-size: 2.65rem;
+$h3-font-size: 1.9rem;
+$h4-font-size: 1.45rem;
+$h5-font-size: 1.2rem;
+$h6-font-size: 1rem;
+
+$btn-padding-y: 0.7rem;
+$btn-padding-x: 1.25rem;
+$btn-font-weight: 700;
+$card-box-shadow: 0 0.8rem 1.8rem rgba(110, 40, 69, 0.14);
+$accordion-button-focus-box-shadow: 0 0 0 0.2rem rgba(212, 132, 154, 0.3);
+$enable-gradients: true;
+
+@import "bootstrap/scss/bootstrap";
+
+.bootstrap-accent-card {
+    backdrop-filter: blur(0.2rem);
+}
+
+.bootstrap-showcase .btn {
+    letter-spacing: 0.02em;
+}

@@ -73,6 +73,22 @@ body {
     background-attachment: fixed;
 }
 
+::selection {
+    background-color: var(--bordo);
+    color: var(--culoare-alb);
+    text-shadow: none;
+}
+
+.text-coloane {
+    column-count: 2;
+    column-gap: 2.2rem;
+    column-rule: 0.18rem solid var(--roz-prafuit);
+}
+
+.text-coloane p {
+    break-inside: avoid;
+}
+
 /* Headinguri elegante */
 h1,
 h2,
@@ -150,6 +166,71 @@ p {
     line-height: 1.8;
     font-size: var(--font-size-body);
     color: var(--culoare-text);
+}
+
+/* ETAPA 5 - HR decorativ inspirat de funda panglicilor de la poante */
+.separator-balet {
+    --culoare-hr: var(--roz-principal);
+    position: relative;
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: min(34rem, 78%);
+    height: 0.78rem;
+    margin: 1.8rem auto 2.4rem;
+    border: none;
+    border-radius: 999px;
+    background-color: var(--culoare-hr);
+    background-image: radial-gradient(ellipse 72% 88% at center,
+            rgba(255, 255, 255, 1) 0 54%,
+            rgba(255, 255, 255, 0.82) 60%,
+            rgba(255, 255, 255, 0.12) 72%,
+            rgba(255, 255, 255, 0) 78%);
+    background-size: 1.28rem 100%;
+    background-repeat: repeat-x;
+    background-position: center;
+    box-shadow:
+        0 0 0.45rem var(--culoare-hr),
+        0 0 1.15rem rgba(212, 132, 154, 0.95),
+        0 0 1.8rem rgba(212, 132, 154, 0.55);
+    overflow: visible;
+}
+
+.separator-balet::before,
+.separator-balet::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -57%);
+    clip-path: polygon(50% 0%,
+            61% 35%,
+            98% 35%,
+            68% 57%,
+            79% 96%,
+            50% 74%,
+            21% 96%,
+            32% 57%,
+            2% 35%,
+            39% 35%);
+}
+
+.separator-balet::before {
+    z-index: 1;
+    width: 4rem;
+    height: 4rem;
+    background: var(--bordo);
+    filter: drop-shadow(0 0.25rem 0.45rem rgba(110, 40, 69, 0.48));
+}
+
+.separator-balet::after {
+    z-index: 2;
+    width: 3.45rem;
+    height: 3.45rem;
+    background: linear-gradient(135deg, var(--auriu-deschis) 0%, var(--auriu) 34%, var(--roz-principal) 66%, var(--bordo) 100%);
+    box-shadow:
+        0 0 0 0.08rem rgba(255, 248, 232, 0.85),
+        inset 0 0 0.18rem rgba(255, 255, 255, 0.65);
+    filter: drop-shadow(0 0 0.52rem rgba(201, 169, 110, 0.58));
 }
 
 
@@ -340,7 +421,7 @@ nav ul ul a {
 /* Produse — zona MARE dreapta */
 
 /* --- Stilul zonelor din grid --- */
-#grid-pagina>* {
+#grid-pagina>*:not(.separator-balet) {
     background: linear-gradient(145deg, var(--culoare-alb) 0%, var(--culoare-zona) 100%);
     border: 0.1rem solid var(--culoare-border);
     border-radius: 0.8rem;
@@ -354,7 +435,7 @@ nav ul ul a {
 }
 
 /*/* CERINTE: hover subtil pe zone — ridica usor cardul */
-#grid-pagina>*:hover {
+#grid-pagina>*:not(.separator-balet):hover {
     box-shadow:
         0 0.5rem 1.8rem var(--culoare-shadow-puternic),
         0 0.1rem 0.3rem rgba(0, 0, 0, 0.06);
@@ -449,6 +530,34 @@ main>aside {
    CERINTA LAYOUT: ECRAN MIC — fara coloane (display: block)
 */
 @media screen and (max-width: 700px) {
+
+    .separator-balet {
+        width: min(18rem, 82%);
+        height: 0.66rem;
+        background-size: 0.95rem 100%;
+    }
+
+    .separator-balet::before {
+        width: 3rem;
+        height: 3rem;
+    }
+
+    .separator-balet::after {
+        width: 2.7rem;
+        height: 2.7rem;
+    }
+
+    .duotone-demo {
+        height: 14rem;
+    }
+
+    .reflexie-text-demo {
+        padding-bottom: 5rem;
+    }
+
+    .titlu-cu-reflexie {
+        font-size: 2rem;
+    }
 
     /* CERINTA LAYOUT: font-size pe html descrescator */
     html {
@@ -575,21 +684,32 @@ thead th {
     font-size: 1.05rem;
     text-align: left;
     letter-spacing: 0.02em;
+    border: 0.05rem solid var(--culoare-border);
 }
 
 td {
     padding: 0.75rem 0.8rem;
     font-size: 1rem;
-    border-bottom: 0.05rem solid var(--culoare-border);
+    border: 0.05rem solid var(--culoare-border);
 }
 
 /* Coloane alternante */
-td:nth-child(odd) {
+td.col-impar,
+th.col-impar {
     background-color: var(--culoare-alb);
 }
 
-td:nth-child(even) {
+td.col-par,
+th.col-par {
     background-color: var(--roz-deschis);
+}
+
+thead th.col-impar {
+    background-color: var(--bordo);
+}
+
+thead th.col-par {
+    background-color: var(--roz-principal);
 }
 
 /* Hover pe rand */
@@ -607,6 +727,12 @@ tbody td:hover {
     color: var(--culoare-alb);
 }
 
+.rand-weekend td[colspan] {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 700;
+}
+
 tfoot td {
     background-color: var(--crem);
     font-style: italic;
@@ -616,6 +742,11 @@ tfoot td {
 }
 
 @media screen and (max-width: 700px) {
+    .text-coloane {
+        column-count: 1;
+        column-rule: none;
+    }
+
     .tabel-container {
         overflow-x: auto;
         /* CERINTA TABEL: scroll orizontal pe ecran mic */
@@ -628,6 +759,11 @@ tfoot td {
 }
 
 @media screen and (max-width: 1200px) {
+    .text-coloane {
+        column-count: 1;
+        column-rule: none;
+    }
+
     .tabel-container {
         overflow-x: auto;
         /* CERINTA TABEL: scroll orizontal pe ecran mic */
@@ -1284,6 +1420,602 @@ msqrt>* {
     max-width: 400px;
     border-radius: 0.5rem;
     box-shadow: 0 0.2rem 0.8rem rgba(110, 40, 69, 0.2);
+}
+
+/* ===== GALERIE STATICA ===== */
+.galerie-statica-wrapper {
+    width: 100%;
+    max-width: none;
+    margin: 2.4rem 0;
+    padding-inline: clamp(0.75rem, 3vw, 2rem);
+    box-sizing: border-box;
+}
+
+.galerie-statica-meta,
+.galerie-statica-goala {
+    text-align: center;
+    color: var(--culoare-text);
+}
+
+.galerie-statica-goala {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+.galerie-statica-grid {
+    counter-reset: galerie;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+    margin-top: 1.8rem;
+}
+
+.galerie-statica-item {
+    counter-increment: galerie;
+    margin: 0;
+    padding: 0.8rem;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 221, 227, 0.72));
+    box-shadow: 0 0.45rem 1.2rem rgba(110, 40, 69, 0.14);
+}
+
+.galerie-statica-item:nth-child(6n+1) {
+    grid-column: 1;
+}
+
+.galerie-statica-item:nth-child(6n+2) {
+    grid-column: 2;
+}
+
+.galerie-statica-item:nth-child(6n+3) {
+    grid-column: 1;
+}
+
+.galerie-statica-item:nth-child(6n+4) {
+    grid-column: 3;
+}
+
+.galerie-statica-item:nth-child(6n+5) {
+    grid-column: 2;
+}
+
+.galerie-statica-item:nth-child(6n+6) {
+    grid-column: 3;
+}
+
+.galerie-statica-item picture {
+    display: block;
+}
+
+.galerie-statica-imagine {
+    display: block;
+    width: 100%;
+    aspect-ratio: 5 / 6;
+    object-fit: cover;
+    border-radius: 0.85rem;
+    filter: sepia(100%);
+    box-shadow: 0 0.3rem 0.95rem rgba(110, 40, 69, 0.18);
+    transition: filter 0.8s ease;
+}
+
+.galerie-statica-item figcaption {
+    margin-top: 0.9rem;
+    color: var(--bordo-inchis);
+    text-align: left;
+    line-height: 1.55;
+    text-shadow: 0 0 0 rgba(110, 40, 69, 0);
+    transition: color 0.8s ease, text-shadow 0.8s ease;
+}
+
+.galerie-statica-item figcaption::before {
+    content: counter(galerie, lower-roman) ". ";
+    font-weight: 700;
+    color: var(--bordo);
+}
+
+.galerie-statica-titlu,
+.galerie-statica-descriere,
+.galerie-statica-atribuire {
+    display: block;
+}
+
+.galerie-statica-titlu {
+    display: inline;
+    font-weight: 700;
+}
+
+.galerie-statica-descriere {
+    margin-top: 0.25rem;
+}
+
+.galerie-statica-atribuire {
+    margin-top: 0.55rem;
+    font-size: 0.88rem;
+}
+
+.galerie-statica-item:hover .galerie-statica-imagine {
+    filter: sepia(0%);
+}
+
+.galerie-statica-item:hover figcaption {
+    color: var(--bordo);
+    text-shadow: 0 0 0.75rem rgba(212, 132, 154, 0.42);
+}
+
+#mesaj-rulant {
+    margin-top: 1.7rem;
+}
+
+.welcome-noutati {
+    padding: 1.1rem 1.25rem 1.3rem;
+    border: 0.08rem solid rgba(110, 40, 69, 0.14);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.46);
+    box-shadow: inset 0 0 0 0.05rem rgba(255, 255, 255, 0.35);
+}
+
+.welcome-noutati__intro {
+    margin: 0 0 0.85rem;
+    color: var(--bordo-inchis);
+    font-weight: 600;
+}
+
+.banner-rulant {
+    width: 100%;
+    overflow: hidden;
+    border: 0.14rem solid var(--culoare-border);
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--crem), var(--roz-deschis), var(--crem));
+    box-shadow: 0 0.35rem 1rem rgba(110, 40, 69, 0.12);
+}
+
+.banner-rulant-text {
+    margin: 0;
+    padding: 0.9rem 0;
+    white-space: nowrap;
+    display: inline-block;
+    min-width: 100%;
+    animation: mesaj-rulant 15s linear infinite;
+    color: var(--bordo);
+    font-weight: 700;
+}
+
+.vitrina-artistica {
+    display: grid;
+    grid-template-columns: minmax(16rem, 0.85fr) minmax(20rem, 1.15fr);
+    gap: 1.5rem;
+    align-items: center;
+    margin: 1.6rem 0 1.2rem;
+    padding: 1.35rem;
+    border-radius: 1.1rem;
+    background: linear-gradient(135deg, rgba(245, 221, 227, 0.48), rgba(255, 255, 255, 0.92));
+    border: 0.08rem solid rgba(110, 40, 69, 0.12);
+}
+
+.vitrina-artistica__text p {
+    margin-bottom: 0;
+}
+
+.fundal-fix-animat {
+    position: relative;
+    min-height: 24rem;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    color: var(--culoare-alb);
+    background-image:
+        linear-gradient(rgba(46, 21, 32, 0.45), rgba(46, 21, 32, 0.55)),
+        url("/resurse/imagini/balet-hero-mare.jpeg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    animation: fundal-schimbator 15s steps(1) infinite;
+}
+
+.fundal-fix-animat__overlay {
+    position: relative;
+    z-index: 1;
+    max-width: 40rem;
+}
+
+.ghid-colectii__intro {
+    max-width: 52rem;
+    margin-bottom: 1.4rem;
+}
+
+.bootstrap-showcase__intro {
+    max-width: 52rem;
+    margin-bottom: 1.35rem;
+}
+
+.bootstrap-accent-card {
+    border-width: 0.08rem;
+    border-radius: 1.05rem;
+    overflow: hidden;
+    box-shadow: 0 0.5rem 1.4rem rgba(110, 40, 69, 0.1);
+}
+
+.bootstrap-accent-card .card-body {
+    padding: 1.5rem;
+}
+
+.bootstrap-accent-card .card-title {
+    margin-bottom: 0.8rem;
+}
+
+.bootstrap-accent-card .card-text {
+    margin-bottom: 1rem;
+}
+
+.bootstrap-alert {
+    color: var(--bordo-inchis);
+}
+
+.ghid-colectii__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.4rem;
+}
+
+#tabel-responsive-demo,
+#tabel-transpus-demo {
+    padding: 1.25rem;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(245, 221, 227, 0.45));
+    border: 0.08rem solid rgba(110, 40, 69, 0.12);
+}
+
+#tabel-responsive-demo h3,
+#tabel-transpus-demo h3 {
+    margin-top: 0;
+}
+
+.fundal-fix-animat h2,
+.fundal-fix-animat p {
+    color: var(--culoare-alb);
+}
+
+.fundal-fix-animat h2::after {
+    background: linear-gradient(90deg, var(--culoare-alb), var(--auriu-deschis));
+}
+
+.tabel-responsive-card,
+.tabel-transpus-wrapper {
+    overflow-x: auto;
+    border-radius: 1rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 221, 227, 0.7));
+    box-shadow: 0 0.45rem 1.2rem rgba(110, 40, 69, 0.12);
+}
+
+.tabel-responsive-simplu,
+.tabel-transpus {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabel-responsive-simplu th,
+.tabel-responsive-simplu td,
+.tabel-transpus th,
+.tabel-transpus td {
+    padding: 0.9rem 1rem;
+    border: 0.08rem solid rgba(110, 40, 69, 0.18);
+    text-align: left;
+}
+
+.tabel-responsive-simplu thead th,
+.tabel-transpus th {
+    background: linear-gradient(180deg, var(--bordo), #8b3c5e);
+    color: var(--culoare-alb);
+}
+
+.tabel-responsive-simplu tbody tr:nth-child(even),
+.tabel-transpus tbody tr:nth-child(even) {
+    background-color: rgba(232, 196, 207, 0.28);
+}
+
+.tabel-mobil {
+    display: none;
+}
+
+.video-background-demo {
+    position: relative;
+    min-height: 26rem;
+    border-radius: 1.2rem;
+    overflow: hidden;
+    box-shadow: 0 0.7rem 1.8rem rgba(110, 40, 69, 0.18);
+}
+
+.video-background-demo__media {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-background-demo__overlay {
+    position: relative;
+    z-index: 1;
+    min-height: 26rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, rgba(46, 21, 32, 0.72), rgba(110, 40, 69, 0.48));
+    color: var(--culoare-alb);
+}
+
+.video-background-demo__overlay h2,
+.video-background-demo__overlay p {
+    color: var(--culoare-alb);
+}
+
+.video-background-demo .reflexie-text-demo {
+    justify-content: flex-start;
+    padding: 0.4rem 0 5rem;
+}
+
+.video-background-demo .titlu-cu-reflexie {
+    color: var(--culoare-alb);
+    text-shadow: 0 0.08rem 0.2rem rgba(245, 221, 227, 0.4);
+}
+
+.video-background-demo .titlu-cu-reflexie::after {
+    color: rgba(255, 255, 255, 0.36);
+    filter: blur(0.05rem) drop-shadow(0 0.18rem 0.2rem rgba(255, 255, 255, 0.12));
+}
+
+.video-background-demo__overlay h2::after {
+    background: linear-gradient(90deg, var(--culoare-alb), var(--auriu-deschis));
+}
+
+@keyframes mesaj-rulant {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes fundal-schimbator {
+    0%,
+    33% {
+        background-image:
+            linear-gradient(rgba(46, 21, 32, 0.45), rgba(46, 21, 32, 0.55)),
+            url("/resurse/imagini/balet-hero-mare.jpeg");
+    }
+
+    34%,
+    66% {
+        background-image:
+            linear-gradient(rgba(46, 21, 32, 0.45), rgba(46, 21, 32, 0.55)),
+            url("/resurse/imagini/imag2.jpeg");
+    }
+
+    67%,
+    100% {
+        background-image:
+            linear-gradient(rgba(46, 21, 32, 0.45), rgba(46, 21, 32, 0.55)),
+            url("/resurse/imagini/imag3.jpeg");
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .galerie-statica-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .galerie-statica-item {
+        grid-column: auto !important;
+    }
+
+    .ghid-colectii__grid,
+    .vitrina-artistica {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .galerie-statica-grid {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .banner-rulant-text {
+        animation-duration: 12s;
+    }
+
+    .fundal-fix-animat {
+        background-attachment: scroll;
+        min-height: 20rem;
+    }
+
+    .welcome-noutati {
+        padding: 1rem;
+    }
+
+    .banner-rulant-text {
+        padding: 0.8rem 0;
+    }
+
+    #tabel-responsive-demo,
+    #tabel-transpus-demo {
+        padding: 1rem;
+    }
+
+    .tabel-responsive-simplu thead {
+        display: none;
+    }
+
+    .tabel-responsive-simplu,
+    .tabel-responsive-simplu tbody,
+    .tabel-responsive-simplu tr,
+    .tabel-responsive-simplu td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .tabel-responsive-simplu tr {
+        padding: 0.7rem;
+        border-bottom: 0.1rem solid rgba(110, 40, 69, 0.16);
+    }
+
+    .tabel-responsive-simplu td {
+        position: relative;
+        padding-left: 45%;
+        text-align: left;
+        border: none;
+        border-bottom: 0.05rem solid rgba(110, 40, 69, 0.08);
+    }
+
+    .tabel-responsive-simplu td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        top: 0.9rem;
+        width: 38%;
+        font-weight: 700;
+        color: var(--bordo);
+    }
+
+    .tabel-standard {
+        display: none;
+    }
+
+    .tabel-mobil {
+        display: table;
+    }
+
+    .video-background-demo,
+    .video-background-demo__overlay {
+        min-height: 20rem;
+    }
+
+    .video-background-demo .reflexie-text-demo {
+        padding-bottom: 4.2rem;
+    }
+}
+
+/* ===== EFECT DUOTONE ===== */
+.duotone-demo {
+    --c1-duotone: rgba(212, 132, 154, 0.88);
+    --c2-duotone: rgba(110, 40, 69, 0.82);
+    position: relative;
+    width: min(100%, 44rem);
+    height: 26rem;
+    margin: 1.5rem auto 0;
+    border-radius: 1rem;
+    overflow: hidden;
+    background-image: url("/resurse/imagini/balet-hero-mare.jpeg");
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 0.4rem 1.4rem var(--culoare-shadow-puternic);
+}
+
+.duotone-demo::before,
+.duotone-demo::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transition: transform 0.8s ease;
+    pointer-events: none;
+}
+
+.duotone-demo::before {
+    background-color: var(--c1-duotone);
+    mix-blend-mode: lighten;
+    transform: translateX(-101%);
+}
+
+.duotone-demo::after {
+    background-color: var(--c2-duotone);
+    mix-blend-mode: multiply;
+    transform: translateX(101%);
+}
+
+.duotone-demo:hover::before,
+.duotone-demo:hover::after {
+    transform: translateX(0);
+}
+
+/* ===== REFLEXIE TEXT ===== */
+.reflexie-text-demo {
+    display: flex;
+    justify-content: center;
+    padding: 1.2rem 0 7.5rem;
+    overflow: visible;
+}
+
+.titlu-cu-reflexie {
+    position: relative;
+    display: inline-block;
+    margin: 0;
+    padding: 0 0.4rem;
+    line-height: 1;
+    font-size: clamp(2.2rem, 5vw, 4.2rem);
+    color: var(--bordo);
+    text-shadow: 0 0.08rem 0.15rem rgba(245, 221, 227, 0.7);
+    cursor: default;
+}
+
+.titlu-cu-reflexie::after {
+    content: attr(data-text);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    display: block;
+    width: 100%;
+    line-height: 1;
+    white-space: nowrap;
+    text-align: center;
+    color: rgba(110, 40, 69, 0.42);
+    transform-origin: left top;
+    transform: translate(1.8rem, 40%) scaleX(1) scaleY(-0.58) skewX(-28deg);
+    opacity: 0.62;
+    filter: blur(0.05rem) drop-shadow(0 0.18rem 0.2rem rgba(110, 40, 69, 0.18));
+    mask-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0) 86%),
+        repeating-radial-gradient(ellipse 28% 10% at 50% 0%,
+            rgba(0, 0, 0, 0.95) 0 0.28rem,
+            rgba(0, 0, 0, 0.14) 0.28rem 0.62rem,
+            rgba(0, 0, 0, 0.95) 0.62rem 1.04rem);
+    -webkit-mask-image:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0) 86%),
+        repeating-radial-gradient(ellipse 28% 10% at 50% 0%,
+            rgba(0, 0, 0, 0.95) 0 0.28rem,
+            rgba(0, 0, 0, 0.14) 0.28rem 0.62rem,
+            rgba(0, 0, 0, 0.95) 0.62rem 1.04rem);
+    mask-size: 100% 100%, 165% 2.1rem;
+    -webkit-mask-size: 100% 100%, 165% 2.1rem;
+    mask-repeat: no-repeat, repeat-y;
+    -webkit-mask-repeat: no-repeat, repeat-y;
+    mask-position: 0 0, 0 0;
+    -webkit-mask-position: 0 0, 0 0;
+}
+
+.reflexie-text-demo:hover .titlu-cu-reflexie::after,
+.titlu-cu-reflexie:hover::after {
+    animation: unda-reflexie 1.6s linear infinite;
+}
+
+@keyframes unda-reflexie {
+    0% {
+        mask-position: 0 0, 0 0;
+        -webkit-mask-position: 0 0, 0 0;
+    }
+
+    50% {
+        mask-position: 0 0, 0 0.42rem;
+        -webkit-mask-position: 0 0, 0 0.42rem;
+    }
+
+    100% {
+        mask-position: 0 0, 0 0.84rem;
+        -webkit-mask-position: 0 0, 0 0.84rem;
+    }
 }
 
 video::cue {

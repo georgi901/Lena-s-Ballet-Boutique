@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include('../fragmente/head') %>
+    <% if (typeof galerieAnimata !== "undefined") { %>
+        <link rel="stylesheet" href="<%= galerieAnimata.stilHref %>">
+    <% } %>
+    <title>Galerie animată — Lena's Ballet Boutique</title>
+</head>
+
+<body id="top">
+
+    <%- include('../fragmente/header') %>
+
+    <main>
+        <section class="galerie-animata-pagina">
+            <h2><i class="fa-solid fa-clapperboard fa-beat-fade"></i> Galerie animată</h2>
+            <p>
+                La fiecare încărcare sunt alese aleator 4, 9 sau 16 imagini distincte din JSON-ul galeriei statice,
+                iar animația alternează între focalizarea pe o imagine și micșorarea întregului grid.
+            </p>
+
+            <% if (typeof galerieAnimata !== "undefined") { %>
+                <p class="galerie-animata-meta">
+                    La această încărcare s-au selectat <b><%= galerieAnimata.numarImagini %></b> imagini distincte,
+                    așezate într-un grid <b><%= galerieAnimata.dimensiuneGrid %> × <%= galerieAnimata.dimensiuneGrid %></b>.
+                </p>
+
+                <div class="galerie-animata" aria-label="Galerie animată cu imagini de balet">
+                    <div class="galerie-animata__cadru">
+                        <div class="galerie-animata__grid">
+                            <% galerieAnimata.imagini.forEach(function(imagine){ %>
+                                <img class="galerie-animata__item"
+                                    src="<%= galerieAnimata.caleGalerie %>/animata/<%= imagine.fisier_imagine %>"
+                                    alt="<%= imagine.altFinal %>"
+                                    title="<%= imagine.descriere_poza %>">
+                            <% }) %>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <p class="galerie-statica-goala">Galeria animată nu a putut fi încărcată.</p>
+            <% } %>
+
+            <p class="galerie-animata-info-mobil">
+                Galeria animată este afișată doar pe ecran mare, conform cerinței.
+            </p>
+        </section>
+    </main>
+
+    <%- include('../fragmente/footer') %>
+
+</body>
+
+</html>

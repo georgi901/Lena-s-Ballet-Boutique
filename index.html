@@ -230,12 +230,12 @@
                         <!-- CERINTA 15: thead cu th = antet cu numele coloanelor (6 coloane) -->
                         <thead>
                             <tr>
-                                <th>Perioadă</th>
-                                <th>Zi</th>
-                                <th>Deschidere</th>
-                                <th>Pauză</th>
-                                <th>După-amiază</th>
-                                <th>Consultanță Lena</th>
+                                <th class="col-impar">Perioadă</th>
+                                <th class="col-par">Zi</th>
+                                <th class="col-impar">Deschidere</th>
+                                <th class="col-par">Pauză</th>
+                                <th class="col-impar">După-amiază</th>
+                                <th class="col-par">Consultanță Lena</th>
                             </tr>
                         </thead>
 
@@ -243,55 +243,57 @@
                         <tbody>
                             <tr>
                                 <!-- CERINTA 15: rowspan="5" -->
-                                <td rowspan="5">Zile lucrătoare</td>
-                                <td>Luni</td>
-                                <td>10:00 – 13:00</td>
-                                <td>13:00 – 14:00</td>
-                                <td>14:00 – 19:00</td>
-                                <td>Da</td>
+                                <td rowspan="5" class="col-impar">Zile lucrătoare</td>
+                                <td class="col-par">Luni</td>
+                                <td class="col-impar">10:00 – 13:00</td>
+                                <td class="col-par">13:00 – 14:00</td>
+                                <td class="col-impar">14:00 – 19:00</td>
+                                <td class="col-par">Da</td>
                             </tr>
                             <tr>
-                                <td>Marți</td>
-                                <td>10:00 – 13:00</td>
-                                <td>13:00 – 14:00</td>
-                                <td>14:00 – 19:00</td>
-                                <td>Da</td>
+                                <td class="col-par">Marți</td>
+                                <td class="col-impar">10:00 – 13:00</td>
+                                <td class="col-par">13:00 – 14:00</td>
+                                <td class="col-impar">14:00 – 19:00</td>
+                                <td class="col-par">Da</td>
                             </tr>
                             <tr>
-                                <td>Miercuri</td>
-                                <td>10:00 – 13:00</td>
-                                <td>13:00 – 14:00</td>
-                                <td>14:00 – 19:00</td>
-                                <td>Nu</td>
+                                <td class="col-par">Miercuri</td>
+                                <td class="col-impar">10:00 – 13:00</td>
+                                <td class="col-par">13:00 – 14:00</td>
+                                <td class="col-impar">14:00 – 19:00</td>
+                                <td class="col-par">Nu</td>
                             </tr>
                             <tr>
-                                <td>Joi</td>
-                                <td>10:00 – 13:00</td>
-                                <td>13:00 – 14:00</td>
-                                <td>14:00 – 19:00</td>
-                                <td>Da</td>
+                                <td class="col-par">Joi</td>
+                                <td class="col-impar">10:00 – 13:00</td>
+                                <td class="col-par">13:00 – 14:00</td>
+                                <td class="col-impar">14:00 – 19:00</td>
+                                <td class="col-par">Da</td>
                             </tr>
                             <tr>
-                                <td>Vineri</td>
-                                <td>10:00 – 13:00</td>
-                                <td>13:00 – 14:00</td>
-                                <td>14:00 – 18:00</td>
-                                <td>Nu</td>
+                                <td class="col-par">Vineri</td>
+                                <td class="col-impar">10:00 – 13:00</td>
+                                <td class="col-par">13:00 – 14:00</td>
+                                <td class="col-impar">14:00 – 18:00</td>
+                                <td class="col-par">Nu</td>
                             </tr>
                             <tr>
                                 <!-- CERINTA 15: rowspan="2" -->
-                                <td rowspan="2">Weekend</td>
-                                <td>Sâmbătă</td>
-                                <td>10:00 – 14:00</td>
-                                <td>—</td>
-                                <td>14:00 – 16:00</td>
-                                <td>Da</td>
+                                <td rowspan="2" class="col-impar">Weekend</td>
+                                <td class="col-par">Sâmbătă</td>
+                                <td class="col-impar">10:00 – 14:00</td>
+                                <td class="col-par">—</td>
+                                <td class="col-impar">14:00 – 16:00</td>
+                                <td class="col-par">Da</td>
                             </tr>
                             <tr>
-                                <td>Duminică</td>
+                                <td class="col-par">Duminică</td>
                                 <!-- CERINTA 15: colspan="3" -->
-                                <td colspan="3">Închis</td>
-                                <td>—</td>
+                                <td class="col-impar">Închis</td>
+                                <td class="col-par">Închis</td>
+                                <td class="col-impar">Închis</td>
+                                <td class="col-par">—</td>
                             </tr>
                         </tbody>
 

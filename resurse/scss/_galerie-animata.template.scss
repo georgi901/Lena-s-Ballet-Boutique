@@ -1,0 +1,79 @@
+$numar-imagini: __NUMAR_IMAGINI__;
+$dimensiune-grid: __DIMENSIUNE_GRID__;
+$border-image-source: url("__BORDER_IMAGE__");
+$durata-pe-imagine: 2.8s;
+
+.galerie-animata {
+    --latura-cadru: 23rem;
+    width: fit-content;
+    margin: 2.2rem auto 1rem;
+    padding: 1rem;
+    border: 1rem solid transparent;
+    border-image-source: $border-image-source;
+    border-image-slice: 80;
+    border-image-repeat: round;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 221, 227, 0.78));
+    box-shadow: 0 0.85rem 2rem rgba(110, 40, 69, 0.18);
+
+    &__cadru {
+        width: var(--latura-cadru);
+        height: var(--latura-cadru);
+        overflow: hidden;
+        border-radius: 0.85rem;
+        background: #fff;
+        box-shadow: inset 0 0 0 0.18rem rgba(255, 255, 255, 0.42);
+    }
+
+    &__grid {
+        width: calc(var(--latura-cadru) * #{$dimensiune-grid});
+        height: calc(var(--latura-cadru) * #{$dimensiune-grid});
+        display: grid;
+        grid-template-columns: repeat($dimensiune-grid, var(--latura-cadru));
+        grid-template-rows: repeat($dimensiune-grid, var(--latura-cadru));
+        transform-origin: top left;
+        animation: galerie-animata-transform ($numar-imagini * $durata-pe-imagine) ease-in-out infinite alternate;
+        will-change: transform;
+    }
+
+    &:hover &__grid {
+        animation-play-state: paused;
+    }
+
+    &__item {
+        width: var(--latura-cadru);
+        height: var(--latura-cadru);
+        display: block;
+        object-fit: cover;
+        user-select: none;
+        pointer-events: none;
+    }
+}
+
+.galerie-animata-pagina {
+    text-align: center;
+}
+
+.galerie-animata-meta {
+    color: var(--bordo);
+    font-weight: 600;
+}
+
+.galerie-animata-info-mobil {
+    display: none;
+    color: var(--culoare-text);
+}
+
+@keyframes galerie-animata-transform {
+__KEYFRAMES__
+}
+
+@media screen and (max-width: 1200px) {
+    .galerie-animata,
+    .galerie-animata-meta {
+        display: none;
+    }
+
+    .galerie-animata-info-mobil {
+        display: block;
+    }
+}

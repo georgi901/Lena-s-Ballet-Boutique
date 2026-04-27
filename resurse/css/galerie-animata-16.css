@@ -1,0 +1,211 @@
+.galerie-animata {
+  --latura-cadru: 23rem;
+  width: fit-content;
+  margin: 2.2rem auto 1rem;
+  padding: 1rem;
+  border: 1rem solid transparent;
+  border-image-source: url("../imagini/image.png");
+  border-image-slice: 80;
+  border-image-repeat: round;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 221, 227, 0.78));
+  box-shadow: 0 0.85rem 2rem rgba(110, 40, 69, 0.18);
+}
+.galerie-animata__cadru {
+  width: var(--latura-cadru);
+  height: var(--latura-cadru);
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: #fff;
+  box-shadow: inset 0 0 0 0.18rem rgba(255, 255, 255, 0.42);
+}
+.galerie-animata__grid {
+  width: calc(var(--latura-cadru) * 4);
+  height: calc(var(--latura-cadru) * 4);
+  display: grid;
+  grid-template-columns: repeat(4, var(--latura-cadru));
+  grid-template-rows: repeat(4, var(--latura-cadru));
+  transform-origin: top left;
+  animation: galerie-animata-transform 44.8s ease-in-out infinite alternate;
+  will-change: transform;
+}
+.galerie-animata:hover .galerie-animata__grid {
+  animation-play-state: paused;
+}
+.galerie-animata__item {
+  width: var(--latura-cadru);
+  height: var(--latura-cadru);
+  display: block;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.galerie-animata-pagina {
+  text-align: center;
+}
+
+.galerie-animata-meta {
+  color: var(--bordo);
+  font-weight: 600;
+}
+
+.galerie-animata-info-mobil {
+  display: none;
+  color: var(--culoare-text);
+}
+
+@keyframes galerie-animata-transform {
+  0.0000%, 2.6250% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  4.1250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  6.2500% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  6.2500%, 8.8750% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  10.3750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  12.5000% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  12.5000%, 15.1250% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  16.6250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  18.7500% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  18.7500%, 21.3750% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(0 * var(--latura-cadru))) scale(1);
+  }
+  22.8750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  25.0000% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  25.0000%, 27.6250% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  29.1250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  31.2500% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  31.2500%, 33.8750% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  35.3750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  37.5000% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  37.5000%, 40.1250% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  41.6250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  43.7500% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  43.7500%, 46.3750% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-1 * var(--latura-cadru))) scale(1);
+  }
+  47.8750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  50.0000% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  50.0000%, 52.6250% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  54.1250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  56.2500% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  56.2500%, 58.8750% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  60.3750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  62.5000% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  62.5000%, 65.1250% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  66.6250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  68.7500% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  68.7500%, 71.3750% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-2 * var(--latura-cadru))) scale(1);
+  }
+  72.8750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  75.0000% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  75.0000%, 77.6250% {
+    transform: translate(calc(0 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  79.1250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  81.2500% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  81.2500%, 83.8750% {
+    transform: translate(calc(-1 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  85.3750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  87.5000% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  87.5000%, 90.1250% {
+    transform: translate(calc(-2 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  91.6250% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  93.7500% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  93.7500%, 96.3750% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+  97.8750% {
+    transform: translate(0, 0) scale(0.25);
+  }
+  100.0000% {
+    transform: translate(calc(-3 * var(--latura-cadru)), calc(-3 * var(--latura-cadru))) scale(1);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .galerie-animata,
+  .galerie-animata-meta {
+    display: none;
+  }
+  .galerie-animata-info-mobil {
+    display: block;
+  }
+}

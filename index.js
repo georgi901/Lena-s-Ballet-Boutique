@@ -1,9 +1,17 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
-const ejs = require("ejs");
 const sharp = require("sharp");
 const sass = require("sass");
+const {
+    esteProdusNou,
+    extrageOptiuniProduse,
+    obtineCategoriiProduse,
+    obtineProdusDupaId,
+    obtineProduse,
+    obtineProduseSimilare,
+    pragProdusNouZile
+} = require("./module_proprii/produse");
 
 const app = express();
 app.set("view engine", "ejs");
@@ -15,7 +23,9 @@ console.log("Cale fisier", __filename);
 let obGlobal = {
     obErori: null,
     folderScss: path.join(__dirname, "resurse", "scss"),
-    folderCss: path.join(__dirname, "resurse", "css")
+    folderCss: path.join(__dirname, "resurse", "css"),
+    categoriiProduse: [],
+    eroareProduse: null
 };
 
 const zileSaptamanii = ["duminica", "luni", "marti", "miercuri", "joi", "vineri", "sambata"];
@@ -83,6 +93,30 @@ function ziInInterval(ziCurenta, intervale) {
 
         return indexZiCurenta >= indexStart || indexZiCurenta <= indexStop;
     });
+}
+
+function imbogatesteProduseAfisare(produse) {
+    let pretMinimPeCategorie = new Map();
+
+    produse.forEach((produs) => {
+        let pretCurent = pretMinimPeCategorie.get(produs.categorie);
+        if (pretCurent === undefined || produs.pret < pretCurent) {
+            pretMinimPeCategorie.set(produs.categorie, produs.pret);
+        }
+    });
+
+    return produse.map((produs) => ({
+        ...produs,
+        esteProdusNou: esteProdusNou(produs.data_adaugare_iso),
+        esteCelMaiIeftin: pretMinimPeCategorie.get(produs.categorie) === produs.pret
+    }));
+}
+
+function obtineProduseNoiPentruAcasa(produse, limita = 4) {
+    return [...produse]
+        .filter((produs) => produs.esteProdusNou)
+        .sort((a, b) => new Date(b.data_adaugare_iso) - new Date(a.data_adaugare_iso))
+        .slice(0, limita);
 }
 
 async function asiguraImagineRedimensionata(caleSursa, caleDestinatie, dimensiune) {
@@ -600,6 +634,34 @@ function afisareEroare(res, identificator, titlu, text, imagine) {
     res.status(statusCode).render("pagini/eroare", renderData);
 }
 
+function randarePagina(res, pagina, dateRandare = {}) {
+    res.render(`pagini/${pagina}`, dateRandare, (eroare, rezultatRandare) => {
+        if (eroare) {
+            console.error(eroare);
+            if (eroare.message.startsWith("Failed to lookup view")) {
+                afisareEroare(res, 404);
+            } else {
+                afisareEroare(res, 500);
+            }
+            return;
+        }
+
+        res.send(rezultatRandare);
+    });
+}
+
+async function incarcaCategoriiProduse() {
+    try {
+        obGlobal.categoriiProduse = await obtineCategoriiProduse();
+        obGlobal.eroareProduse = null;
+    } catch (err) {
+        obGlobal.categoriiProduse = [];
+        obGlobal.eroareProduse = err;
+        console.error("Nu s-au putut încărca categoriile produselor din PostgreSQL.");
+        console.error(err);
+    }
+}
+
 app.use((req, res, next) => {
     if (req.path.endsWith(".ejs")) {
         afisareEroare(res, 400);
@@ -619,6 +681,11 @@ app.use("/resurse", (req, res, next) => {
 
 app.use("/resurse", express.static(path.join(__dirname, "resurse")));
 
+app.use((req, res, next) => {
+    res.locals.categoriiProduse = obGlobal.categoriiProduse;
+    next();
+});
+
 app.get("/favicon.ico", (req, res) => {
     res.sendFile(path.join(__dirname, "resurse", "imagini", "favicon", "favicon.ico"));
 });
@@ -626,13 +693,22 @@ app.get("/favicon.ico", (req, res) => {
 app.get(["/", "/index", "/home"], async (req, res) => {
     try {
         let galerieStatica = await obtineGalerieStatica();
-        let rezultatRandare = await ejs.renderFile(path.join(__dirname, "views", "pagini", "index.ejs"), {
+        let produseNoiAcasa = [];
+
+        try {
+            let produseAcasa = imbogatesteProduseAfisare(await obtineProduse());
+            produseNoiAcasa = obtineProduseNoiPentruAcasa(produseAcasa);
+        } catch (errProduse) {
+            console.error("Nu am putut încărca produsele noi pentru homepage.");
+            console.error(errProduse);
+        }
+
+        randarePagina(res, "index", {
             ip: req.ip,
-            galerieStatica
-        }, {
-            views: [path.join(__dirname, "views")]
+            galerieStatica,
+            produseNoiAcasa,
+            pragProdusNouZile
         });
-        res.send(rezultatRandare);
     } catch (err) {
         console.error(err);
         afisareEroare(res, 500);
@@ -642,12 +718,7 @@ app.get(["/", "/index", "/home"], async (req, res) => {
 app.get("/galerie-statica", async (req, res) => {
     try {
         let galerieStatica = await obtineGalerieStatica();
-        let rezultatRandare = await ejs.renderFile(path.join(__dirname, "views", "pagini", "galerie-statica.ejs"), {
-            galerieStatica
-        }, {
-            views: [path.join(__dirname, "views")]
-        });
-        res.send(rezultatRandare);
+        randarePagina(res, "galerie-statica", { galerieStatica });
     } catch (err) {
         console.error(err);
         afisareEroare(res, 500);
@@ -657,15 +728,77 @@ app.get("/galerie-statica", async (req, res) => {
 app.get("/galerie-dinamica", async (req, res) => {
     try {
         let galerieAnimata = await obtineGalerieAnimata();
-        let rezultatRandare = await ejs.renderFile(path.join(__dirname, "views", "pagini", "galerie-dinamica.ejs"), {
-            galerieAnimata
-        }, {
-            views: [path.join(__dirname, "views")]
-        });
-        res.send(rezultatRandare);
+        randarePagina(res, "galerie-dinamica", { galerieAnimata });
     } catch (err) {
         console.error(err);
         afisareEroare(res, 500);
+    }
+});
+
+app.get("/produse", async (req, res) => {
+    try {
+        let categorieCurenta = req.query.categorie ? String(req.query.categorie).trim() : "toate";
+        let categorii = obGlobal.categoriiProduse;
+
+        if (categorieCurenta !== "toate" && !categorii.some((categorie) => categorie.valoare === categorieCurenta)) {
+            afisareEroare(res, 404, "Categoria cerută nu există", "Categoria din meniu nu a fost găsită în enumerația produselor.");
+            return;
+        }
+
+        let produse = imbogatesteProduseAfisare(await obtineProduse(categorieCurenta === "toate" ? null : categorieCurenta));
+        let categorieSelectata = categorii.find((categorie) => categorie.valoare === categorieCurenta) || null;
+
+        randarePagina(res, "produse", {
+            produse,
+            optiuni: extrageOptiuniProduse(produse),
+            categorieCurenta,
+            categorieSelectata,
+            pragProdusNouZile
+        });
+    } catch (err) {
+        console.error(err);
+        let textEroare = obGlobal.eroareProduse
+            ? "Conexiunea la baza de date a produselor nu este disponibilă. Rulează scriptul SQL și verifică variabilele PG din mediu."
+            : "A apărut o eroare la încărcarea produselor.";
+        afisareEroare(res, 500, "Produsele nu pot fi încărcate", textEroare);
+    }
+});
+
+app.get("/produs/:id", async (req, res) => {
+    try {
+        let idProdus = Number(req.params.id);
+        if (!Number.isInteger(idProdus)) {
+            afisareEroare(res, 400, "Identificator invalid", "Pagina produsului poate fi accesată doar cu un identificator numeric.");
+            return;
+        }
+
+        let produs = await obtineProdusDupaId(idProdus);
+        if (!produs) {
+            afisareEroare(res, 404, "Produsul nu există", "Nu am găsit produsul cerut în baza de date.");
+            return;
+        }
+
+        produs = {
+            ...produs,
+            esteProdusNou: esteProdusNou(produs.data_adaugare_iso)
+        };
+
+        let produseSimilare = imbogatesteProduseAfisare(await obtineProduseSimilare({
+            idProdus: produs.id,
+            categorie: produs.categorie,
+            subcategorie: produs.subcategorie,
+            nivelExperienta: produs.nivel_experienta,
+            pret: produs.pret
+        }));
+
+        randarePagina(res, "produs", {
+            produs,
+            produseSimilare,
+            pragProdusNouZile
+        });
+    } catch (err) {
+        console.error(err);
+        afisareEroare(res, 500, "Produs indisponibil", "A apărut o eroare la încărcarea paginii produsului.");
     }
 });
 
@@ -683,17 +816,7 @@ app.get("/:pagina", async (req, res) => {
             dateRandare.galerieAnimata = await obtineGalerieAnimata();
         }
 
-        res.render("pagini/" + pagina, dateRandare, function (eroare, rezultatRandare) {
-            if (eroare) {
-                if (eroare.message.startsWith("Failed to lookup view")) {
-                    afisareEroare(res, 404);
-                } else {
-                    afisareEroare(res, 500);
-                }
-            } else {
-                res.send(rezultatRandare);
-            }
-        });
+        randarePagina(res, pagina, dateRandare);
     } catch (err) {
         console.error(err);
         afisareEroare(res, 500);
@@ -714,6 +837,8 @@ async function initAplicatie() {
         console.error("Eroare la compilarea initiala a fisierelor SCSS.");
         console.error(err);
     }
+
+    await incarcaCategoriiProduse();
 
     pornesteWatcherScss();
 

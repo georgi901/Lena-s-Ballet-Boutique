@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <%- include('../fragmente/head') %>
+    <title>Produse <%= categorieCurenta && categorieCurenta !== 'toate' ? `- ${categorieSelectata.eticheta}` : '' %> | Lena's Ballet Boutique</title>
+</head>
+
+<body id="top">
+    <%- include('../fragmente/header') %>
+
+    <main class="pagina-produse">
+        <section class="pagina-produse__hero">
+            <h2><i class="bi bi-bag-heart-fill"></i> Produse</h2>
+            <p class="pagina-produse__rezumat">
+                <% if (categorieCurenta && categorieCurenta !== "toate") { %>
+                    Categoria activă din meniu este <b><%= categorieSelectata.eticheta %></b>, iar filtrarea din meniu a fost făcută pe server.
+                <% } else { %>
+                    Aici găsești toate articolele boutique-ului de balet, pregătite pentru filtrare, sortare, calculare și bonusurile de explorare direct în pagină.
+                <% } %>
+            </p>
+        </section>
+
+        <section
+            id="pagina-produse"
+            data-culori="<%= optiuni.culori.join('|') %>"
+            data-nivel-minim="<%= optiuni.nivelMinim %>"
+            data-nivel-maxim="<%= optiuni.nivelMaxim %>"
+            data-produse-pe-pagina="<%= optiuni.produsePerPagina %>">
+            <section class="panou-filtre" aria-labelledby="titlu-filtre">
+                <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
+                    <div>
+                        <h3 id="titlu-filtre" class="mb-1">Filtre și operații</h3>
+                        <p class="mb-0 text-secondary">Valorile implicite sunt setate din datele reale ale produselor și păstrează toate produsele vizibile.</p>
+                    </div>
+                    <div id="mesaj-validare-produse" class="alert alert-warning d-none mb-0" role="alert"></div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 col-lg-4">
+                        <label class="form-label fw-semibold" for="filtru-nume">Caută după nume</label>
+                        <input
+                            id="filtru-nume"
+                            class="form-control form-control-lg"
+                            type="text"
+                            maxlength="<%= optiuni.lungimeMaximaNume %>"
+                            placeholder="Ex. <%= optiuni.exempluNume %>">
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <label class="form-label fw-semibold" for="filtru-culoare">Culoare</label>
+                        <input id="filtru-culoare" class="form-control form-control-lg" type="text" list="culori-produse" placeholder="Alege o culoare disponibilă">
+                        <datalist id="culori-produse">
+                            <% for (let culoare of optiuni.culori) { %>
+                                <option value="<%= culoare %>"></option>
+                            <% } %>
+                        </datalist>
+                    </div>
+
+                    <div class="col-12 col-lg-4">
+                        <label class="form-label fw-semibold" for="filtru-personalizare">Personalizare</label>
+                        <select id="filtru-personalizare" class="form-select form-select-lg">
+                            <option value="oricare" selected>Oricare</option>
+                            <option value="da">Doar produse personalizabile (<%= optiuni.personalizare.da %>)</option>
+                            <option value="nu">Doar produse fără personalizare (<%= optiuni.personalizare.nu %>)</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <div class="panou-filtre__range">
+                            <label class="form-label panou-filtre__label mb-0" for="filtru-nivel">
+                                <span>Nivel minim recomandat</span>
+                                <span id="valoare-nivel"><%= optiuni.nivelInitial %></span>
+                            </label>
+                            <span class="small fw-semibold"><%= optiuni.nivelMinim %></span>
+                            <input
+                                id="filtru-nivel"
+                                class="form-range"
+                                type="range"
+                                min="<%= optiuni.nivelMinim %>"
+                                max="<%= optiuni.nivelMaxim %>"
+                                value="<%= optiuni.nivelInitial %>">
+                            <span class="small fw-semibold"><%= optiuni.nivelMaxim %></span>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label fw-semibold" for="filtru-pret">Intervale de preț</label>
+                        <select id="filtru-pret" class="form-select" multiple size="<%= Math.min(5, optiuni.intervalePret.length || 5) %>">
+                            <% for (let interval of optiuni.intervalePret) { %>
+                                <option value="<%= interval.valoare %>"><%= interval.eticheta %></option>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-xl-7">
+                        <p class="form-label fw-semibold mb-2">Subcategorie</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <input class="btn-check" type="radio" name="filtru-subcategorie" id="subcategorie-toate" value="toate" checked>
+                            <label class="btn btn-outline-primary" for="subcategorie-toate">Toate</label>
+
+                            <% for (let subcategorie of optiuni.subcategorii) { %>
+                                <input class="btn-check" type="radio" name="filtru-subcategorie" id="subcategorie-<%= subcategorie %>" value="<%= subcategorie %>">
+                                <label class="btn btn-outline-primary" for="subcategorie-<%= subcategorie %>"><%= subcategorie %></label>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-xl-5">
+                        <p class="form-label fw-semibold mb-2">Materiale</p>
+                        <div class="d-flex flex-wrap gap-2">
+                            <% for (let material of optiuni.materiale) { %>
+                                <input class="btn-check" type="checkbox" name="filtru-materiale" id="material-<%= material %>" value="<%= material %>">
+                                <label class="btn btn-outline-secondary" for="material-<%= material %>"><%= material %></label>
+                            <% } %>
+                        </div>
+                    </div>
+
+                    <div class="col-12 panou-filtre__textarea">
+                        <div class="form-floating">
+                            <textarea id="filtru-descriere" class="form-control" placeholder="<%= optiuni.exempluDescriere %>"></textarea>
+                            <label for="filtru-descriere">Descriere: +termen pentru căutare, -termen pentru excludere</label>
+                        </div>
+                        <small class="text-secondary">Exemplu generat din catalog: <code><%= optiuni.exempluDescriere %></code></small>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label fw-semibold" for="sort-cheie-1">Cheia 1 de sortare</label>
+                        <select id="sort-cheie-1" class="form-select">
+                            <% for (let optiuneSortare of optiuni.sortariDisponibile) { %>
+                                <option value="<%= optiuneSortare.valoare %>" <%= optiuneSortare.valoare === 'pret' ? 'selected' : '' %>><%= optiuneSortare.eticheta %></option>
+                            <% } %>
+                        </select>
+                    </div>
+
+                    <div class="col-12 col-lg-6">
+                        <label class="form-label fw-semibold" for="sort-cheie-2">Cheia 2 de sortare</label>
+                        <select id="sort-cheie-2" class="form-select">
+                            <% for (let optiuneSortare of optiuni.sortariDisponibile) { %>
+                                <option value="<%= optiuneSortare.valoare %>" <%= optiuneSortare.valoare === 'culoare' ? 'selected' : '' %>><%= optiuneSortare.eticheta %></option>
+                            <% } %>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="panou-filtre__actiuni">
+                    <button id="btn-filtreaza" type="button" class="btn btn-primary btn-lg">
+                        <i class="bi bi-funnel-fill"></i>
+                        <span class="d-none d-sm-inline">Filtrează</span>
+                    </button>
+                    <button id="btn-sorteaza-asc" type="button" class="btn btn-secondary btn-lg">
+                        <i class="bi bi-sort-numeric-down"></i>
+                        <span class="d-none d-sm-inline">Sortare asc.</span>
+                    </button>
+                    <button id="btn-sorteaza-desc" type="button" class="btn btn-secondary btn-lg">
+                        <i class="bi bi-sort-numeric-down-alt"></i>
+                        <span class="d-none d-sm-inline">Sortare desc.</span>
+                    </button>
+                    <button id="btn-calculeaza" type="button" class="btn btn-success btn-lg">
+                        <i class="bi bi-calculator-fill"></i>
+                        <span class="d-none d-sm-inline">Calculează</span>
+                    </button>
+                    <button id="btn-reseteaza" type="button" class="btn btn-outline-dark btn-lg">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                        <span class="d-none d-sm-inline">Resetează</span>
+                    </button>
+                </div>
+            </section>
+
+            <section class="panou-rezultate mb-3" aria-live="polite">
+                <div class="d-flex flex-column flex-lg-row justify-content-between gap-3 align-items-lg-center">
+                    <p id="sumar-produse" class="mb-0 fw-semibold"></p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge text-bg-light border" id="indicator-paginare">Pagina 1</span>
+                        <span class="badge text-bg-light border">Bonus activ: filtrare live + paginare + modal</span>
+                    </div>
+                </div>
+            </section>
+
+            <% if (!produse.length) { %>
+                <div class="alert alert-info">Nu există produse pentru categoria selectată.</div>
+            <% } else { %>
+                <div id="lista-produse" class="grid-produse">
+                    <% for (let produs of produse) { %>
+                        <article
+                            id="articol_<%= produs.id %>"
+                            class="produs-card card <%= produs.categorie %> <%= produs.esteProdusNou ? 'produs-card--nou' : '' %> <%= produs.esteCelMaiIeftin ? 'produs-card--ieftin' : '' %>"
+                            data-id="<%= produs.id %>"
+                            data-nume="<%= produs.nume %>"
+                            data-categorie="<%= produs.categorie %>"
+                            data-categorie-eticheta="<%= produs.categorie_eticheta %>"
+                            data-subcategorie="<%= produs.subcategorie %>"
+                            data-pret="<%= produs.pret %>"
+                            data-nivel="<%= produs.nivel_experienta %>"
+                            data-culoare="<%= produs.culoare %>"
+                            data-materiale="<%= produs.materiale_lista.join('|') %>"
+                            data-descriere="<%= produs.descriere %>"
+                            data-personalizabil="<%= produs.personalizabil %>"
+                            data-personalizabil-text="<%= produs.personalizabil ? 'Da' : 'Nu' %>"
+                            data-brand="<%= produs.brand %>"
+                            data-stoc="<%= produs.stoc %>"
+                            data-recomandare="<%= produs.recomandare_lena %>"
+                            data-detalii="<%= produs.detalii %>"
+                            data-intretinere="<%= produs.intretinere %>"
+                            data-data-iso="<%= produs.data_adaugare_iso %>"
+                            data-data-afisare="<%= produs.data_adaugare_afisare %>"
+                            data-link="/produs/<%= produs.id %>">
+                            <div class="card-body">
+                                <div class="produs-card__badges">
+                                    <% if (produs.esteProdusNou) { %>
+                                        <span class="badge text-bg-success">NOU</span>
+                                    <% } %>
+                                    <% if (produs.esteCelMaiIeftin) { %>
+                                        <span class="badge text-bg-warning">Cel mai bun preț din categorie</span>
+                                    <% } %>
+                                </div>
+
+                                <div class="produs-card__utilitare" data-ignore-modal="true">
+                                    <button class="btn btn-sm btn-outline-primary" type="button" data-action-produs="fixeaza" title="Păstrează produsul pe ecran chiar dacă filtrele nu îl mai includ" aria-label="Fixează produsul">
+                                        <i class="bi bi-pin-angle-fill"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-secondary" type="button" data-action-produs="ascunde-temporar" title="Ascunde produsul până la următoarea filtrare, sortare sau resetare" aria-label="Ascunde temporar produsul">
+                                        <i class="bi bi-eye-slash"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger" type="button" data-action-produs="ascunde-sesiune" title="Ascunde produsul pentru tot restul sesiunii din acest tab" aria-label="Ascunde produsul pentru sesiune">
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
+                                </div>
+
+                                <h3 class="card-title h4 mb-1"><%= produs.nume %></h3>
+                                <p class="produs-card__categorie mb-3"><%= produs.categorie_eticheta %></p>
+
+                                <div class="produs-card__top">
+                                    <p class="mb-0"><%= produs.descriere %></p>
+                                    <img class="produs-card__imagine" src="<%= produs.imagine %>" alt="<%= produs.nume %>">
+                                </div>
+
+                                <ul class="produs-card__lista mt-3">
+                                    <li><b>Preț:</b> <span><%= produs.pret.toFixed(2) %> lei</span></li>
+                                    <li><b>Nivel recomandat:</b> <span><%= produs.nivel_experienta %> / 10</span></li>
+                                    <li><b>Culoare:</b> <span><%= produs.culoare %></span></li>
+                                    <li><b>Materiale:</b> <span><%= produs.materiale_afisare %></span></li>
+                                    <li><b>Data adăugării:</b> <time datetime="<%= produs.data_adaugare_iso %>"><%= produs.data_adaugare_afisare %></time></li>
+                                    <li><b>Personalizabil:</b> <span><%= produs.personalizabil ? "da" : "nu" %></span></li>
+                                </ul>
+
+                                <div class="produs-card__actiuni" data-ignore-modal="true">
+                                    <a class="btn btn-outline-primary" href="/produs/<%= produs.id %>">
+                                        <i class="bi bi-arrow-up-right-circle"></i>
+                                        <span>Vezi produsul</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </article>
+                    <% } %>
+                </div>
+
+                <div id="mesaj-fara-produse" class="alert alert-info d-none mt-3" role="status">
+                    Nu există produse conform filtrării curente.
+                </div>
+
+                <nav id="navigare-pagini-produse" class="navigare-pagini-produse d-none" aria-label="Paginare produse">
+                    <div id="paginare-produse" class="btn-toolbar"></div>
+                </nav>
+            <% } %>
+        </section>
+    </main>
+
+    <div id="modal-produs" class="modal-produs d-none" aria-hidden="true">
+        <div class="modal-produs__fundal" data-inchide-modal="true"></div>
+        <div class="modal-produs__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-produs-titlu">
+            <button id="inchide-modal-produs" class="btn btn-outline-dark modal-produs__inchide" type="button" aria-label="Închide detaliile produsului">
+                <i class="bi bi-x-lg"></i>
+            </button>
+            <div class="modal-produs__grid">
+                <img id="modal-produs-imagine" class="modal-produs__imagine" src="" alt="">
+                <div>
+                    <div class="d-flex flex-wrap gap-2 mb-2" id="modal-produs-badges"></div>
+                    <h3 id="modal-produs-titlu" class="mb-1"></h3>
+                    <p id="modal-produs-meta" class="text-secondary"></p>
+                    <p id="modal-produs-descriere"></p>
+                    <dl class="modal-produs__lista">
+                        <dt>Preț</dt>
+                        <dd id="modal-produs-pret"></dd>
+                        <dt>Brand</dt>
+                        <dd id="modal-produs-brand"></dd>
+                        <dt>Materiale</dt>
+                        <dd id="modal-produs-materiale"></dd>
+                        <dt>Personalizabil</dt>
+                        <dd id="modal-produs-personalizare"></dd>
+                        <dt>Data adăugării</dt>
+                        <dd id="modal-produs-data"></dd>
+                        <dt>Stoc</dt>
+                        <dd id="modal-produs-stoc"></dd>
+                    </dl>
+                    <p class="mb-2"><b>Recomandarea Lenei:</b> <span id="modal-produs-recomandare"></span></p>
+                    <p class="mb-2"><b>Detalii:</b> <span id="modal-produs-detalii"></span></p>
+                    <p class="mb-3"><b>Întreținere:</b> <span id="modal-produs-intretinere"></span></p>
+                    <a id="modal-produs-link" class="btn btn-primary" href="#">
+                        <i class="bi bi-arrow-up-right-circle"></i>
+                        <span>Deschide pagina completă</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <%- include('../fragmente/footer') %>
+    <script src="/resurse/js/produse.js"></script>
+</body>
+
+</html>

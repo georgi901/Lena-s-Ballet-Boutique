@@ -4,6 +4,25 @@
                 style="--fa-bounce-start-scale-x: 1; --fa-bounce-start-scale-y: 1; --fa-bounce-jump-scale-x: 1; --fa-bounce-jump-scale-y: 1; --fa-bounce-land-scale-x: 1; --fa-bounce-land-scale-y: 1; --fa-bounce-height: -0.3em;"></i>
             Lena's Ballet Boutique</h1>
 
+        <div class="control-tema">
+            <div class="form-check form-switch mb-0">
+                <input class="form-check-input" type="checkbox" role="switch" id="comutator-tema" aria-label="Schimbă tema site-ului">
+                <label class="form-check-label" for="comutator-tema">
+                    <i class="bi bi-sun-fill control-tema__icon--light" aria-hidden="true"></i>
+                    <i class="bi bi-moon-stars-fill control-tema__icon--dark" aria-hidden="true"></i>
+                    <span id="eticheta-tema">Temă luminoasă</span>
+                </label>
+            </div>
+            <div class="control-tema__selector">
+                <label class="visually-hidden" for="selector-tema">Alege tema vizuală</label>
+                <select id="selector-tema" class="form-select form-select-sm">
+                    <option value="light">Luminoasă clasică</option>
+                    <option value="studio">Studio roz</option>
+                    <option value="dark">Nocturnă</option>
+                </select>
+            </div>
+        </div>
+
         <nav>
             <input type="checkbox" id="toggle-meniu" hidden>
             <label for="toggle-meniu" class="hamburger">
@@ -19,13 +38,13 @@
                         <span class="text-meniu">Acasă</span>
                     </a>
                     <ul class="submeniu">
-                        <li><a href="#welcome">Bine ați venit!</a></li>
-                        <li><a href="#evenimente">Evenimente</a></li>
-                        <li><a href="#produse">Produse</a></li>
-                        <li><a href="#oferte">Oferte</a></li>
-                        <li><a href="#recomandari">Recomandările Lenei</a></li>
-                        <li><a href="#program">Program</a></li>
-                        <li><a href="#intrebari">Întrebări frecvente</a></li>
+                        <li><a href="/#welcome">Bine ați venit!</a></li>
+                        <li><a href="/#evenimente">Evenimente</a></li>
+                        <li><a href="/#produse">Produse</a></li>
+                        <li><a href="/#oferte">Oferte</a></li>
+                        <li><a href="/#recomandari">Recomandările Lenei</a></li>
+                        <li><a href="/#program">Program</a></li>
+                        <li><a href="/#intrebari">Întrebări frecvente</a></li>
                     </ul>
                 </li>
                 <li>
@@ -38,11 +57,17 @@
                         <li><a href="/galerie-dinamica">Galerie animată</a></li>
                     </ul>
                 </li>
-                <li>
+                <li class="are-submeniu">
                     <a href="/produse">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span class="text-meniu">Produse</span>
                     </a>
+                    <ul class="submeniu">
+                        <li><a href="/produse">Toate</a></li>
+                        <% for (let categorie of (categoriiProduse || [])) { %>
+                            <li><a href="/produse?categorie=<%= categorie.valoare %>"><%= categorie.eticheta %></a></li>
+                        <% } %>
+                    </ul>
                 </li>
                 <li>
                     <a href="/despre">

@@ -26,6 +26,15 @@
 
     <!-- ETAPA 2 CERINTA ICONURI: Font Awesome CDN — iconuri statice si animate -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <script>
+        (() => {
+            let tema = localStorage.getItem("tema-lena-ballet") || "light";
+            document.documentElement.setAttribute("data-site-theme", tema);
+            document.documentElement.setAttribute("data-bs-theme", tema === "dark" ? "dark" : "light");
+        })();
+    </script>
 
     <link rel="stylesheet" href="/resurse/css/custom.css" type="text/css">
     <!-- ETAPA 2 BONUS RESET CSS: fisier SEPARAT, incarcat PRIMUL -->
@@ -34,6 +43,7 @@
     <link rel="stylesheet" href="/resurse/css/general.css" type="text/css">
     <!-- ETAPA 3: Meniu + Print (compilat din SASS) -->
     <link rel="stylesheet" href="/resurse/css/meniu.css" type="text/css">
+    <link rel="stylesheet" href="/resurse/css/produse.css" type="text/css">
     <script>
         MathJax = {
             options: {

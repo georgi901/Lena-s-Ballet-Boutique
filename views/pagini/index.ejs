@@ -498,6 +498,37 @@
             <!-- ===== SECTIUNI IN AFARA GRIDULUI ===== -->
             <!-- ETAPA 2 CERINTA DESIGN RUDIMENTAR: sectiunile de sub grid sunt delimitate vizual cu bg, border, border-radius, box-shadow -->
 
+            <% if (typeof produseNoiAcasa !== "undefined" && produseNoiAcasa.length) { %>
+                <section class="homepage-produse-noi">
+                    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 mb-3">
+                        <div>
+                            <h2><i class="bi bi-stars"></i> Produse noi în boutique</h2>
+                            <p class="mb-0">Articole adăugate în ultimele <%= pragProdusNouZile %> zile, listate în ordine invers cronologică.</p>
+                        </div>
+                        <a class="btn btn-outline-primary" href="/produse">Vezi toate produsele</a>
+                    </div>
+
+                    <div class="produse-similare__grid">
+                        <% for (let produsNou of produseNoiAcasa) { %>
+                            <article class="mini-produs card">
+                                <a href="/produs/<%= produsNou.id %>">
+                                    <img class="mini-produs__imagine" src="<%= produsNou.imagine %>" alt="<%= produsNou.nume %>">
+                                </a>
+                                <div class="card-body">
+                                    <div class="d-flex flex-wrap gap-2 mb-2">
+                                        <span class="badge text-bg-success">NOU</span>
+                                        <span class="badge text-bg-light border"><%= produsNou.categorie_eticheta %></span>
+                                    </div>
+                                    <h3 class="h5 mb-1"><a href="/produs/<%= produsNou.id %>"><%= produsNou.nume %></a></h3>
+                                    <p class="mb-2 text-secondary"><time datetime="<%= produsNou.data_adaugare_iso %>"><%= produsNou.data_adaugare_afisare %></time></p>
+                                    <p class="mb-0"><%= produsNou.pret.toFixed(2) %> lei</p>
+                                </div>
+                            </article>
+                        <% } %>
+                    </div>
+                </section>
+            <% } %>
+
             <% if (typeof galerieStatica !=="undefined" ) { %>
                 <section id="galerie-statica-acasa" class="galerie-statica-wrapper">
                     <h2><i class="fa-solid fa-images fa-beat-fade"></i> Galerie statică</h2>

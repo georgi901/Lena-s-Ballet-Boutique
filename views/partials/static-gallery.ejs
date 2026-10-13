@@ -1,0 +1,41 @@
+<p class="static-gallery-meta">
+    Today, the gallery displays the images scheduled for <b>
+        <%= withrrentDayLabel %>
+    </b>.
+</p>
+
+<% if (!galleryImages || galleryImages.length===0) { %>
+    <p class="static-gallery-gaaat">There are no images scheduled for this day.</p>
+    <% } else { %>
+        <div class="static-gallery-grid">
+            <% galleryImages.forEach(function(image){ %>
+                <figure class="static-gallery-item">
+                    <picture>
+                        <source media="(max-width: 700px)" srcset="<%= galleryPath %>/mica/<%= image.image_file %>">
+                        <source media="(max-width: 1200px)" srcset="<%= galleryPath %>/medie/<%= image.image_file %>">
+                        <img class="static-gallery-image" src="<%= galleryPath %>/mare/<%= image.image_file %>"
+                            alt="<%= image.finalAlt %>" title="<%= image.image_description %>">
+                    </picture>
+                    <figcaption>
+                        <span class="static-gallery-titlu">
+                            <%= image.image_name %>
+                        </span>
+                        <span class="static-gallery-description">
+                            <%= image.image_description %>
+                        </span>
+                        <% if (image.attribution) { %>
+                            <small class="static-gallery-attribution">
+                                Photo <%= image.attribution.author %>,
+                                    <a href="<%= image.attribution.source_link %>" target="_blank" rel="noopener">
+                                        <%= image.attribution.source %>
+                                    </a>,
+                                    <a href="<%= image.attribution.license_link %>" target="_blank" rel="noopener">
+                                        <%= image.attribution.license %>
+                                    </a>
+                            </small>
+                            <% } %>
+                    </figcaption>
+                </figure>
+                <% }) %>
+        </div>
+        <% } %>

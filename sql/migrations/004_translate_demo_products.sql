@@ -1,0 +1,111 @@
+UPDATE products
+SET
+    color = CASE id
+        WHEN 1 THEN 'powder pink'
+        WHEN 2 THEN 'peach'
+        WHEN 3 THEN 'pearl white'
+        WHEN 5 THEN 'burgundy'
+        WHEN 6 THEN 'dusty pink'
+        WHEN 7 THEN 'warm ivory'
+        WHEN 8 THEN 'pearl grey'
+        WHEN 9 THEN 'ballerina pink'
+        WHEN 10 THEN 'black'
+        WHEN 11 THEN 'navy'
+        WHEN 12 THEN 'lilac'
+        WHEN 13 THEN 'lavender'
+        WHEN 14 THEN 'pearl white'
+        WHEN 15 THEN 'soft gold'
+        WHEN 16 THEN 'royal blue'
+        ELSE color
+    END,
+    materials = CASE id
+        WHEN 1 THEN 'satin,leather,foam'
+        WHEN 2 THEN 'canvas,cotton,elastane'
+        WHEN 3 THEN 'canvas,suede,cotton'
+        WHEN 5 THEN 'microfibre,elastane,fine tulle'
+        WHEN 6 THEN 'chiffon,microfibre'
+        WHEN 7 THEN 'polyamide,elastane'
+        WHEN 8 THEN 'viscose,modal,cashmere'
+        WHEN 9 THEN 'satin,elastic,cotton'
+        WHEN 10 THEN 'textile mesh,elastic,pearls'
+        WHEN 11 THEN 'waterproof textile,lining,metal zip'
+        WHEN 12 THEN 'latex,textile'
+        WHEN 13 THEN 'eva foam,silicone'
+        WHEN 14 THEN 'tulle,satin,cotton'
+        WHEN 15 THEN 'crystals,textured metal,velvet'
+        WHEN 16 THEN 'velvet,tulle,sewn embellishments'
+        ELSE materials
+    END,
+    description = CASE id
+        WHEN 1 THEN 'Stable pointe shoes with firm support for classical variations and final rehearsals.'
+        WHEN 2 THEN 'Flexible demi-pointe shoes for daily classes, with elastic fastening and a soft interior.'
+        WHEN 3 THEN 'Beginner shoes for foundation classes, with a suede sole and gentle foot support.'
+        WHEN 5 THEN 'Classic round-neck leotard suitable for rehearsals and studio photo sessions.'
+        WHEN 6 THEN 'Light wrap skirt with fluid movement, designed for classes and stage fittings.'
+        WHEN 7 THEN 'Opaque tights that resist friction and remain comfortable during repetitive training.'
+        WHEN 8 THEN 'Cropped warm-up sweater with a relaxed fit and long sleeves that preserve arm mobility.'
+        WHEN 9 THEN 'Complete pointe shoe ribbon kit with satin ribbons and ankle elastic.'
+        WHEN 10 THEN 'Stretchable bun net with discreet decoration for examinations and stage performances.'
+        WHEN 11 THEN 'Spacious class bag with separate compartments for footwear and accessories.'
+        WHEN 12 THEN 'Stretch band set for mobility work and ankle strengthening before pointe training.'
+        WHEN 13 THEN 'Compact roller for foot massage and recovery after intensive rehearsals.'
+        WHEN 14 THEN 'Children’s tutu with controlled volume and a comfortable waist for recitals.'
+        WHEN 15 THEN 'Stage accessory with subtle sparkle for classical variations and official photographs.'
+        WHEN 16 THEN 'Complete classical variation costume with elegant details and stable stage structure.'
+        ELSE description
+    END,
+    recommendation = CASE id
+        WHEN 1 THEN 'Recommended for recitals that require a clean line and a durable box.'
+        WHEN 2 THEN 'Excellent for warm-ups and classes where you need plenty of mobility.'
+        WHEN 3 THEN 'Recommended for children entering a ballet studio for the first time and needing stability.'
+        WHEN 5 THEN 'One of the boutique’s most versatile pieces, flattering almost every back line.'
+        WHEN 6 THEN 'Pairs beautifully with simple leotards and creates an elegant silhouette without adding bulk.'
+        WHEN 7 THEN 'Recommended for students who need reliable, non-transparent tights for daily training.'
+        WHEN 8 THEN 'Useful at the beginning of barre work, when muscles need warmth without losing body line.'
+        WHEN 9 THEN 'A clean and quick way to personalise pointe shoes without compromise.'
+        WHEN 10 THEN 'Works especially well for neat examination hairstyles when quick hold is needed.'
+        WHEN 11 THEN 'Keeps pointe shoes separate from the rest of the outfit and fits all essential studio accessories.'
+        WHEN 12 THEN 'Especially useful for mobility and ankle-control exercises at the start of the week.'
+        WHEN 13 THEN 'Helpful after long variations, when the sole feels tense and needs decompression.'
+        WHEN 14 THEN 'A comfortable, airy choice for children’s recitals.'
+        WHEN 15 THEN 'Adds light to a costume without overwhelming the dancer’s silhouette.'
+        WHEN 16 THEN 'A strong competition choice that provides stage presence and comfort during large movements.'
+        ELSE recommendation
+    END,
+    details = CASE id
+        WHEN 1 THEN 'Balanced platform, medium shank and soft interior for long rehearsals.'
+        WHEN 2 THEN 'Lightly reinforced toe, pre-sewn elastic and split sole for clear articulation.'
+        WHEN 3 THEN 'Classic cut, simple elastic and breathable interior for weekly classes.'
+        WHEN 5 THEN 'Flat seams, moderate neckline and finishes that remain invisible under skirts or tutus.'
+        WHEN 6 THEN 'Adjustable waist tie, medium length and semi-transparent fabric with fluid movement.'
+        WHEN 7 THEN 'Comfortable waist, even texture and light support through the calf.'
+        WHEN 8 THEN 'Cropped length, soft fibres and good stretch for quick transitions between exercises.'
+        WHEN 9 THEN 'Four ribbons, two elastics and a fitting guide for symmetrical attachment.'
+        WHEN 10 THEN 'Medium diameter, durable elastic and discreet matte-pearl finish.'
+        WHEN 11 THEN 'Side bottle pocket, ventilated compartment and adjustable shoulder strap.'
+        WHEN 12 THEN 'Three colour-coded resistance levels for progressive warm-up work.'
+        WHEN 13 THEN 'Textured surface, travel-friendly size and good compression resistance.'
+        WHEN 14 THEN 'Soft base, four-layer construction and hidden elastic waist.'
+        WHEN 15 THEN 'Adjustable band, non-slip finish and lightweight elements for extended wear.'
+        WHEN 16 THEN 'Structured bodice, light layered skirt and hand-sewn embellishments.'
+        ELSE details
+    END,
+    care = CASE id
+        WHEN 1 THEN 'Air after each use and replace ribbons after approximately 20 intense sessions.'
+        WHEN 2 THEN 'Hand wash in cold water and dry flat.'
+        WHEN 3 THEN 'Brush the sole with a dry brush and store the shoes in a fabric bag.'
+        WHEN 5 THEN 'Use a delicate cycle and never iron directly over the tulle.'
+        WHEN 6 THEN 'Store on a hanger and avoid high-temperature drying.'
+        WHEN 7 THEN 'Wash in a textile bag and avoid contact with rough surfaces.'
+        WHEN 8 THEN 'Hand wash and dry flat to preserve the shape.'
+        WHEN 9 THEN 'Keep away from moisture and cut the edges carefully to prevent fraying.'
+        WHEN 10 THEN 'Store in a small box to protect the decorative elements.'
+        WHEN 11 THEN 'Wipe the exterior with a damp cloth and leave the bag open after training.'
+        WHEN 12 THEN 'Keep away from direct sunlight and use talc if the bands stick together.'
+        WHEN 13 THEN 'Wipe with a damp cloth and keep away from heat sources.'
+        WHEN 14 THEN 'Carry on a hanger and steam gently from a distance before a performance.'
+        WHEN 15 THEN 'Keep in the original box and gently wipe the crystals after each event.'
+        WHEN 16 THEN 'Professional cleaning and padded-hanger storage are required.'
+        ELSE care
+    END
+WHERE id BETWEEN 1 AND 16;

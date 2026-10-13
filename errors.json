@@ -1,0 +1,38 @@
+{
+    "base_path": "/assets/images/errors/",
+    "default_error": {
+        "title": "Unknown error",
+        "text": "An unexpected error occurred. Please try again later.",
+        "image": "default-error.svg"
+    },
+    "errors": [
+        {
+            "identifier": 400,
+            "status": true,
+            "title": "Invalid request",
+            "text": "Template files (.ejs) cannot be accessed directly. They are used internally by the server.",
+            "image": "400.svg"
+        },
+        {
+            "identifier": 403,
+            "status": true,
+            "title": "Access denied",
+            "text": "You do not have permission to access this page.",
+            "image": "403.svg"
+        },
+        {
+            "identifier": 404,
+            "status": true,
+            "title": "Page not found",
+            "text": "The page you are looking for does not exist or has been moved.",
+            "image": "404.svg"
+        },
+        {
+            "identifier": 500,
+            "status": true,
+            "title": "Server error",
+            "text": "An internal server error occurred. Please try again later.",
+            "image": "500.svg"
+        }
+    ]
+}

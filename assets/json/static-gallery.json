@@ -1,0 +1,208 @@
+{
+    "gallery_path": "/assets/images/gallery",
+    "images": [
+        {
+            "image_file": "imag1.jpeg",
+            "image_name": "Grace",
+            "alt_text": "Ballerina in a pink tutu under warm light",
+            "day_ranges": [
+                [
+                    "monday",
+                    "wednesday"
+                ],
+                [
+                    "saturday",
+                    "saturday"
+                ]
+            ],
+            "image_description": "A delicate frame capturing the elegance of rehearsal costumes."
+        },
+        {
+            "image_file": "imag2.jpeg",
+            "image_name": "Crown",
+            "alt_text": "Ballerina in a performance costume with a royal accessory",
+            "day_ranges": [
+                [
+                    "monday",
+                    "friday"
+                ]
+            ],
+            "image_description": "Inspiration for recitals and gala costumes from the boutique collection."
+        },
+        {
+            "image_file": "imag3.jpeg",
+            "image_name": "Gold",
+            "alt_text": "Ballerina in a gold costume on stage",
+            "day_ranges": [
+                [
+                    "tuesday",
+                    "saturday"
+                ]
+            ],
+            "image_description": "Gold tones and fluid materials for memorable competition appearances."
+        },
+        {
+            "image_file": "imag4.jpeg",
+            "image_name": "Pointe shoes",
+            "alt_text": "Pointe shoes photographed in close-up",
+            "day_ranges": [
+                [
+                    "wednesday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "Visual detail focused on pointe shoes and ribbons prepared for rehearsal."
+        },
+        {
+            "image_file": "imag5.jpeg",
+            "image_name": "Collage",
+            "alt_text": "Visual collage inspired by ballet",
+            "day_ranges": [
+                [
+                    "thursday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "Textures, colors and romantic accents that define the boutique visual identity."
+        },
+        {
+            "image_file": "ballerina-equipment.jpg",
+            "image_name": "Studio",
+            "alt_text": "Ballerina wearing a complete training outfit",
+            "day_ranges": [
+                [
+                    "monday",
+                    "saturday"
+                ]
+            ],
+            "image_description": "An overview of essential products for a complete ballet outfit."
+        },
+        {
+            "image_file": "ballet-hero-large.jpeg",
+            "image_name": "Arabesque",
+            "alt_text": "Ballerina performing an arabesque on stage",
+            "day_ranges": [
+                [
+                    "monday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "The site hero image, used here as the gallery centrepiece."
+        },
+        {
+            "image_file": "ballet-hero-medium.jpeg",
+            "image_name": "Backstage",
+            "alt_text": "Ballerina captured during a break between rehearsals",
+            "day_ranges": [
+                [
+                    "saturday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "A calm backstage moment suitable for presenting the accessories and equipment range."
+        },
+        {
+            "image_file": "ballet-dancer-cc-by.jpg",
+            "image_name": "Archive",
+            "alt_text": "Classical ballerina photographed in a stage costume",
+            "day_ranges": [
+                [
+                    "friday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "Archive image with an open license, included to demonstrate CC-BY attribution.",
+            "attribution": {
+                "author": "Stano Novak",
+                "source": "Wikimedia Commons",
+                "source_link": "https://commons.wikimedia.org/wiki/File:Ballet-dancer_01.jpg",
+                "license": "CC BY 2.5",
+                "license_link": "https://creativecommons.org/licenses/by/2.5/"
+            }
+        },
+        {
+            "image_file": "stage-light.jpeg",
+            "image_name": "Spotlight",
+            "alt_text": "Ballerina shown in profile in a tight frame",
+            "day_ranges": [
+                [
+                    "monday",
+                    "thursday"
+                ]
+            ],
+            "image_description": "A crop created for a more intimate focus on the silhouette."
+        },
+        {
+            "image_file": "regal.jpeg",
+            "image_name": "Regal",
+            "alt_text": "Close-up detail of a royal stage costume",
+            "day_ranges": [
+                [
+                    "tuesday",
+                    "friday"
+                ]
+            ],
+            "image_description": "A crop highlighting sparkling stage accessories."
+        },
+        {
+            "image_file": "satin.jpeg",
+            "image_name": "Satin",
+            "alt_text": "Golden texture from a ballet costume",
+            "day_ranges": [
+                [
+                    "wednesday",
+                    "saturday"
+                ]
+            ],
+            "image_description": "A close-up in which the material and reflections become the main element."
+        },
+        {
+            "image_file": "ribbons.jpeg",
+            "image_name": "Ribbons",
+            "alt_text": "Ribbons and pointe shoes arranged for rehearsal",
+            "day_ranges": [
+                [
+                    "thursday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "A composition highlighting textile details associated with ballet equipment."
+        },
+        {
+            "image_file": "atelier.jpg",
+            "image_name": "Atelier",
+            "alt_text": "Ballerina in a studio, ready for training",
+            "day_ranges": [
+                [
+                    "monday",
+                    "friday"
+                ]
+            ],
+            "image_description": "A derived frame suggesting the atmosphere of the atelier and studio."
+        },
+        {
+            "image_file": "reverie.jpeg",
+            "image_name": "Reverie",
+            "alt_text": "Artistic collage inspired by ballet",
+            "day_ranges": [
+                [
+                    "tuesday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "A more poetic version of the collage, used to vary the gallery rhythm."
+        },
+        {
+            "image_file": "classical-step.jpeg",
+            "image_name": "Classical step",
+            "alt_text": "Ballerina performing a classical step near the stage",
+            "day_ranges": [
+                [
+                    "monday",
+                    "sunday"
+                ]
+            ],
+            "image_description": "A composition focused on body line and controlled movement."
+        }
+    ]
+}

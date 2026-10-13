@@ -1,33 +1,51 @@
 # Lena's Ballet Boutique
 
-Lena's Ballet Boutique is a full-stack e-commerce application for ballet
-shoes, costumes and accessories. It started as a PostgreSQL-backed catalogue
-and was extended into a portfolio-ready application with transactional
-checkout, authentication, order history, administration, security controls,
-automated tests and deployment automation.
+Full-stack e-commerce application for ballet shoes, costumes and accessories,
+built to demonstrate production-minded backend engineering, secure workflows
+and reliable data handling.
+
+**Project focus:** catalogue management, validated shopping carts,
+transactional checkout, authentication, role-based administration and
+deployment readiness.
+
+## Why this project is relevant
+
+- Designed a PostgreSQL data model for products, inventory, customers, users,
+  sessions, orders and order items.
+- Implemented checkout with database transactions, row-level stock locking,
+  atomic inventory updates, historical prices and duplicate-submission
+  protection.
+- Built authentication with `crypto.scrypt`, hashed session tokens, secure
+  cookies and persistent order history.
+- Added server-side price and stock validation instead of trusting browser
+  state.
+- Applied CSRF protection, security headers, production HSTS and
+  authentication rate limiting.
+- Added automated tests, CI checks, database migrations, health checks and a
+  Render deployment blueprint.
 
 ## Features
 
-- PostgreSQL product catalogue with categories, pricing and inventory.
-- Responsive EJS pages with Bootstrap, Sass and browser-side JavaScript.
-- Client-side cart persisted in `localStorage`.
-- Server-side cart validation using trusted database prices and stock.
-- Transactional checkout with:
-  - row-level locking;
-  - atomic inventory updates;
-  - historical order prices;
-  - delivery cost calculation;
-  - idempotency protection against duplicate submissions.
-- Account registration, login, logout and authenticated order history.
-- Password hashing with Node.js `crypto.scrypt`.
-- Hashed PostgreSQL session tokens with secure HTTP-only cookies.
-- Role-protected admin dashboard for inventory and order status management.
-- CSRF protection for browser forms.
-- Security headers, production HSTS and login/registration rate limiting.
-- Static and animated gallery pages with responsive image variants.
-- Vitest and Supertest automated tests.
-- GitHub Actions CI with audit, syntax, test and Sass-build checks.
-- Render deployment blueprint with migrations and `/health` checks.
+- Product catalogue with categories, filtering, sorting, pagination and
+  inventory.
+- Responsive EJS frontend with Bootstrap, Sass and browser-side JavaScript.
+- `localStorage` cart with server-side validation.
+- Customer registration, login, logout and order history.
+- Role-protected administration for inventory and order statuses.
+- Static and animated galleries with responsive image variants.
+- Demonstrative cash-on-delivery and test payment options; no real card data
+  is collected.
+
+## Technical highlights
+
+| Area | Implementation |
+| --- | --- |
+| Backend | Node.js, Express 5, CommonJS |
+| Frontend | EJS, JavaScript, Bootstrap, Sass |
+| Database | PostgreSQL with ordered idempotent migrations |
+| Security | `crypto.scrypt`, hashed sessions, CSRF, security headers, rate limiting |
+| Testing | Vitest, Supertest, syntax checks and Sass builds |
+| Delivery | GitHub Actions CI, Render blueprint and `/health` endpoint |
 
 ## Technology
 

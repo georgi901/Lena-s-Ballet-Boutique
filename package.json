@@ -1,37 +1,47 @@
 {
+  "main": "server.js",
   "name": "proiect-tehnici-web",
-  "description": "Lena's Boutique Balet este un magazin online dedicat pasionaților de balet, oferind echipamente, costume și accesorii de calitate superioară, selectate și recomandate personal de o balerină profesionistă. Site-ul se adresează unui public divers, de la copii care fac primii pași în balet, până la dansatoare avansate și profesioniste care au nevoie de produse tehnice de încredere, dar și de costume pentru spectacole și concursuri.",
+  "description": "Lena's Ballet Boutique is an online shop for ballet equipment, costumes and accessories selected and personally recommended by a professional dancer. The site serves beginners, advanced dancers, professional performers and ballet schools.",
   "keywords": [
     "Lena's Ballet Boutique",
-    "balet",
-    "balerini",
-    "panglici",
-    "dres",
-    "fusta",
-    "plasa de par",
-    "accesorii de par",
+    "ballet",
+    "ballet shoes",
+    "ribbons",
+    "tights",
+    "ballet skirt",
+    "hair net",
+    "hair accessories",
     "tutu",
     "body",
     "poante",
-    "magazin balet online",
-    "echipament balet",
-    "accesorii dans clasic",
-    "costume balet",
-    "articole balet",
-    "kit balet incepatori",
-    "școli de balet"
+    "online ballet shop",
+    "ballet equipment",
+    "classical dance accessories",
+    "ballet costumes",
+    "ballet products",
+    "beginner ballet kit",
+    "ballet schools"
   ],
   "author": "Spataru Georgiana Valentina",
   "scripts": {
-    "start": "node index.js",
-    "build:scss": "sass --load-path=node_modules resurse/scss:resurse/css --style=expanded"
+    "start": "node server.js",
+    "migrate": "node scripts/migrate.js",
+    "build:scss": "sass --load-path=node_modules assets/scss:assets/css --style=expanded",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
+    "dotenv": "^16.6.1",
     "ejs": "^5.0.1",
     "express": "^5.2.1",
     "pg": "^8.21.0",
     "sass": "^1.99.0",
-    "sharp": "^0.34.5"
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "supertest": "^7.3.1",
+    "vitest": "^4.1.11"
   }
 }

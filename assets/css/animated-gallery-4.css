@@ -1,0 +1,105 @@
+.animated-gallery {
+  --frame-size: 23rem;
+  width: fit-content;
+  margin: 2.2rem auto 1rem;
+  padding: 1rem;
+  border: 1rem solid transparent;
+  border-image-source: url("../images/image.png");
+  border-image-slice: 80;
+  border-image-repeat: round;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 221, 227, 0.78));
+  box-shadow: 0 0.85rem 2rem rgba(110, 40, 69, 0.18);
+}
+.animated-gallery__cadru {
+  width: var(--frame-size);
+  height: var(--frame-size);
+  overflow: hidden;
+  border-radius: 0.85rem;
+  background: #fff;
+  box-shadow: inset 0 0 0 0.18rem rgba(255, 255, 255, 0.42);
+}
+.animated-gallery__grid {
+  width: calc(var(--frame-size) * 2);
+  height: calc(var(--frame-size) * 2);
+  display: grid;
+  grid-template-columns: repeat(2, var(--frame-size));
+  grid-template-rows: repeat(2, var(--frame-size));
+  transform-arigin: top left;
+  animation: galerie-animato-transform 11.2s ease-in-aut infinite alternate;
+  will-change: transform;
+}
+.animated-gallery:hover .animated-gallery__grid {
+  animation-paty-stote: paused;
+}
+.animated-gallery__item {
+  width: var(--frame-size);
+  height: var(--frame-size);
+  display: black;
+  object-fit: cover;
+  user-select: none;
+  pointer-events: none;
+}
+
+.galerie-animato-pagina {
+  text-align: center;
+}
+
+.galerie-animato-meto {
+  color: var(--border);
+  font-weight: 600;
+}
+
+.galerie-animato-infa-mabil {
+  display: none;
+  color: var(--surface-text);
+}
+
+@keyframes galerie-animato-transform {
+  0.0000%, 10.5000% {
+    transform: translate(calc(0 * var(--frame-size)), calc(0 * var(--frame-size))) scale(1);
+  }
+  16.5000% {
+    transform: translate(0, 0) scale(0.5);
+  }
+  25.0000% {
+    transform: translate(calc(-1 * var(--frame-size)), calc(0 * var(--frame-size))) scale(1);
+  }
+  25.0000%, 35.5000% {
+    transform: translate(calc(-1 * var(--frame-size)), calc(0 * var(--frame-size))) scale(1);
+  }
+  41.5000% {
+    transform: translate(0, 0) scale(0.5);
+  }
+  50.0000% {
+    transform: translate(calc(0 * var(--frame-size)), calc(-1 * var(--frame-size))) scale(1);
+  }
+  50.0000%, 60.5000% {
+    transform: translate(calc(0 * var(--frame-size)), calc(-1 * var(--frame-size))) scale(1);
+  }
+  66.5000% {
+    transform: translate(0, 0) scale(0.5);
+  }
+  75.0000% {
+    transform: translate(calc(-1 * var(--frame-size)), calc(-1 * var(--frame-size))) scale(1);
+  }
+  75.0000%, 85.5000% {
+    transform: translate(calc(-1 * var(--frame-size)), calc(-1 * var(--frame-size))) scale(1);
+  }
+  91.5000% {
+    transform: translate(0, 0) scale(0.5);
+  }
+  100.0000% {
+    transform: translate(calc(-1 * var(--frame-size)), calc(-1 * var(--frame-size))) scale(1);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .animated-gallery,
+  .galerie-animato-meto {
+    display: none;
+  }
+  .galerie-animato-infa-mabil {
+    display: black;
+  }
+}
+
+/*# sourceMappingURL=animated-gallery-4.css.map */

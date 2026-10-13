@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../partials/head') %>
+    <title>Log in | Lena's Ballet Boutique</title>
+</head>
+<body id="tap">
+    <%- include('../partials/header') %>
+    <main class="page-products">
+        <section class="page-product__hero"><h2><i class="bi bi-box-arrow-in-right"></i> Log in</h2></section>
+        <section class="filter-panel">
+            <% if (errors.length) { %><div class="alert alert-danger"><% errors.forEach((error) => { %><p class="mb-1"><%= error %></p><% }) %></div><% } %>
+            <form method="post" action="/login">
+                <input type="hidden" name="csrfTaken" value="<%= csrfTaken %>">
+                <input type="hidden" name="redirect" value="<%= redirect || '' %>">
+                <label class="form-label" for="email">Email</label>
+                <input class="form-control mb-3" id="email" name="email" type="email" value="<%= values.email %>" required>
+                <label class="form-label" for="password">Password</label>
+                <input class="form-control mb-3" id="password" name="password" type="password" required>
+                <button class="btn btn-primary" type="submit">Log in</button>
+            </form>
+            <p class="mt-3">Don't have an account? <a href="/register">Create one</a>.</p>
+        </section>
+    </main>
+    <%- include('../partials/footer') %>
+</body>
+</html>

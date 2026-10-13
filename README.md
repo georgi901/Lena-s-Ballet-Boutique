@@ -1,82 +1,80 @@
 # Lena's Ballet Boutique
 
-Full-stack e-commerce application for ballet shoes, costumes and accessories,
-built to demonstrate production-minded backend engineering, secure workflows
-and reliable data handling.
+![Node.js](https://img.shields.io/badge/Node.js-22%2B-339933.svg?logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/Express-5.x-black.svg?logo=express)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-14%2B-336791.svg?logo=postgresql&logoColor=white)
+![Tests](https://img.shields.io/badge/tests-35%20passing-success.svg)
 
-**Project focus:** catalogue management, validated shopping carts,
-transactional checkout, authentication, role-based administration and
-deployment readiness.
+Lena's Ballet Boutique is a full-stack e-commerce application for ballet
+shoes, costumes and accessories. It started as a PostgreSQL-backed catalogue
+and was expanded into a portfolio-oriented application with transactional
+checkout, authentication, administration, security controls, automated tests
+and deployment preparation.
 
-## Why this project is relevant
+## Description
 
-- Designed a PostgreSQL data model for products, inventory, customers, users,
-  sessions, orders and order items.
-- Implemented checkout with database transactions, row-level stock locking,
-  atomic inventory updates, historical prices and duplicate-submission
-  protection.
-- Built authentication with `crypto.scrypt`, hashed session tokens, secure
-  cookies and persistent order history.
-- Added server-side price and stock validation instead of trusting browser
-  state.
-- Applied CSRF protection, security headers, production HSTS and
-  authentication rate limiting.
-- Added automated tests, CI checks, database migrations, health checks and a
-  Render deployment blueprint.
+The application provides a complete online shopping flow for ballet products.
+Customers can browse and filter the catalogue, manage a persistent cart,
+create an account, place orders and review their order history.
+
+The project also includes administrative workflows for inventory and order
+management. The backend validates product prices, stock and checkout data on
+the server, while PostgreSQL transactions protect inventory consistency during
+concurrent orders.
 
 ## Features
 
-- Product catalogue with categories, filtering, sorting, pagination and
-  inventory.
+- Product catalogue with categories, pricing, stock and product details.
+- Search, filtering, two-key sorting, pagination and product modals.
 - Responsive EJS frontend with Bootstrap, Sass and browser-side JavaScript.
-- `localStorage` cart with server-side validation.
-- Customer registration, login, logout and order history.
+- Persistent `localStorage` shopping cart.
+- Server-side cart validation using trusted database prices and stock.
+- Transactional checkout with:
+  - row-level stock locking;
+  - atomic inventory updates;
+  - historical order prices;
+  - delivery cost calculation;
+  - duplicate-submission protection.
+- Customer registration, login, logout and authenticated order history.
+- Password hashing with Node.js `crypto.scrypt`.
+- Hashed PostgreSQL session tokens and secure HTTP-only cookies.
 - Role-protected administration for inventory and order statuses.
+- CSRF protection, security headers, production HSTS and rate limiting.
 - Static and animated galleries with responsive image variants.
-- Demonstrative cash-on-delivery and test payment options; no real card data
-  is collected.
+- GitHub Actions CI and a Render deployment blueprint.
 
-## Technical highlights
+## Engineering implementation
 
-| Area | Implementation |
-| --- | --- |
-| Backend | Node.js, Express 5, CommonJS |
-| Frontend | EJS, JavaScript, Bootstrap, Sass |
-| Database | PostgreSQL with ordered idempotent migrations |
-| Security | `crypto.scrypt`, hashed sessions, CSRF, security headers, rate limiting |
-| Testing | Vitest, Supertest, syntax checks and Sass builds |
-| Delivery | GitHub Actions CI, Render blueprint and `/health` endpoint |
+The project keeps the Express application separate from the production server:
 
-## Technology
+- `app.js` exports `createApp({ pool })` and contains the HTTP application.
+- `server.js` validates configuration, creates the database pool, starts the
+  server and handles graceful shutdown.
+- Database access is organized into domain modules for products, orders,
+  authentication, administration and security.
+- Checkout uses a database transaction, row locks and atomic stock updates.
+- Session tokens are hashed before storage, so raw session tokens are not
+  persisted in PostgreSQL.
+- Tests inject a mock database pool and do not require production credentials.
 
-| Area | Technology |
-| --- | --- |
-| Runtime | Node.js 22+, CommonJS |
-| Server | Express 5 |
-| Templates | EJS |
-| Database | PostgreSQL |
-| Frontend | JavaScript, Bootstrap, Sass |
-| Image processing | Sharp |
-| Testing | Vitest, Supertest |
-| CI/CD | GitHub Actions, Render |
+## Requirements
+
+- Node.js 22 or newer.
+- PostgreSQL 14 or newer.
+- npm.
 
 ## Local setup
 
-### Requirements
-
-- Node.js 22 or newer
-- PostgreSQL 14 or newer
-- npm
-
-### Installation
+From the repository root:
 
 ```bash
 npm ci
 cp .env.example .env
 ```
 
-Configure `.env` with either `DATABASE_URL` or the complete `PG*`
-configuration, then run:
+Configure `.env` with either `DATABASE_URL` or the complete PostgreSQL
+configuration. Then apply migrations, build the stylesheets and start the
+application:
 
 ```bash
 npm run migrate
@@ -95,7 +93,7 @@ The application requires either `DATABASE_URL` or all of `PGHOST`, `PGPORT`,
 | Variable | Description |
 | --- | --- |
 | `NODE_ENV` | `development` or `production` |
-| `PORT` | HTTP port supplied by the host |
+| `PORT` | HTTP port supplied by the hosting platform |
 | `DATABASE_URL` | PostgreSQL connection string |
 | `DATABASE_SSL` | Set to `true` for a managed production database |
 | `PGHOST` / `PGPORT` | PostgreSQL host and port |
@@ -104,58 +102,119 @@ The application requires either `DATABASE_URL` or all of `PGHOST`, `PGPORT`,
 
 Never commit `.env` files or real credentials.
 
-## Scripts
+## Run the application
+
+Start the production server locally with:
 
 ```bash
-npm start              # Start the production server
-npm run migrate        # Apply pending SQL migrations
-npm run build:scss     # Compile Sass into assets/css
-npm test               # Run the automated test suite
-npm run test:coverage  # Generate coverage output
-npm run test:watch     # Run Vitest in watch mode
+npm start
 ```
 
-## Architecture
+Check the application and database health with:
+
+```bash
+curl http://localhost:8080/health
+```
+
+The expected response is:
+
+```json
+{"status":"ok"}
+```
+
+## Run tests
+
+Run the complete automated test suite with:
+
+```bash
+npm test -- --run
+```
+
+The suite currently contains 35 tests covering:
+
+- product queries, filtering and transformations;
+- routes and error handling;
+- cart validation;
+- checkout transactions, stock updates and idempotency;
+- authentication, sessions and password handling;
+- role-based administration;
+- CSRF protection, security headers and rate limiting.
+
+Additional quality commands:
+
+```bash
+npm run test:coverage
+npm run build:scss
+npm audit --audit-level=moderate
+```
+
+## Project structure
 
 ```text
-app.js                    Express application factory
-server.js                 Production server entry point
-config.js                 Environment validation
-db.js                     PostgreSQL pool creation
-modules/           Domain and database modules
-sql/migrations/           Ordered idempotent migrations
-scripts/migrate.js        Migration runner
-views/                    EJS templates
-assets/js/               Browser-side modules
-tests/                    Unit and route tests
-.github/workflows/ci.yml  Continuous integration
-render.yaml               Render deployment blueprint
+.
+├── assets/                 # Images, stylesheets, browser scripts and gallery data
+├── docs/                   # Baseline, decisions, deployment and manual test docs
+├── modules/                # Product, order, authentication, admin and security logic
+├── scripts/                # Database migration runner
+├── sql/migrations/         # Ordered, idempotent PostgreSQL migrations
+├── tests/                  # Vitest, Supertest and mock database tests
+├── views/pages/            # EJS page templates
+├── views/partials/         # Shared EJS components
+├── app.js                  # Express application factory
+├── server.js               # Production server entry point
+├── config.js               # Environment validation
+├── db.js                   # PostgreSQL pool creation
+├── render.yaml             # Render deployment blueprint
+└── vitest.config.js        # Test configuration
 ```
-
-The application is created through `createApp({ pool })`, which keeps the
-Express layer testable without requiring a live database connection. The
-production entry point owns pool creation, startup and graceful shutdown.
 
 ## Database migrations
 
 Migrations are applied in numeric order and recorded in
 `migration_history`:
 
-1. `001_products.sql` — product catalogue and demo products.
-2. `002_orders.sql` — clients, orders and order items.
+1. `001_products.sql` — products, categories and demo catalogue data.
+2. `002_orders.sql` — customers, orders and order items.
 3. `003_authentication.sql` — users, sessions and order ownership.
 4. `004_translate_demo_products.sql` — English demo product content.
-5. `005_rename_schema_to_english.sql` — upgrades legacy Romanian table,
-   enum and column identifiers to the English schema used by the application.
+5. `005_rename_schema_to_english.sql` — upgrades legacy Romanian identifiers
+   to the English schema used by the application.
 
-The migration runner is idempotent and is executed automatically by the
-Render start command before the application starts.
+The migration runner is idempotent and runs automatically before the Render
+service starts.
 
-## Testing and quality checks
+## Technologies
 
-The test suite covers product queries, routes, cart validation, checkout
-transactions, idempotency, authentication, administration and security
-middleware. The CI workflow runs:
+- **Node.js 22+ and Express 5** for the server.
+- **EJS, JavaScript, Bootstrap and Sass** for the frontend.
+- **PostgreSQL** for products, inventory, users, sessions and orders.
+- **Sharp** for responsive image processing.
+- **Vitest and Supertest** for automated testing.
+- **GitHub Actions and Render** for CI and deployment preparation.
+
+## Security and data integrity
+
+- Passwords are hashed with `crypto.scrypt`.
+- Session tokens are hashed before they are stored.
+- Browser forms require CSRF tokens.
+- Security headers and production HSTS are enabled.
+- Login and registration endpoints use rate limiting.
+- Product prices and stock are read from PostgreSQL during checkout.
+- Inventory updates occur atomically inside a transaction.
+- Checkout supports demonstration payment options only; no real card details
+  are collected or stored.
+
+## Deployment
+
+The repository includes a Render Blueprint that provisions the web service and
+PostgreSQL database, runs migrations and checks `/health`.
+
+Read [`docs/DEPLOY.md`](docs/DEPLOY.md) for production configuration,
+environment variables, migrations and verification steps.
+
+## Quality checks
+
+The GitHub Actions workflow checks:
 
 ```bash
 npm ci
@@ -165,29 +224,36 @@ npm test -- --run
 npm run build:scss
 ```
 
-The current local verification passes all automated tests and reports no
-known npm vulnerabilities. Sass currently emits deprecation warnings from
-Bootstrap's upstream Sass implementation; these warnings do not fail the
-build.
+The current local verification passes all 35 automated tests and reports no
+known production dependency vulnerabilities. Sass may emit deprecation
+warnings from Bootstrap's upstream implementation; these warnings do not fail
+the build.
 
-## Deployment
+## Documentation
 
-The repository includes a Render Blueprint. Read
-[`docs/DEPLOY.md`](docs/DEPLOY.md) for database provisioning, environment
-variables, migrations, health checks and production verification.
+- [`docs/BASELINE.md`](docs/BASELINE.md) — initial project assessment and
+  completed improvements.
+- [`docs/CI.md`](docs/CI.md) — continuous integration checks.
+- [`docs/DECISIONS.md`](docs/DECISIONS.md) — important technical decisions.
+- [`docs/DEPLOY.md`](docs/DEPLOY.md) — Render and production deployment.
+- [`docs/MANUAL_TESTS.md`](docs/MANUAL_TESTS.md) — browser and deployment
+  verification checklist.
+- [`CHANGELOG.md`](CHANGELOG.md) — project changes and milestones.
 
-The `/health` endpoint reports the application and database status. The
-production database can use SSL through `DATABASE_SSL=true`.
+## Roadmap
 
-## Payment scope
+- [x] Product catalogue with filtering, sorting and pagination.
+- [x] Persistent shopping cart with server-side validation.
+- [x] Transactional checkout and inventory consistency.
+- [x] Authentication, sessions and order history.
+- [x] Role-protected administration.
+- [x] Security middleware and automated tests.
+- [x] English project structure and documentation.
+- [x] CI and deployment preparation.
+- [ ] Complete live browser verification against a production-like database.
+- [ ] Integrate a real payment provider if the project moves beyond demo mode.
 
-Checkout is intentionally demonstrative and currently supports cash on
-delivery or a demo payment option. No real card details are collected and no
-payment provider is integrated.
+## License
 
-## Portfolio summary
-
-This project demonstrates relational data modelling, server-side validation,
-transactional business logic, inventory consistency, authentication,
-role-based authorization, defensive security controls, automated testing,
-continuous integration and deployment preparation.
+This project is intended as a portfolio and academic application. Add a
+license file before distributing it as open-source software.
